@@ -74,9 +74,9 @@ body {
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
-	color: blue;
-	text-align: right;
-	background-color: #000;
+	color: black;
+	text-align: center;
+	background-color: white;
 }
 
 [tabindex="-1"]:focus {
@@ -96,7 +96,7 @@ h4,
 h5,
 h6 {
 	margin-top: 0;
-    margin-bottom: .5rem;
+	margin-bottom: .5rem;
     font-family: Arial
 }
 
@@ -177,7 +177,7 @@ sup {
 }
 
 a {
-	color: #007bff;
+	color: green;
 	text-decoration: none;
 	background-color: transparent;
 	-webkit-text-decoration-skip: objects
@@ -466,6 +466,49 @@ small {
 	font-size: 80%;
 	font-weight: 400
 }
+
+/*segmented control*/
+.segmented-control {
+    display: table;
+    width: 50%;
+    margin: 2em 0;
+	padding: 0;
+}
+
+.segmented-control__item {
+    display: table-cell;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.segmented-control__input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.segmented-control__label {
+    display: block;
+    margin: 0 -1px -1px 0; /* -1px margin removes double-thickness borders between items */
+    padding: 1em .25em;
+
+    border: 1px solid #ddd;
+
+    font: 14px/1.5 sans-serif; 
+    text-align: center;  
+
+    cursor: pointer;
+}
+
+.segmented-control__label:hover {
+    background: #fafafa;
+}
+
+.segmented-control__input:checked + .segmented-control__label {
+    background: #eee;
+    color: #333; 
+}
+
 
 .mark,
 mark {
@@ -1612,9 +1655,10 @@ pre code {
 }
 
 .table {
-	width: 100%;
+	width: 90%;
 	margin-bottom: 1rem;
 	background-color: transparent
+
 }
 
 .table td,
@@ -1668,7 +1712,8 @@ pre code {
 }
 
 .table-hover tbody tr:hover {
-	background-color: rgba(0, 0, 0, .075)
+	background-color: rgba(0, 0, 0, .075);
+	
 }
 
 .table-primary,

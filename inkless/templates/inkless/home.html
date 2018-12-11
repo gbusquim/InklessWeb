@@ -17,17 +17,56 @@
     <title>Document</title>
 </head>
 <body>
-    {% for rent in nome %}
-        {% if rent == 't1' %}
-        <h1>
-            oi lol       
-        </h1>
-        {% endif %}
-    {% endfor %}
-    <a href="teste/">David Miller</a>
-    
+    <br></br>
+    <div align="center">
+                <div style="display: inline-block"> <input > </input> </div>
+                <div style="display: inline-block"> <button> b </button> </div>
+    </div>
+    <br></br><br></br>
+    <table align ="center" class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Proposta</th> 
+                <th scope="col">Nome</th>
+                <th scope="col">Data</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+     
+              </tr>
+            </tbody>
+          </table>
+
+
+
+<!-- 
+    <ul class="segmented-control">
+            <li class="segmented-control__item">
+                <input class="segmented-control__input" type="radio" value="1" name="option" id="option-1" checked>
+                <label class="segmented-control__label" for="option-1">Thing 1</label>
+            </li>
+            <li class="segmented-control__item">
+                <input class="segmented-control__input" type="radio" value="2" name="option" id="option-2" >
+                <label class="segmented-control__label" for="option-2">Thing 2</label>
+            </li>
+        </ul>
+     -->
     <footer>
         <script
+ 
             src="{% static 'js/bootstrap.min.js' %}" type="text/javascript">
         </script>
     </footer>
