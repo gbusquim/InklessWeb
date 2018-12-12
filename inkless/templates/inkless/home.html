@@ -15,15 +15,19 @@
    
 
     <title>Document</title>
+
+
+
 </head>
 <body>
     <br></br>
     <div align="center">
                 <div style="display: inline-block"> <input > </input> </div>
-                <div style="display: inline-block"> <button> b </button> </div>
+                <div style="display: inline-block"> <button type="button"> b </button> </div>
     </div>
     <br></br><br></br>
-    <table align ="center" class="table table-hover">
+    <!-- <table align ="center" class="table table-hover" id="tabela" onclick="clickTabela()"> -->
+            <table align ="center" class="table table-hover" id="tabela">
             <thead>
               <tr>
                 <th scope="col">Proposta</th> 
@@ -51,7 +55,8 @@
           </table>
 
 
-
+<p id="p1">OLa</p>
+<p id ="p2">Tudo bem?</p>
 <!-- 
     <ul class="segmented-control">
             <li class="segmented-control__item">
@@ -65,10 +70,27 @@
         </ul>
      -->
     <footer>
-        <script
- 
-            src="{% static 'js/bootstrap.min.js' %}" type="text/javascript">
-        </script>
+            <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript">
+            </script>
+        
+            <script>
+                //function clickTabela()
+
+                    var table=document.getElementById("tabela");
+                    var Index;
+                    for ( var i = 0; i<table.rows.length;i++)
+                    {
+                        table.rows[i].onclick=function()
+                        {
+                            Index=this.rowIndex;
+                            document.getElementById("p1").innerHTML=this.cells[0].innerHTML;
+                            document.getElementById("p2").innerHTML=this.cells[1].innerHTML;
+                        }
+                    }
+                    
+                
+        
+            </script>
     </footer>
 </body>
 </html>
