@@ -89,6 +89,13 @@ hr {
 	overflow: visible
 }
 
+.textoSegurado
+{
+	font-family: "Avenir";
+	position: relative;
+	left: -400px;
+}
+
 h1,
 h2,
 h3,
@@ -254,7 +261,7 @@ label {
 }
 
 button {
-	border-radius: 0
+	border-radius: 0;
 }
 
 button:focus {
@@ -2460,20 +2467,24 @@ textarea.form-control {
 }
 
 .btn {
-	display: inline-block;
-	font-weight: 400;
+	/* display: inline-block;*/
 	text-align: center;
-	white-space: nowrap;
 	vertical-align: middle;
+	font-weight: 600;
+	white-space: nowrap;
+	position: relative;
+	left: 30px;
+	top: 80px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	border: 1px solid transparent;
-	padding: .375rem .75rem;
-	font-size: 1rem;
+	border: 8px solid transparent;
+	padding: .105rem .75rem;
+	font-size: 1.5rem;
 	line-height: 1.5;
-	border-radius: .25rem;
+	width: 20%;
+	border-radius: 5.25rem;
 	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
@@ -3147,7 +3158,8 @@ fieldset:disabled a.btn {
 	padding: .5rem 1rem;
 	font-size: 1.25rem;
 	line-height: 1.5;
-	border-radius: .3rem
+	border-radius: .3rem;
+	
 }
 
 .btn-group-sm>.btn,
@@ -3419,7 +3431,8 @@ input[type=submit].btn-block {
 	position: relative;
 	display: -ms-inline-flexbox;
 	display: inline-flex;
-	vertical-align: middle
+	vertical-align: middle;
+	
 }
 
 .btn-group-vertical>.btn,

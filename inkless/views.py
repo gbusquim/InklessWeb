@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Nome 
+from pyrebase import pyrebase
+
 # Create your views here.
 
 def home(request):
-    data= {}
-    data['nome']=['t1','t2','t1']
-    return render(request, 'inkless/home.html',data)
+    return render(request, 'inkless/tabelaSeguradora.html')
 
-def teste(request):
-    return render(request, 'inkless/teste.html')
+def paginaBeneficiario(request):
+    return render(request, 'inkless/paginaBeneficiario.html')
+
+def paginaSegurado(request):
+    return render(request, 'inkless/paginaSegurado.html')
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- CSS-->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">
+    <!--<<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+        </script>src="{% static 'js/bootstrap.min.js' %}" type = "text/javascript">
+    link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">-->
+   
+
+    <title>Document</title>
+
+
+
+</head>
+<body>
+    <br></br>
+    <div align="center">
+                <div style="display: inline-block"> <input > </input> </div>
+                <div style="display: inline-block"> <button type="button"> b </button> </div>
+    </div>
+    <br></br><br></br>
+    <!-- <table align ="center" class="table table-hover" id="tabela" onclick="clickTabela()"> -->
+            {% csrf_token %}
+            <table align ="center" class="table table-hover" id="tabela">
+            <thead>
+              <tr>
+                <th scope="col">Proposta</th> 
+                <th scope="col">Nome</th>
+                <th scope="col">Data</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+     
+              </tr>
+            </tbody>
+          </table>
+
+
+<p id="p1">OLa</p>
+<p id ="p2">Tudo bem?</p>
+
+<!-- 
+    <ul class="segmented-control">
+            <li class="segmented-control__item">
+                <input class="segmented-control__input" type="radio" value="1" name="option" id="option-1" checked>
+                <label class="segmented-control__label" for="option-1">Thing 1</label>
+            </li>
+            <li class="segmented-control__item">
+                <input class="segmented-control__input" type="radio" value="2" name="option" id="option-2" >
+                <label class="segmented-control__label" for="option-2">Thing 2</label>
+            </li>
+        </ul>
+     -->
+    <footer>
+            <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript">
+            </script>
+
+            <script src="{% static 'js/jquery.js' %}" type="text/javascript">
+            </script>
+        
+            <script>
+                //funcao que seleciona segurado
+                $(function () {
+                    $('table.table tr').click(function () {
+                        var indiceTabela = this.rowIndex;
+                        if(indiceTabela == 1)
+                            window.location="/paginaSegurado";
+                        else if (indiceTabela ==2)
+                            console.log("FUnfou");
+                    });
+                })
+      
+            </script>
+    </footer>
+</body>
+</html>
