@@ -53,9 +53,42 @@ html {
 /* MINHAS CLASSES */
 .textoSegurado
 {
+	font-weight: 100;
 	position: relative;	
 	left: -600px;
 }
+
+.coluna
+{
+	position: relative;	
+	text-align: left;
+	
+}
+
+.elementoLista
+{
+	display: inline;
+	position: relative;	
+	text-align: left;
+	left: -230px;
+	border: 2px solid transparent;
+	font-weight: bold;
+
+}
+
+.elementoArquivo
+{
+	display: inline;
+	position: relative;	
+	text-align: left;
+	left: -130px;
+	border: 2px solid transparent;
+	font-weight: bold;
+	color: lightskyblue;
+}
+
+
+/* FIM MINHAS CLASSES */
 @-ms-viewport {
 	width: device-width
 }
@@ -2467,13 +2500,13 @@ textarea.form-control {
 
 .btn {
 	/* display: inline-block;*/
-	text-align: center;
+	/* text-align: center;
 	vertical-align: middle;
 	font-weight: 600;
-	white-space: nowrap;
+	white-space: nowrap; */
 	position: relative;
-	left: 30px;
-	top: 80px;
+	left: 10px;
+	top: 10px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;

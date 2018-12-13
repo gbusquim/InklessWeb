@@ -12,23 +12,57 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">
 </head>
 <body>
-    <br></br>
+    <br></br><br></br>
         <div align="center">
                 <button type="button" class="btn btn-dark" onclick="location.href='/paginaBeneficiario';">Primary</button>
                 <button type="button" class="btn btn-primary">Primary</button>
         </div>
         <br></br>
-        <br></br>
-        <br></br>
-        <h3  style="color: blue" class="textoSegurado">
+        <h4  style="color: blue" class="textoSegurado">
                 Segurado
-        </h3>
-        <h3 class="textoSegurado">
+        </h4>
+        <h4 class="textoSegurado">
                 Cpf
-        </h3>
-        <h3 class="textoSegurado">
+        </h4>
+        <h4 class="textoSegurado">
                 Data
-        </h3>
+        </h4>
+        <br></br>
+        <div class="container">
+                <div class="row">
+                  <div class="col">
+                        <h4 class="coluna">
+                                Número da proposta: 
+                        </h4>
+                        <h4  class="coluna" >
+                                Matrícula:
+                        </h4 >
+                        <h4 class="coluna">
+                                Plano:
+                        </h4>
+                        <h4 class="coluna">
+                                Nome do estipulante:
+                        </h4>
+                  </div>
+                  <div class="col">
+                        <h4 style="color: blue" class="coluna">
+                               Documentos pendentes 
+                        </h4>
+                        <ul style="list-style-type:none">
+                                <li class="elementoLista">Coffee</li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
+                                <li></li>
+                                <li class="elementoLista">Coffee</li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
+                                <li></li>
+                                <li class="elementoLista">Coffee</li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
+                        </ul>
+                  </div>
+        </div>
 </body>
 
 <footer>
