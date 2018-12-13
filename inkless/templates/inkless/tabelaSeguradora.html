@@ -6,13 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- CSS-->
-    {% load static %}
+    {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">
-    <!--<<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
-        </script>src="{% static 'js/bootstrap.min.js' %}" type = "text/javascript">
-    link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">-->
-   
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">   
 
     <title>Document</title>
 
@@ -27,11 +23,10 @@
     </div>
     <br></br><br></br>
     <!-- <table align ="center" class="table table-hover" id="tabela" onclick="clickTabela()"> -->
-            {% csrf_token %}
             <table align ="center" class="table table-hover" id="tabela">
             <thead>
               <tr>
-                <th scope="col">Proposta</th> 
+                <th scope="col" >Proposta</th> 
                 <th scope="col">Nome</th>
                 <th scope="col">Data</th>
                 
@@ -86,7 +81,7 @@
                         if(indiceTabela == 1)
                             window.location="/paginaSegurado";
                         else if (indiceTabela ==2)
-                            console.log("FUnfou");
+                            console.log("Funfou");
                     });
                 })
       

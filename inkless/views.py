@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Nome 
 from pyrebase import pyrebase
 
 # Create your views here.

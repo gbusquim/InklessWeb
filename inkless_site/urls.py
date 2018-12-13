@@ -26,4 +26,4 @@ urlpatterns = [
     path('paginaBeneficiario/',paginaBeneficiario),
     path('paginaSegurado/',paginaSegurado)
  
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
