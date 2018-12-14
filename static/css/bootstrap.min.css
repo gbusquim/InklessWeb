@@ -53,26 +53,42 @@ html {
 /* MINHAS CLASSES */
 .textoSegurado
 {
-	font-weight: 100;
-	position: relative;	
-	left: -600px;
+	font-size: 20px;
+	position: relative;
+	font-family: "Avenir";	
+	left: 150px;
+	text-align: left;
 }
 
-.coluna
+.colunaEsquerda
 {
 	position: relative;	
 	text-align: left;
-	
+	left:-85px;
+	font-size: 20px;
+	font-weight: bold;
 }
 
-.elementoLista
+.colunaDireita
+{
+	position: relative;	
+	text-align: left;
+	left:40px;
+	top:-20px;
+}
+
+/* .elementoLista
 {
 	display: inline;
 	position: relative;	
 	text-align: left;
-	left: -230px;
-	border: 2px solid transparent;
+	left: -210px;
+	border: 1px solid transparent;
+	padding: 2px;
 	font-weight: bold;
+	line-height: 30px;
+	 background-color: lightgray; 
+	
 
 }
 
@@ -84,8 +100,9 @@ html {
 	left: -130px;
 	border: 2px solid transparent;
 	font-weight: bold;
-	color: lightskyblue;
-}
+	/* background-color: lightgray; 
+	
+} */
 
 
 /* FIM MINHAS CLASSES */
@@ -216,7 +233,7 @@ sup {
 }
 
 a {
-	color: green;
+	color: rgb(87, 180, 238);
 	text-decoration: none;
 	background-color: transparent;
 	-webkit-text-decoration-skip: objects
@@ -272,6 +289,7 @@ svg {
 }
 
 table {
+	
 	border-collapse: collapse
 }
 
@@ -1694,6 +1712,7 @@ pre code {
 }
 
 .table {
+	text-align: "left";
 	width: 90%;
 	margin-bottom: 1rem;
 	background-color: transparent
@@ -2553,14 +2572,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
 	color: #fff;
-	background-color: #007bff;
-	border-color: #007bff
+	background-color: #0069d9;
+	border-color: #0069d9;
 }
 
 .btn-primary:hover {
 	color: #fff;
-	background-color: #0069d9;
-	border-color: #0062cc
+	background-color: darkblue;
+	border-color: darkblue;
 }
 
 .btn-primary.focus,
@@ -2781,14 +2800,14 @@ fieldset:disabled a.btn {
 
 .btn-light {
 	color: #212529;
-	background-color: #f8f9fa;
-	border-color: #f8f9fa
+	background-color: #e2e6ea;
+	border-color: #e2e6ea
 }
 
 .btn-light:hover {
 	color: #212529;
-	background-color: #e2e6ea;
-	border-color: #dae0e5
+	background-color: #c2c6caea;
+	border-color: #c2c6caea
 }
 
 .btn-light.focus,
