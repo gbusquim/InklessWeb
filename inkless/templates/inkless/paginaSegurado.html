@@ -12,20 +12,22 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">
 </head>
 <body>
-    <br></br><br></br>
+        <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless">
+        <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral">
+        <hr style="margin-top: -0.25em;">
         <div align="center">
-                <button type="button" class="btn btn-primary" onclick="location.href='/paginaBeneficiario';">Segurado</button>
-                <button type="button" class="btn btn-light">Beneficiário</button>
+                <button type="button" style="left:-20px;" class="btn btn-primary" onclick="location.href='/paginaBeneficiario';">Segurado</button>
+                <button type="button" style="left:20px;" class="btn btn-light">Beneficiário</button>
         </div>
         <br></br>
-        <h4  style="color: skyblue;font-weight:bold" class="textoSegurado">
+        <h4  style="color: #2679c0;font-weight:bold" class="textoSegurado">
                 Segurado
         </h4>
         <h4 class="textoSegurado">
                         CPF: 000.000.000-00
         </h4>
         <h4 class="textoSegurado">
-                        Data de Nascimento: 00/00/0000
+                        Data de Nascimento: 00/00/0000 
         </h4>
         <br></br>
         <div class="container">
@@ -45,51 +47,51 @@
                         </h4>
                   </div>
                   <div class="col">
-                        <h4 style="color: skyblue" class="colunaDireita">
+                        <h4 style="color: #2679c0;top:-30px;font-weight: bold" class="colunaDireita">
                                Documentos pendentes 
                         </h4>
  
                         <table style="text-align: left;" class="colunaDireita table table-striped">
                                 <tr>
-                                        <td colspan="3" style="font-weight: bold">Documento de identificação</td>
+                                        <td colspan="4" >Documento de identificação</td>
                                         <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
                                         <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
                                 </tr>
 
-                                        <td colspan="3" style="font-weight: bold">CPF</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
-                                </tr>
-
-                                <tr>
-
-                                        <td colspan="3" style="font-weight: bold">Declaração médica de morte natural</td>
+                                        <td colspan="4" >CPF</td>
                                         <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
                                         <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
                                 </tr>
 
                                 <tr>
 
-                                        <td colspan="3" style="font-weight: bold">Laudo médico</td>
+                                        <td colspan="4" >Declaração médica de morte natural</td>
                                         <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
                                         <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
                                 </tr>
 
                                 <tr>
 
-                                        <td colspan="3" style="font-weight: bold">GFIP/SEFIP</td>
+                                        <td colspan="4" >Laudo médico</td>
+                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                </tr>
+
+                                <tr>
+
+                                        <td colspan="4" >GFIP/SEFIP</td>
                                         <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
                                         <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
                                 </tr>
                                 <tr>
 
-                                        <td colspan="3" style="font-weight: bold">FRE</td>
+                                        <td colspan="4">FRE</td>
                                         <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
                                         <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
                                 </tr>
                                 <tr>
 
-                                        <td colspan="3" style="font-weight: bold">CAGED</td>
+                                        <td colspan="4" >CAGED</td>
                                         <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
                                         <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
                                 </tr>

@@ -56,7 +56,7 @@ html {
 	font-size: 20px;
 	position: relative;
 	font-family: "Avenir";	
-	left: 150px;
+	left: 77px;
 	text-align: left;
 }
 
@@ -73,10 +73,22 @@ html {
 {
 	position: relative;	
 	text-align: left;
-	left:40px;
+	left:20px;
 	top:-20px;
+	font-size: 20px;
 }
 
+.minhaImagemInkless
+{
+	position: relative;
+	left:-450px;
+}
+
+.minhaImagemMongeral
+{
+	position: relative;
+	left:450px;
+}
 /* .elementoLista
 {
 	display: inline;
@@ -133,6 +145,7 @@ body {
 	color: black;
 	text-align: center;
 	background-color: white;
+	overflow-x: hidden; 
 }
 
 [tabindex="-1"]:focus {
@@ -140,6 +153,7 @@ body {
 }
 
 hr {
+	
 	box-sizing: content-box;
 	height: 0;
 	overflow: visible
@@ -1713,7 +1727,7 @@ pre code {
 
 .table {
 	text-align: "left";
-	width: 90%;
+	width: 120%;
 	margin-bottom: 1rem;
 	background-color: transparent
 
@@ -2524,18 +2538,20 @@ textarea.form-control {
 	font-weight: 600;
 	white-space: nowrap; */
 	position: relative;
+	font-family: "Avenir";
 	left: 10px;
 	top: 10px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	border: 8px solid transparent;
+	border: 1px solid transparent;
 	padding: .105rem .75rem;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	line-height: 1.5;
 	width: 20%;
 	border-radius: 5.25rem;
+	height: 45px;
 	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
 
@@ -2572,14 +2588,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
 	color: #fff;
-	background-color: #0069d9;
-	border-color: #0069d9;
+	background-color: #2679c0;
+	border-color: #2679c0;
 }
 
 .btn-primary:hover {
 	color: #fff;
-	background-color: darkblue;
-	border-color: darkblue;
+	background-color: #2679c0;
+	border-color: #2679c0;
 }
 
 .btn-primary.focus,
