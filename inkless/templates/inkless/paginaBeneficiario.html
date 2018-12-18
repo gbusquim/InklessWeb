@@ -11,27 +11,148 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">
 </head>
+
+
+
+
+
+
+
 <body>
-    <br></br>
+        <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless">
+        <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral">
+        <hr style="margin-top: -0.25em;">
         <div align="center">
-                <button type="button" class="btn btn-dark" onclick="location.href='/paginaSegurado';">Primary</button>
-                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" style="left:-20px;" class="btn btn-light" onclick="location.href='/paginaSegurado';">Segurado</button>
+                <button type="button" style="left:20px;" class="btn btn-primary">Beneficiário</button>
+
         </div>
         <br></br>
+        <h4  style="color: #2679c0;font-weight:bold" class="textoSegurado">
+                Beneficiário
+        </h4>
+        <h4 class="textoSegurado">
+                        CPF: 000.000.000-00
+        </h4>
+        <h4 class="textoSegurado">
+                        Data de Nascimento: 00/00/0000 
+        </h4>
         <br></br>
-        <br></br>
-        <h3 class="textoSegurado">
-            Beneficiario
-        </h3>
-        <h3 class="textoSegurado">
-                Cpf
-        </h3>
-        <h3 class="textoSegurado">
-                    Data
-        </h3>
+        <div class="container">
+                <div class="row">
+                  <div class="col">
+                        <h4 class="colunaEsquerda">
+                                Telefone: 
+                        </h4>
+                        <h4  class="colunaEsquerda" >
+                                Celular:
+                        </h4 >
+                        <br></br>
+                        <h4 class="colunaEsquerda">
+                                Endereço residencial:
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Número:
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Complemento:
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Bairro:
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Cidade:
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Estado:
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Possui comprovante de residência? 
+                        </h4>
+                        <br></br>
+                        <h4 class="colunaEsquerda">
+                                Profissão:
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Faixa de renda:
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                É politicamente exposto?
+                        </h4>
+                  </div>
+                  <div class="col">
+                        <h4 style="color: #2679c0;top:-30px;font-weight: bold" class="colunaDireita">
+                               Documentos pendentes 
+                        </h4>
+ 
+                        <table style="text-align: left;" class="colunaDireita table table-striped">
+                                <tr>
+                                        <td colspan="4" >Documento de identificação</td>
+                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                </tr>
+
+                                        <td colspan="4" >CPF</td>
+                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                </tr>
+
+                                <tr>
+
+                                        <td colspan="4" >Declaração médica de morte natural</td>
+                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                </tr>
+
+                                <tr>
+
+                                        <td colspan="4" >Laudo médico</td>
+                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                </tr>
+
+                                <tr>
+
+                                        <td colspan="4" >GFIP/SEFIP</td>
+                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                </tr>
+                                <tr>
+
+                                        <td colspan="4">FRE</td>
+                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                </tr>
+                                <tr>
+
+                                        <td colspan="4" >CAGED</td>
+                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                </tr>
+                              </table>
+                  </div>
+        </div>
 </body>
 
 <footer>
 
 </footer>
 </html>
+
+
+
+
+                       <!-- CODIGO NAO USADO:
+                               <ul style="list-style-type:none"> 
+                                <li class="elementoLista"> Coffee</li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
+                                <li></li>
+                                <li class="elementoLista">Coffee</li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
+                                <li></li>
+                                <li class="elementoLista">Coffee</li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
+                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
+                        </ul> -->

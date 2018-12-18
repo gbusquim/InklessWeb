@@ -9,6 +9,8 @@
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">   
+ 
+
 
     <title>Document</title>
 
@@ -18,8 +20,12 @@
 <body>
     <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless">
     <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral">
-    <hr style="margin-top: -0.25em;">
-    <br></br>
+    <div align="center">
+            <input  type="text" id="myInput" onkeyup="buscaSegurado()" placeholder="Procure por um segurado" title="Type in a name">
+    </div>
+   
+    <hr style="margin-top: -3.71em;">
+
     <!-- <table align ="center" class="table table-hover" id="tabela" onclick="clickTabela()"> -->
             <table align ="center" style="width:90%;text-align:left" class="table table-borderless table-hover table-striped" id="tabela" >
             <thead>
@@ -38,14 +44,9 @@
               </tr>
               <tr>
 
-                <td>Jacob</td>
+                <td>45674567</td>
                 <td colspan="2">Thornton</td>
-                <td style="text-align:right">@fat</td>
-              </tr>
-              <tr>
-                <td><br/></td>
-                <td colspan="2"><br/></td>
-                <td style="text-align:right"><br/></td>
+                <td style="text-align:right">14/10/1998</td>
               </tr>
               <tr>
                 <td><br/></td>
@@ -113,16 +114,6 @@
 
         
             <script>
-                //funcao que seleciona segurado
-                // $(function () {
-                //     $('table.table tr').click(function () {
-                //         var indiceTabela = this.rowIndex;
-                //         if(indiceTabela == 1)
-                //             window.location="/paginaSegurado";
-                //         else if (indiceTabela ==2)
-                //             console.log("Funfou");
-                //     });
-                // })
                 var table = document.getElementById("tabela");
                 var indiceTabela;
                 for (var i = 0; i < table.rows.length; i++) 
@@ -136,8 +127,37 @@
                             console.log("Funfou");
                     }
                 }
-   
             </script>
+            <script>
+                function buscaSegurado() 
+                {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("tabela");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) 
+                    {
+                        td = tr[i].getElementsByTagName("td")[1];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) 
+                            {
+                                tr[i].style.display = "";
+                            } 
+                            else 
+                            {
+                                tr[i].style.display = "none";
+                            }
+                        }       
+                    }
+                }
+                </script>
+
+
+
+
+
     </footer>
 </body>
 </html>

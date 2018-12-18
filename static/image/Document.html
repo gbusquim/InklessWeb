@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:8000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- CSS-->
+    
+    <link rel="stylesheet" href="./Document_files/bootstrap.min.css" type="text/css">
+
+
+
+    <title>Document</title>
+
+
+
+</head>
+<body>
+    <img src="./Document_files/inkless_logo.png" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless">
+    <img src="./Document_files/logo_mongeral.png" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral">
+    <input type="text" id="myInput" onkeyup="buscaSegurado()" placeholder="Search for names.." title="Type in a name">
+    <hr style="margin-top: -0.25em;">
+
+    <!-- <table align ="center" class="table table-hover" id="tabela" onclick="clickTabela()"> -->
+            <table align="center" style="width:90%;text-align:left" class="table table-borderless table-hover table-striped" id="tabela">
+            <thead>
+              <tr>
+                <th style="color: #2679c0" scope="col">Proposta</th> 
+                <th style="color: #2679c0" scope="col" colspan="2">Nome</th>
+                <th style="color: #2679c0;text-align: right" scope="col">Data</th>
+                
+              </tr>
+            </thead>
+            <tbody class="fonteTabela">
+              <tr>
+                <td>12341234</td>
+                <td colspan="2">Otto</td>
+                <td style="text-align:right">14/10/1998</td>
+              </tr>
+              <tr>
+
+                <td>45674567</td>
+                <td colspan="2">Thornton</td>
+                <td style="text-align:right">14/10/1998</td>
+              </tr>
+              <tr>
+                <td><br></td>
+                <td colspan="2"><br></td>
+                <td style="text-align:right"><br></td>
+              </tr>
+              <tr>
+                <td><br></td>
+                <td colspan="2"><br></td>
+                <td style="text-align:right"><br></td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td colspan="2"><br></td>
+                    <td style="text-align:right"><br></td>
+                    </tr>
+                <tr>
+                    <td><br></td>
+                    <td colspan="2"><br></td>
+                    <td style="text-align:right"><br></td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td colspan="2"><br></td>
+                    <td style="text-align:right"><br></td>
+                    </tr>
+                <tr>
+                    <td><br></td>
+                    <td colspan="2"><br></td>
+                    <td style="text-align:right"><br></td>
+                    </tr>
+
+                    <tr>
+                        <td><br></td>
+                        <td colspan="2"><br></td>
+                        <td style="text-align:right"><br></td>
+                        </tr>
+                        <tr>
+                <td><br></td>
+                <td colspan="2"><br></td>
+                <td style="text-align:right"><br></td>
+                </tr>
+                <tr>
+                    <td><br></td>
+                    <td colspan="2"><br></td>
+                    <td style="text-align:right"><br></td>
+                    </tr>
+
+
+            </tbody>
+          </table>
+
+
+
+<!-- 
+    <ul class="segmented-control">
+            <li class="segmented-control__item">
+                <input class="segmented-control__input" type="radio" value="1" name="option" id="option-1" checked>
+                <label class="segmented-control__label" for="option-1">Thing 1</label>
+            </li>
+            <li class="segmented-control__item">
+                <input class="segmented-control__input" type="radio" value="2" name="option" id="option-2" >
+                <label class="segmented-control__label" for="option-2">Thing 2</label>
+            </li>
+        </ul>
+     -->
+    <footer>
+            <!-- <script >window.$ = window.jQuery = require('jquery'); // not sure if you need this at all
+                    window.Bootstrap = require('bootstrap');</script> -->
+
+        
+            <script>
+                //funcao que seleciona segurado
+                // $(function () {
+                //     $('table.table tr').click(function () {
+                //         var indiceTabela = this.rowIndex;
+                //         if(indiceTabela == 1)
+                //             window.location="/paginaSegurado";
+                //         else if (indiceTabela ==2)
+                //             console.log("Funfou");
+                //     });
+                // })
+                var table = document.getElementById("tabela");
+                var indiceTabela;
+                for (var i = 0; i < table.rows.length; i++) 
+                {
+                    table.rows[i].onclick = function () 
+                    {
+                        indiceTabela=this.rowIndex;
+                        if(indiceTabela == 1)
+                            window.location="/paginaSegurado";
+                        else if (indiceTabela ==2)
+                            console.log("Funfou");
+                    }
+                }
+   
+            </script>
+    </footer>
+
+
+</body></html>
