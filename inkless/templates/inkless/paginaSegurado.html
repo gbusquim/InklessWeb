@@ -8,6 +8,7 @@
 
     <!-- CSS-->
     {% load staticfiles %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">
 </head>
@@ -19,8 +20,10 @@
 
 
 <body>
-        <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless">
+        <a href="http://127.0.0.1:8000">
+        <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless"></a>
         <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral">
+      
         <hr style="margin-top: -0.25em;">
         <div align="center">
                 <button type="button" style="left:-20px;" class="btn btn-primary">Segurado</button>
@@ -28,7 +31,7 @@
         </div>
         <br></br>
         <h4  style="color: #2679c0;font-weight:bold" class="textoSegurado">
-                Segurado
+                {{ Nome }}
         </h4>
         <h4 class="textoSegurado">
                         CPF: 000.000.000-00
@@ -105,6 +108,7 @@
                               </table>
                   </div>
         </div>
+
 </body>
 
 <footer>
