@@ -37,17 +37,13 @@
               </tr>
             </thead>
             <tbody class="fonteTabela" >
+            {% for segurado in listaSegurados %}
               <tr>
                 <td >12341234</td>
-                <td colspan="2">Otto</td>
-                <td style="text-align:right" >14/10/1998</td>
+                <td colspan="2">{{ segurado }}</td>
+                <td style="text-align:right" >10/01/2019</td>
               </tr>
-              <tr>
-
-                <td>45674567</td>
-                <td colspan="2">Thornton</td>
-                <td style="text-align:right">14/10/1998</td>
-              </tr>
+              {% endfor %}
               <tr>
                 <td><br/></td>
                 <td colspan="2"><br/></td>
@@ -124,7 +120,7 @@
                                 url: "/processaRequest",
                                 type: "POST", 
                                 data: {
-                                    nomeSegurado: this.cells[1].innerHTML,
+                                    nomeSegurado: this.rowIndex,
                                     csrfmiddlewaretoken: '{{ csrf_token }}'
                                     }
                             });

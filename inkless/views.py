@@ -24,21 +24,33 @@ nome=""
 
 
 #Funções dos templates
-def home(request):
+def home(request): 
     #user= auth.sign_in_with_email_and_password("yang@mail.com","123456")
     # session_id = user['idToken']
     # request.session['uid']=str(session_id)
+    data = {}
+    listaSegurados=[]
     doc_ref = db.collection(u'users')
     docs = doc_ref.get()
     for doc in docs:
-       print(u'{} => {}'.format(doc.id, doc.to_dict()))
-    return render(request, 'inkless/tabelaSeguradora.html')
+        segurado = doc.to_dict()
+        listaSegurados.append(segurado["segurado"]["nomeCompleto"])
+    data["listaSegurados"]=listaSegurados
+    return render(request, 'inkless/tabelaSeguradora.html',data)
 
 def paginaBeneficiario(request):
     return render(request, 'inkless/paginaBeneficiario.html')
 
 def paginaSegurado(request):
     data={}
+    doc_ref = db.collection(u'users')
+    docs = doc_ref.get()
+    i = 1
+    for doc in docs:
+        if()
+        segurado = doc.to_dict()
+        i = i + 1
+        #listaSegurados.append(segurado["segurado"]["nomeCompleto"])
     data["Nome"]=nome
     # print(request.session['uid'])
     # idtoken = request.session['uid']
