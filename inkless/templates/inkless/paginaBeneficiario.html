@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{ Nome }}</title>
 
     <!-- CSS-->
     {% load staticfiles %}
@@ -33,10 +33,13 @@
                 {{ Nome }}
         </h4>
         <h4 class="textoSegurado">
-                        CPF: 000.000.000-00
+                        CPF: {{ CPF }}
         </h4>
         <h4 class="textoSegurado">
-                        Data de Nascimento: 00/00/0000 
+                        Data de Nascimento: {{ dataDeNasc }}
+        </h4>
+        <h4 class="textoSegurado">
+                Email: {{ email }}
         </h4>
         <br></br>
         <div class="container">
@@ -46,7 +49,7 @@
                                 Telefone: 
                         </h4>
                         <h4  class="colunaEsquerda" >
-                                Celular:
+                                Celular: {{ celular }}
                         </h4 >
                         <br></br>
                         <h4 class="colunaEsquerda">
@@ -77,9 +80,7 @@
                         <h4 class="colunaEsquerda">
                                 Faixa de renda:
                         </h4>
-                        <h4 class="colunaEsquerda">
-                                É politicamente exposto?
-                        </h4>
+
                   </div>
                   <div class="col">
                         <h4 style="color: #2679c0;top:-30px;font-weight: bold" class="colunaDireita">

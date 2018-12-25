@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{ Nome }}</title>
 
     <!-- CSS-->
     {% load staticfiles %}
@@ -34,23 +34,26 @@
                 {{ Nome }}
         </h4>
         <h4 class="textoSegurado">
-                        CPF: 000.000.000-00
+                        CPF: {{ CPF }}
         </h4>
         <h4 class="textoSegurado">
-                        Data de Nascimento: 00/00/0000 
+                        Data de Nascimento: 18/09/2018
+        </h4>
+        <h4 class="textoSegurado">
+                Email: marcelomolina@gmail.com
         </h4>
         <br></br>
         <div class="container">
                 <div class="row">
                   <div class="col">
                         <h4 class="colunaEsquerda">
-                                Número da proposta: 
+                                Número da proposta: 12341234
                         </h4>
                         <h4  class="colunaEsquerda" >
-                                Matrícula:
+                                Matrícula: 1234
                         </h4 >
                         <h4 class="colunaEsquerda">
-                                Plano:
+                                Plano: {{ beneficioRequerido }}
                         </h4>
                         <h4 class="colunaEsquerda">
                                 Nome do estipulante:
