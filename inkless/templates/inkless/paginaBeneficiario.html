@@ -90,8 +90,9 @@
                         <table style="text-align: left;" class="colunaDireita table table-striped">
                                 <tr>
                                         <td colspan="4" >Documento de identificação</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td><a href= {{ linkId }} target="_blank">Abrir</a></td>
+                                        <td><a href="{{ linkId }}" title="ImageName" download = "my-image.jpg"> Download
+                                            </a></td>
                                 </tr>
 
                                         <td colspan="4" >CPF</td>

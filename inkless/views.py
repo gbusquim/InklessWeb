@@ -2,13 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse 
 import firebase_admin
 from firebase_admin import credentials
-from firebase_admin import storage as storage_firebase
+from firebase_admin import storage
 from google.cloud import firestore
-from google.cloud import storage as storage_google
 import os
 import google
-from google.cloud.storage import Blob
-
 import datetime
 
 
@@ -24,24 +21,14 @@ cred = credentials.Certificate('inkless/key.json')
 app = firebase_admin.initialize_app(cred, {
     'storageBucket': 'inklessapp-1922c.appspot.com',
 }, name='storage')
-
 db = firestore.Client()
-#client = storage.Client()
 
-#Create a reference from a Google Cloud Storage URI
-client = storage_google.Client(project="my-project")
-bucket = client.get_bucket("inklessapp-1922c.appspot.com")
-blob = Blob("meuBlob",bucket)
-print(blob.path)
 
 
 #Ja sei que funciona mudando storage.googleapis para storage.cloud.google.com
-# app = firebase_admin.initialize_app(cred, {
-#     'storageBucket': 'inklessapp-1922c.appspot.com',
-# }, name='storage')
-# bucket = storage.bucket(app=app)
-#blob = bucket.blob("users/Inkless-FichaDeProjeto.pdf")
-# print(blob.generate_signed_url(datetime.timedelta(seconds=300), method='GET'))
+
+bucket = storage.bucket(app=app)
+
 
 # Variáveis Globais
 numSegurado = 0
@@ -87,7 +74,7 @@ def home(request):
 
 def paginaBeneficiario(request):
     data={}
-    doc_ref = db.collection(u'users')
+    doc_ref = db.collection('users')
     docs = doc_ref.get()
     i = 1
     for doc in docs:
@@ -106,7 +93,17 @@ def paginaBeneficiario(request):
             data["email"] = email
             celular = beneficiario["telefone"]
             data["celular"] = celular
-
+            identBen = beneficiario["uid"]
+            arquivos = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
+            arquivos_ref = arquivos.get()
+            for arquivo in arquivos_ref:
+                identArq = arquivo.to_dict()
+                pathArquivo = identArq["imageStorage"]
+                blob = bucket.blob(pathArquivo)
+                link = blob.generate_signed_url(datetime.timedelta(seconds=300), method='GET')
+                link = link.replace("googleapis","cloud.google")
+                data["linkId"] = link
+                break
             break
         i = i + 1
     return render(request, 'inkless/paginaBeneficiario.html',data)
@@ -116,7 +113,9 @@ def paginaBeneficiario(request):
 
 def paginaSegurado(request):
     data={}
-    doc_ref = db.collection(u'users')
+    #doc_ref = db.collection(u'requerimentos').document(u'bCSwF0QWuUUV0c9DIqXaWpVKOJr2')
+    #doc_tef = db.collection("users").document("wgB6q0D9iNVNX5EMSGCSyiCmvRX2").collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
+    doc_ref = db.collection('users')
     docs = doc_ref.get()
     i = 1
     for doc in docs:
@@ -154,3 +153,10 @@ def obtemNomeSegurado(request):
 # Codigo nao usado:
 # Colocar data de dataNascimento
 #dataNascimento = segurado["segurado"]["dataNascimento"]
+#client = storage.Client()
+
+#Create a reference from a Google Cloud Storage URI
+# client = storage_google.Client(project="my-project")
+# bucket = client.get_bucket("inklessapp-1922c.appspot.com")
+# blob = Blob("meuBlob",bucket)
+# print(blob.path)
