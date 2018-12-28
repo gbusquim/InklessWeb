@@ -32,6 +32,7 @@ bucket = storage.bucket(app=app)
 
 # Variáveis Globais
 numSegurado = 0
+identBen = ""
 
 
 def retornaData(dataNasc):
@@ -73,12 +74,14 @@ def home(request):
 
 
 def paginaBeneficiario(request):
+    global identBen
     data={}
     doc_ref = db.collection('users')
     docs = doc_ref.get()
     i = 1
     for doc in docs:
-        if i == int(numSegurado):   
+        if i == int(numSegurado):
+            #obtendo dados do beneficiario   
             beneficiario = doc.to_dict()
             nome = beneficiario["nomeCompleto"]
             nome = nome.lower()
@@ -94,6 +97,9 @@ def paginaBeneficiario(request):
             celular = beneficiario["telefone"]
             data["celular"] = celular
             identBen = beneficiario["uid"]
+
+
+            ####obtendo arquivos###
             arquivos = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
             arquivos_ref = arquivos.get()
             for arquivo in arquivos_ref:
@@ -129,22 +135,25 @@ def paginaSegurado(request):
             data["beneficioRequerido"] = plano
             break
         i = i + 1
-    
-    # print(request.session['uid'])
-    # idtoken = request.session['uid']
-    # a = auth.get_account_info(idtoken)
-    # a=a['users']
-    # a=a[0]
-    # a = a['localId']
-    # dat = {"name": "Mortimer 'Morty' Smith"}
-    # database.child("users").push(dat)
-    #print(user.val()) # {name": "Mortimer 'Morty' Smith"}
     return render(request, 'inkless/paginaSegurado.html',data)
 
 def obtemNomeSegurado(request):
     global numSegurado
     numSegurado = request.POST.get('nomeSegurado')
     return HttpResponse('success') # if everything is OK
+    # nothing went well
+
+
+def atualizaStatusDoc(request):
+    statusDoc = request.POST.get('statusDoc')
+    doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
+    doc_ref.set({
+    u'status': {
+        'docId':statusDoc
+    }
+    }, merge=True)
+    return HttpResponse('success') # if everything is OK
+    
     # nothing went well
 
 

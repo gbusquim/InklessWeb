@@ -8,8 +8,18 @@
 
     <!-- CSS-->
     {% load staticfiles %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <!--Import materialize.css-->
+    <!-- <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css'%}"  media="screen,projection"/> -->
+
+
+
+    <!-- <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script  src="{% static 'js/bootstrap.js' %}"></script>
+    <script  src="{% static 'js/jquery.js' %}"></script> -->
 </head>
 
 
@@ -41,6 +51,25 @@
         <h4 class="textoSegurado">
                 Email: {{ email }}
         </h4>
+        <!-- style="position: relative;top:-70px" -->
+        <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> -->
+
+        <!-- Dropdown Structure -->
+        <!-- <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="#!">one</a></li>
+          <li>8S</li>
+          <li class="divider" tabindex="-1"></li>
+          <li><a href="#!">three</a></li>
+          <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+          <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+        </ul> -->
+        <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()"> 
+                        <option selected disabled hidden>Choose here</option>
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="mercedes">Mercedes</option>
+                        <option value="audi">Audi</option>
+                      </select>
         <br></br>
         <div class="container">
                 <div class="row">
@@ -83,19 +112,20 @@
 
                   </div>
                   <div class="col">
+                        
                         <h4 style="color: #2679c0;top:-30px;font-weight: bold" class="colunaDireita">
                                Documentos pendentes 
                         </h4>
  
                         <table style="text-align: left;" class="colunaDireita table table-striped">
                                 <tr>
-                                        <td colspan="4" >Documento de identificação</td>
+                                        <td colspan="4" > <input type="checkbox" onclick="enviaStatusDocumento()" class="meuCheckbox" id="checkbox"> Documento de Identificação</td>
                                         <td><a href= {{ linkId }} target="_blank">Abrir</a></td>
                                         <td><a href="{{ linkId }}" title="ImageName" download = "my-image.jpg"> Download
                                             </a></td>
                                 </tr>
 
-                                        <td colspan="4" >CPF</td>
+                                        <td colspan="4" > <input type="checkbox" name="vehicle1" value="Bike" class="meuCheckbox"> CPF</td>
                                         <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
                                         <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
                                 </tr>
@@ -138,7 +168,32 @@
 </body>
 
 <footer>
-
+        <script>
+                function mudancaStatus()
+                {
+                        
+                        var e = document.getElementById("dropdown");
+                        var strUser = e.options[e.selectedIndex].text
+                        console.log(strUser)
+                }  
+        </script>
+        
+        <script>
+                function enviaStatusDocumento()
+                {
+                        var checkBox = document.getElementById("checkbox");
+                        $.ajax({
+                                url: "/processaRequestDoc",
+                                type: "POST", 
+                                data: {
+                                        statusDoc: checkBox.checked,
+                                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                                        }
+                                });
+                }
+        </script>
+        <!-- <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script> -->
+        
 </footer>
 </html>
 

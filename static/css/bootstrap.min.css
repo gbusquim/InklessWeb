@@ -1,6 +1,6 @@
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)\
- MEU BOOTSTARP5
+ MEU BOOTSTARP6
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -105,6 +105,23 @@ html {
 {
 	position: relative;
 	left:450px;
+}
+
+.meuCheckbox
+{
+	position:relative; 
+	left:-2px;
+	top:-2px;
+}
+
+.meuDropdown
+{
+	background-color: lightgrey;
+	position: relative;
+	width: 30%;
+	top: -110px;
+	height:40px; 
+	left: 250px;
 }
 /* .elementoLista
 {
