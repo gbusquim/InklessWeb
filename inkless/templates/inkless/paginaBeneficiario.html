@@ -119,7 +119,11 @@
  
                         <table style="text-align: left;" class="colunaDireita table table-striped">
                                 <tr>
+                                        {% if statusDoc == "true" %}
+                                        <td colspan="4" > <input type="checkbox" onclick="enviaStatusDocumento()" class="meuCheckbox" id="checkbox" checked> Documento de Identificação</td>
+                                        {% else %}
                                         <td colspan="4" > <input type="checkbox" onclick="enviaStatusDocumento()" class="meuCheckbox" id="checkbox"> Documento de Identificação</td>
+                                        {% endif %}
                                         <td><a href= {{ linkId }} target="_blank">Abrir</a></td>
                                         <td><a href="{{ linkId }}" title="ImageName" download = "my-image.jpg"> Download
                                             </a></td>

@@ -98,6 +98,18 @@ def paginaBeneficiario(request):
             data["celular"] = celular
             identBen = beneficiario["uid"]
 
+            ###obtendo status dos documentos##
+            status_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
+            statusDict = status_ref.get()
+            statusDict = statusDict.to_dict()
+            if "status" in statusDict:
+                data["statusDoc"]=statusDict["status"]["docId"]
+            else:
+                data["statusDoc"]="false"
+
+
+
+
 
             ####obtendo arquivos###
             arquivos = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
