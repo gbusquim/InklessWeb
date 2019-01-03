@@ -51,26 +51,63 @@
         <h4 class="textoSegurado">
                 Email: {{ email }}
         </h4>
-        <!-- style="position: relative;top:-70px" -->
-        <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> -->
 
-        <!-- Dropdown Structure -->
-        <!-- <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#!">one</a></li>
-          <li>8S</li>
-          <li class="divider" tabindex="-1"></li>
-          <li><a href="#!">three</a></li>
-          <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-          <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
-        </ul> -->
-        <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()"> 
-                        <option selected disabled hidden>Choose here</option>
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mercedes</option>
-                        <option value="audi">Audi</option>
-                      </select>
-        <br></br>
+        <h4 class="textoStatus">
+                Status do processo:
+        </h4>
+        
+        <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()">
+                        {% if status == "Aviso" %}
+                                <option  selected="selected">Aviso</option>
+                                <option>Em análise</option>
+                                <option>Regulação</option>
+                                <option>Parcialmente pago</option>
+                                <option>Pago</option>
+                                <option>Negado</option>
+
+                        {% elif status == "Em análise" %}
+                                <option >Aviso</option>
+                                <option selected="selected">Em análise</option>
+                                <option>Regulação</option>
+                                <option>Parcialmente pago</option>
+                                <option>Pago</option>
+                                <option>Negado</option>
+
+                        {% elif status == "Regulação" %}
+                                <option >Aviso</option>
+                                <option>Em análise</option>
+                                <option selected="selected">Regulação</option>
+                                <option>Parcialmente pago</option>
+                                <option>Pago</option>
+                                <option>Negado</option>
+
+                        {% elif status == "Parcialmente pago" %}
+                                <option >Aviso</option>
+                                <option>Em análise</option>
+                                <option >Regulação</option>
+                                <option selected="selected">Parcialmente pago</option>
+                                <option>Pago</option>
+                                <option>Negado</option>
+
+                        {% elif status == "Pago" %}
+                                <option >Aviso</option>
+                                <option>Em análise</option>
+                                <option >Regulação</option>
+                                <option>Parcialmente pago</option>
+                                <option selected="selected">Pago</option>
+                                <option>Negado</option>
+
+                        {% elif status == "Negado" %}
+                                <option >Aviso</option>
+                                <option>Em análise</option>
+                                <option ">Regulação</option>
+                                <option>Parcialmente pago</option>
+                                <option>Pago</option>
+                                <option selected="selected">Negado</option>
+
+                        {% endif %}
+        </select>
+
         <div class="container">
                 <div class="row">
                   <div class="col">
@@ -114,88 +151,134 @@
                   <div class="col">
                         
                         <h4 style="color: #2679c0;top:-30px;font-weight: bold" class="colunaDireita">
-                               Documentos pendentes 
+                               Documentos
                         </h4>
  
                         <table style="text-align: left;" class="colunaDireita table table-striped">
-                                <tr>
-                                        {% if statusDoc == "true" %}
-                                        <td colspan="4" > <input type="checkbox" onclick="enviaStatusDocumento()" class="meuCheckbox" id="checkbox" checked> Documento de Identificação</td>
-                                        {% else %}
-                                        <td colspan="4" > <input type="checkbox" onclick="enviaStatusDocumento()" class="meuCheckbox" id="checkbox"> Documento de Identificação</td>
-                                        {% endif %}
-                                        <td><a href= {{ linkId }} target="_blank">Abrir</a></td>
-                                        <td><a href="{{ linkId }}" title="ImageName" download = "my-image.jpg"> Download
-                                            </a></td>
-                                </tr>
-
-                                        <td colspan="4" > <input type="checkbox" name="vehicle1" value="Bike" class="meuCheckbox"> CPF</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
-                                </tr>
+                                <!-- Documentos obrigatorios -->
 
                                 <tr>
+                                        <td style="vertical-align: middle" colspan="4" >Documento de Identificação</td>
+                                        <td style="vertical-align: middle"><a href= {{ linkId }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#' onclick="solicitaDocumentos('docId')">Solicitar Novamente </a></td>
+                                </tr>
 
-                                        <td colspan="4" >Declaração médica de morte natural</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td style="vertical-align: middle" colspan="4" >Comprovante de Residência</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#' onclick="solicitaDocumentos('residencia')">Solicitar Novamente </a></td>
+                                </tr>
+                                        <!-- Documentos nao obrigatorios -->
+                                <tr>
+                                                <!-- word-wrap:break-word;overflow-wrap:break-word; -->
+
+                                        <td colspan="4" >Informações tributárias complementares</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
                                 </tr>
 
                                 <tr>
 
-                                        <td colspan="4" >Laudo médico</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="4" >Certidão de nascimento</td>
+                                        <!-- <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td> -->
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
+                                </tr>
+
+
+                                <tr>
+
+                                        <td colspan="4" >Termo de tutela</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
+                                        
                                 </tr>
 
                                 <tr>
 
-                                        <td colspan="4" >GFIP/SEFIP</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="4" >Termo de cautela</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
-                                        <td colspan="4">FRE</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="4">Contrato social </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
-                                        <td colspan="4" >CAGED</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="4" >Declaração rol de herdeiros</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
                                 </tr>
+                                
+                                <tr>
+
+                                        <td colspan="4" >Declaração de união estável</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
+                                </tr>
+                                <tr>
+
+                                        <td colspan="4" >Comprovante de vínculo com o segurado</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
+                                </tr>
+                                <tr>
+
+                                        <td colspan="4" >Cédula de financiamento</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
+                                </tr>
+                                <tr>
+
+                                        <td colspan="4" >Cópia do domicílio bancário </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#" download>Solicitar</a> </td>
+                                </tr>
+
+                                
+
                               </table>
                   </div>
         </div>
 </body>
 
 <footer>
+
+        <script type="text/javascript" src="{% static 'js/funcoes.js' %}"></script>
+
+
         <script>
-                function mudancaStatus()
+        function mudancaStatus()
+        {
+                
+                var e = document.getElementById("dropdown");
+                var strUser = e.options[e.selectedIndex].text
+                $.ajax({
+                        url: "/processaRequestStatus",
+                        type: "POST", 
+                        data: {
+                                statusProc: strUser,
+                                csrfmiddlewaretoken: '{{ csrf_token }}'
+                                }
+                        });
+        }  
+        </script>
+
+
+        <script>
+                function solicitaDocumentos(numDoc)
                 {
                         
-                        var e = document.getElementById("dropdown");
-                        var strUser = e.options[e.selectedIndex].text
-                        console.log(strUser)
+                        // var doc;
+                        // if(numDoc == 1)
+                        //         doc = 
+                        // $.ajax({
+                        //         url: "/processaRequestStatus",
+                        //         type: "POST", 
+                        //         data: {
+                        //                 statusProc: strUser,
+                        //                 csrfmiddlewaretoken: '{{ csrf_token }}'
+                        //                 }
+                        //         });
                 }  
         </script>
-        
-        <script>
-                function enviaStatusDocumento()
-                {
-                        var checkBox = document.getElementById("checkbox");
-                        $.ajax({
-                                url: "/processaRequestDoc",
-                                type: "POST", 
-                                data: {
-                                        statusDoc: checkBox.checked,
-                                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                                        }
-                                });
-                }
-        </script>
+
+
+
+
         <!-- <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script> -->
         
 </footer>

@@ -39,9 +39,64 @@
         <h4 class="textoSegurado">
                         Data de Nascimento: 18/09/2018
         </h4>
-        <h4 class="textoSegurado">
-                Email: marcelomolina@gmail.com
-        </h4>
+
+        <h4 class="textoStatus">
+                        Status do processo:
+                </h4>
+                
+                <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()">
+                                {% if status == "Aviso" %}
+                                        <option  selected="selected">Aviso</option>
+                                        <option>Em análise</option>
+                                        <option>Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Em análise" %}
+                                        <option >Aviso</option>
+                                        <option selected="selected">Em análise</option>
+                                        <option>Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Regulação" %}
+                                        <option >Aviso</option>
+                                        <option>Em análise</option>
+                                        <option selected="selected">Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Parcialmente pago" %}
+                                        <option >Aviso</option>
+                                        <option>Em análise</option>
+                                        <option >Regulação</option>
+                                        <option selected="selected">Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Pago" %}
+                                        <option >Aviso</option>
+                                        <option>Em análise</option>
+                                        <option >Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option selected="selected">Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Negado" %}
+                                        <option >Aviso</option>
+                                        <option>Em análise</option>
+                                        <option ">Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option selected="selected">Negado</option>
+        
+                                {% endif %}
+                </select>
+        
+
         <br></br>
         <div class="container">
                 <div class="row">
@@ -53,7 +108,7 @@
                                 Matrícula: 1234
                         </h4 >
                         <h4 class="colunaEsquerda">
-                                Plano: {{ beneficioRequerido }}
+                                Plano: Individual
                         </h4>
                         <h4 class="colunaEsquerda">
                                 Nome do estipulante:
@@ -115,6 +170,24 @@
 </body>
 
 <footer>
+
+        <script>
+                function mudancaStatus()
+                {
+                        
+                        var e = document.getElementById("dropdown");
+                        var strUser = e.options[e.selectedIndex].text
+                        $.ajax({
+                                url: "/processaRequestStatus",
+                                type: "POST", 
+                                data: {
+                                        statusProc: strUser,
+                                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                                        }
+                                });
+                }  
+        </script>
+
 
 </footer>
 </html>

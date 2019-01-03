@@ -108,7 +108,8 @@
             <!-- <script >window.$ = window.jQuery = require('jquery'); // not sure if you need this at all
                     window.Bootstrap = require('bootstrap');</script> -->
 
-        
+            <script type="text/javascript" src="{% static 'js/funcoes.js' %}"></script>
+            
             <script>
                 var table = document.getElementById("tabela");
                 var indiceTabela;
@@ -128,31 +129,7 @@
                     }
                 }
             </script>
-            <script>
-                function buscaSegurado() 
-                {
-                    var input, filter, table, tr, td, i, txtValue;
-                    input = document.getElementById("myInput");
-                    filter = input.value.toUpperCase();
-                    table = document.getElementById("tabela");
-                    tr = table.getElementsByTagName("tr");
-                    for (i = 0; i < tr.length; i++) 
-                    {
-                        td = tr[i].getElementsByTagName("td")[1];
-                        if (td) {
-                            txtValue = td.textContent || td.innerText;
-                            if (txtValue.toUpperCase().indexOf(filter) > -1) 
-                            {
-                                tr[i].style.display = "";
-                            } 
-                            else 
-                            {
-                                tr[i].style.display = "none";
-                            }
-                        }       
-                    }
-                }
-                </script>
+
 
       
 

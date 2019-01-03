@@ -7,6 +7,9 @@ from google.cloud import firestore
 import os
 import google
 import datetime
+from django.views.decorators.csrf import csrf_protect
+
+
 
 
 
@@ -98,16 +101,23 @@ def paginaBeneficiario(request):
             data["celular"] = celular
             identBen = beneficiario["uid"]
 
-            ###obtendo status dos documentos##
-            status_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
+            # ###obtendo status dos documentos##
+            # status_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
+            # statusDict = status_ref.get()
+            # statusDict = statusDict.to_dict()
+            # if "status" in statusDict:
+            #     data["statusDoc"]=statusDict["status"]["docId"]
+            # else:
+            #     data["statusDoc"]="false"
+
+            ###obtendo status do processo##
+            status_ref = db.collection("users").document(identBen)
             statusDict = status_ref.get()
             statusDict = statusDict.to_dict()
             if "status" in statusDict:
-                data["statusDoc"]=statusDict["status"]["docId"]
+                data["status"]=statusDict["status"]
             else:
-                data["statusDoc"]="false"
-
-
+                data["status"]="Aviso"
 
 
 
@@ -145,6 +155,17 @@ def paginaSegurado(request):
             data["CPF"] = cpf 
             data["Nome"] = nome
             data["beneficioRequerido"] = plano
+
+
+            # ###obtendo status do processo##
+            # status_ref = db.collection("users").document(identBen)
+            # statusDict = status_ref.get()
+            # statusDict = statusDict.to_dict()
+            # if "status" in statusDict:
+            #     data["status"]=statusDict["status"]
+            # else:
+            #     data["status"]="Aviso"
+
             break
         i = i + 1
     return render(request, 'inkless/paginaSegurado.html',data)
@@ -157,7 +178,7 @@ def obtemNomeSegurado(request):
 
 
 def atualizaStatusDoc(request):
-    statusDoc = request.POST.get('statusDoc')
+    statusDoc = request.POST.get('status')
     doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
     doc_ref.set({
     u'status': {
@@ -169,6 +190,13 @@ def atualizaStatusDoc(request):
     # nothing went well
 
 
+def atualizaStatus(request):
+    status = request.POST.get('statusProc')
+    doc_ref = db.collection("users").document(identBen)
+    doc_ref.set({u'status':status}, merge=True)
+    return HttpResponse('success') # if everything is OK
+    
+    # nothing went well
 
 
 # Codigo nao usado:
