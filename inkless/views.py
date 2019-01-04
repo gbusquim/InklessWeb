@@ -178,13 +178,14 @@ def obtemNomeSegurado(request):
 
 
 def atualizaStatusDoc(request):
-    statusDoc = request.POST.get('status')
+    statusDoc = request.POST.get('statusDoc')
     doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
     doc_ref.set({
     u'status': {
-        'docId':statusDoc
+        statusDoc:False
     }
     }, merge=True)
+    
     return HttpResponse('success') # if everything is OK
     
     # nothing went well

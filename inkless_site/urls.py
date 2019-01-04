@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from inkless.views import home,paginaBeneficiario,paginaSegurado,obtemNomeSegurado,atualizaStatus
+from inkless.views import home,paginaBeneficiario,paginaSegurado,obtemNomeSegurado,atualizaStatus,atualizaStatusDoc
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,7 +26,8 @@ urlpatterns = [
     path('paginaBeneficiario/',paginaBeneficiario),
     path('paginaSegurado/',paginaSegurado),
     path('processaRequestNome',obtemNomeSegurado),
-    path('processaRequestStatus',atualizaStatus)
+    path('processaRequestStatus',atualizaStatus),
+    path('processaRequestDoc',atualizaStatusDoc)
    
  
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
