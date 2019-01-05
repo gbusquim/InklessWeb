@@ -160,19 +160,19 @@
                                 <tr>
                                         <td style="vertical-align: middle" colspan="4" >Documento de Identificação</td>
                                         <td style="vertical-align: middle"><a href= {{ linkId }} target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#' onclick="solicitaDocumentos('docId')">Solicitar Novamente </a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentos('Documento de Identificação',this.id)">Solicitar Novamente </a></td>
                                 </tr>
 
                                         <td style="vertical-align: middle" colspan="4" >Comprovante de Residência</td>
                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#' onclick="solicitaDocumentos('residencia')">Solicitar Novamente </a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentos('Comprovante de Residência',this.id)">Solicitar Novamente </a></td>
                                 </tr>
                                         <!-- Documentos nao obrigatorios -->
                                 <tr>
                                                 <!-- word-wrap:break-word;overflow-wrap:break-word; -->
 
                                         <td colspan="4" >Informações tributárias complementares</td>
-                                        <td colspan="2" style="text-align:center;"><a href="" id="Tribut" onclick="solicitaDocumentos('tributárias')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="3" onclick="solicitaDocumentos('Informações tributárias complementares',this.id)">Solicitar</a> </td>
                                 </tr>
 
                                 <tr>
@@ -180,52 +180,52 @@
                                         <td colspan="4" >Certidão de nascimento</td>
                                         <!-- <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
                                         <td><a href="{% static 'res.pdf' %}" download>Download</a> </td> -->
-                                        <td colspan="2" style="text-align:center;"><a href="#" onclick="solicitaDocumentos('certidão')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="4" onclick="solicitaDocumentos('Certidão de nascimento',this.id)">Solicitar</a> </td>
                                 </tr>
 
 
                                 <tr>
 
                                         <td colspan="4" >Termo de tutela</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#" id="minhaOd"" onclick="solicitaDocumentos('tutela',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="5" onclick="solicitaDocumentos('Termo de tutela',this.id)">Solicitar</a> </td>
                                         
                                 </tr>
 
                                 <tr>
 
                                         <td colspan="4" >Termo de cautela</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#"  onclick="solicitaDocumentos('cautela')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="6" onclick="solicitaDocumentos('Termo de cautela',this.id)">Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
                                         <td colspan="4">Contrato social </td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" onclick="solicitaDocumentos('contratoSocial')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="7" onclick="solicitaDocumentos('Contrato social',this.id)">Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
                                         <td colspan="4" >Declaração rol de herdeiros</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#" onclick="solicitaDocumentos('rolHerdeiros')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="8" onclick="solicitaDocumentos('Declaração rol de herdeiros',this.id)">Solicitar</a> </td>
                                 </tr>
                                 
                                 <tr>
 
                                         <td colspan="4" >Declaração de união estável</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#" onclick="solicitaDocumentos('uniaoEstavel')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="9" onclick="solicitaDocumentos('Declaração de união estável',this.id)">Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
                                         <td colspan="4" >Comprovante de vínculo com o segurado</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#" onclick="solicitaDocumentos('vinculo')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="10" onclick="solicitaDocumentos('Comprovante de vínculo com o segurado',this.id)">Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
                                         <td colspan="4" >Cédula de financiamento</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#" onclick="solicitaDocumentos('financiamento')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="11" onclick="solicitaDocumentos('Cédula de financiamento',this.id)">Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
                                         <td colspan="4" >Cópia do domicílio bancário </td>
-                                        <td colspan="2" style="text-align:center;"><a href="#" onclick="solicitaDocumentos('bancario')">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="12" onclick="solicitaDocumentos('Cópia do domicílio bancário',this.id)">Solicitar</a> </td>
                                 </tr>
 
                                 
@@ -259,19 +259,15 @@
 
 
         <script>
-                function solicitaDocumentos(Doc,teste)
+                function solicitaDocumentos(Doc,idDoc)
                 {
                         
-                        //var doc;
-                        // if(numDoc == 1)
-                        //         doc = 
-                        console.log(teste)
-                        var e = document.getElementById("Tribut")
+                        var labelDoc = document.getElementById(idDoc)
                         style="pointer-events: none;cursor: default;"
-                        e.innerHTML="Solicitado"
-                        e.style.color="lightgray"
-                        e.style.pointerEvents="none"
-                        e.style.cursor="default"
+                        labelDoc.innerHTML="Solicitado"
+                        labelDoc.style.color="gray"
+                        labelDoc.style.pointerEvents="none"
+                        labelDoc.style.cursor="default"
                         $.ajax({
                                 url: "/processaRequestDoc",
                                 type: "POST", 
