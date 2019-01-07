@@ -40,63 +40,63 @@
         <h4 class="textoSegurado">
                         Data de Nascimento: 18/09/2018
         </h4>
-
-        <h4 class="textoStatus">
-                        Status do processo:
-                </h4>
+        <div style="position:relative;top:32px;margin-bottom: -16ßpx;" >
+                <h4 class="textoStatus">
+                                Status do processo:
+                        </h4>
+                        
+                        <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()">
+                                        {% if status == "Aviso" %}
+                                                <option  selected="selected">Aviso</option>
+                                                <option>Em análise</option>
+                                                <option>Regulação</option>
+                                                <option>Parcialmente pago</option>
+                                                <option>Pago</option>
+                                                <option>Negado</option>
                 
-                <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()">
-                                {% if status == "Aviso" %}
-                                        <option  selected="selected">Aviso</option>
-                                        <option>Em análise</option>
-                                        <option>Regulação</option>
-                                        <option>Parcialmente pago</option>
-                                        <option>Pago</option>
-                                        <option>Negado</option>
-        
-                                {% elif status == "Em análise" %}
-                                        <option >Aviso</option>
-                                        <option selected="selected">Em análise</option>
-                                        <option>Regulação</option>
-                                        <option>Parcialmente pago</option>
-                                        <option>Pago</option>
-                                        <option>Negado</option>
-        
-                                {% elif status == "Regulação" %}
-                                        <option >Aviso</option>
-                                        <option>Em análise</option>
-                                        <option selected="selected">Regulação</option>
-                                        <option>Parcialmente pago</option>
-                                        <option>Pago</option>
-                                        <option>Negado</option>
-        
-                                {% elif status == "Parcialmente pago" %}
-                                        <option >Aviso</option>
-                                        <option>Em análise</option>
-                                        <option >Regulação</option>
-                                        <option selected="selected">Parcialmente pago</option>
-                                        <option>Pago</option>
-                                        <option>Negado</option>
-        
-                                {% elif status == "Pago" %}
-                                        <option >Aviso</option>
-                                        <option>Em análise</option>
-                                        <option >Regulação</option>
-                                        <option>Parcialmente pago</option>
-                                        <option selected="selected">Pago</option>
-                                        <option>Negado</option>
-        
-                                {% elif status == "Negado" %}
-                                        <option >Aviso</option>
-                                        <option>Em análise</option>
-                                        <option ">Regulação</option>
-                                        <option>Parcialmente pago</option>
-                                        <option>Pago</option>
-                                        <option selected="selected">Negado</option>
-        
-                                {% endif %}
-                </select>
-        
+                                        {% elif status == "Em análise" %}
+                                                <option >Aviso</option>
+                                                <option selected="selected">Em análise</option>
+                                                <option>Regulação</option>
+                                                <option>Parcialmente pago</option>
+                                                <option>Pago</option>
+                                                <option>Negado</option>
+                
+                                        {% elif status == "Regulação" %}
+                                                <option >Aviso</option>
+                                                <option>Em análise</option>
+                                                <option selected="selected">Regulação</option>
+                                                <option>Parcialmente pago</option>
+                                                <option>Pago</option>
+                                                <option>Negado</option>
+                
+                                        {% elif status == "Parcialmente pago" %}
+                                                <option >Aviso</option>
+                                                <option>Em análise</option>
+                                                <option >Regulação</option>
+                                                <option selected="selected">Parcialmente pago</option>
+                                                <option>Pago</option>
+                                                <option>Negado</option>
+                
+                                        {% elif status == "Pago" %}
+                                                <option >Aviso</option>
+                                                <option>Em análise</option>
+                                                <option >Regulação</option>
+                                                <option>Parcialmente pago</option>
+                                                <option selected="selected">Pago</option>
+                                                <option>Negado</option>
+                
+                                        {% elif status == "Negado" %}
+                                                <option >Aviso</option>
+                                                <option>Em análise</option>
+                                                <option ">Regulação</option>
+                                                <option>Parcialmente pago</option>
+                                                <option>Pago</option>
+                                                <option selected="selected">Negado</option>
+                
+                                        {% endif %}
+                        </select>
+                </div>
 
         <br></br>
         <div class="container">

@@ -23,12 +23,12 @@
     <a href=https://www.mongeralaegon.com.br/>
     <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral"></a>
     <div align="center">
-            <input  type="text" id="myInput" onkeyup="buscaSegurado()" placeholder="Procure por um segurado" title="Type in a name">
+            <input  type="text" id="myInput" style="outline: none" onkeyup="buscaSegurado()" placeholder="Procure por um segurado" title="Type in a name">
     </div>
    
     <hr style="margin-top: -3.71em;">
     <!-- <table align ="center" class="table table-hover" id="tabela" onclick="clickTabela()"> -->
-            <table align ="center" style="width:90%;text-align:left" class="table table-borderless table-hover table-striped" id="tabela" >
+            <table align ="center" style="width:90%;text-align:left;" class="table table-borderless table-hover table-striped" id="tabela" >
             <thead>
               <tr>
                 <th style="color: #2679c0" scope="col" >Proposta</th> 
@@ -41,7 +41,7 @@
             {% for segurado, proposta in listaTabela %}
               <tr>
                 <td >{{ proposta }}</td>
-                <td colspan="2">{{ segurado }}</td>
+                <td colspan="2" style="width: 10rem;">{{ segurado }}</td>
                 <td style="text-align:right" >30/01/2019</td>
               </tr>
               {% endfor %}
