@@ -31,7 +31,8 @@
 <body>
         <a href="http://127.0.0.1:8000">
         <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless"></a>
-        <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral">
+        <a href=https://www.mongeralaegon.com.br/>
+        <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral"></a>
         <hr style="margin-top: -0.25em;">
         <div align="center">
                 <button type="button" style="left:-20px;" class="btn btn-light" onclick="location.href='/paginaSegurado';">Segurado</button>
@@ -112,40 +113,63 @@
                 <div class="row">
                   <div class="col">
                         <h4 class="colunaEsquerda">
-                                Telefone: 
+                                Telefone: {{ telefone }}
                         </h4>
                         <h4  class="colunaEsquerda" >
                                 Celular: {{ celular }}
                         </h4 >
                         <br></br>
                         <h4 class="colunaEsquerda">
-                                Endereço residencial:
+                                        Grau de parentesco: {{ grauParentesco }}
+                        </h4>
+                        <h4  class="colunaEsquerda" >
+                                        Identidade: {{ registroGeral }} 
+                        </h4 >
+                        <h4 class="colunaEsquerda">
+                                        Órgão emissor: {{ orgãoEmissor }}
+                        </h4>
+                        <h4  class="colunaEsquerda" >
+                                        Data de expedição: {{ dataExpedicao }}
+                        </h4 >
+                        <br></br>
+                        <h4 class="colunaEsquerda">
+                                Profissão: {{ profissao }}
                         </h4>
                         <h4 class="colunaEsquerda">
-                                Número:
+                                Faixa de renda: entre R$ 1.000,01 e R$ 5.000,00
                         </h4>
                         <h4 class="colunaEsquerda">
-                                Complemento:
+                                Não é pessoa politicamente exposta
                         </h4>
                         <h4 class="colunaEsquerda">
-                                Bairro:
+                                Reside no Brasil
                         </h4>
                         <h4 class="colunaEsquerda">
-                                Cidade:
-                        </h4>
-                        <h4 class="colunaEsquerda">
-                                Estado:
-                        </h4>
-                        <h4 class="colunaEsquerda">
-                                Possui comprovante de residência? 
+                                Não possui obrigações fiscais com outros países
                         </h4>
                         <br></br>
                         <h4 class="colunaEsquerda">
-                                Profissão:
+                                Endereço residencial: {{ endereco }}
                         </h4>
                         <h4 class="colunaEsquerda">
-                                Faixa de renda:
+                                Número: {{ numero }}
                         </h4>
+                        <h4 class="colunaEsquerda">
+                                Complemento: {{ complemento }}
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Bairro: {{ bairro }}
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Cidade: {{ cidade }}
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                                Estado: Rio de Janeiro
+                        </h4>
+                        <h4 class="colunaEsquerda">
+                               Possui comprovante de residência
+                        </h4>
+
 
                   </div>
                   <div class="col">
@@ -169,7 +193,6 @@
                                 </tr>
                                         <!-- Documentos nao obrigatorios -->
                                 <tr>
-                                                <!-- word-wrap:break-word;overflow-wrap:break-word; -->
 
                                         <td colspan="4" >Informações tributárias complementares</td>
                                         <td colspan="2" style="text-align:center;"><a href="#!" id="3" onclick="solicitaDocumentos('Informações tributárias complementares',this.id)">Solicitar</a> </td>
@@ -178,8 +201,6 @@
                                 <tr>
 
                                         <td colspan="4" >Certidão de nascimento</td>
-                                        <!-- <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td> -->
                                         <td colspan="2" style="text-align:center;"><a href="#!" id="4" onclick="solicitaDocumentos('Certidão de nascimento',this.id)">Solicitar</a> </td>
                                 </tr>
 
@@ -259,24 +280,24 @@
 
 
         <script>
-                function solicitaDocumentos(Doc,idDoc)
-                {
-                        
-                        var labelDoc = document.getElementById(idDoc)
-                        style="pointer-events: none;cursor: default;"
-                        labelDoc.innerHTML="Solicitado"
-                        labelDoc.style.color="gray"
-                        labelDoc.style.pointerEvents="none"
-                        labelDoc.style.cursor="default"
-                        $.ajax({
-                                url: "/processaRequestDoc",
-                                type: "POST", 
-                                data: {
-                                        statusDoc: Doc,
-                                        csrfmiddlewaretoken: '{{ csrf_token }}'
-                                        }
-                                });
-                }  
+        function solicitaDocumentos(Doc,idDoc)
+        {
+                
+                var labelDoc = document.getElementById(idDoc)
+                style="pointer-events: none;cursor: default;"
+                labelDoc.innerHTML="Solicitado"
+                labelDoc.style.color="gray"
+                labelDoc.style.pointerEvents="none"
+                labelDoc.style.cursor="default"
+                $.ajax({
+                        url: "/processaRequestDocBen",
+                        type: "POST", 
+                        data: {
+                                statusDoc: Doc,
+                                csrfmiddlewaretoken: '{{ csrf_token }}'
+                                }
+                        });
+        }  
         </script>
 
 

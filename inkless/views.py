@@ -65,12 +65,16 @@ def home(request):
     # request.session['uid']=str(session_id)
     data = {}
     listaSegurados=[]
+    listaPropostas=[]
     doc_ref = db.collection(u'users')
     docs = doc_ref.get()
     for doc in docs:
         segurado = doc.to_dict()
         listaSegurados.append(segurado["segurado"]["nomeCompleto"])
-    data["listaSegurados"]=listaSegurados
+        listaPropostas.append(segurado["segurado"]["numeroProposta"])
+    # data["listaSegurados"]=listaSegurados
+    # data["listaPropostas"]=listaPropostas
+    data["listaTabela"] = zip(listaSegurados, listaPropostas)
     return render(request, 'inkless/tabelaSeguradora.html',data)
 
 
@@ -94,12 +98,28 @@ def paginaBeneficiario(request):
             data["CPF"] = cpf
             dataDeNasc = beneficiario["dataNascimento"]
             dataDeNasc = retornaData(dataDeNasc)
+            data["email"] = beneficiario["email"]
+
+            dataExpedicao = beneficiario["dataExpedicao"]
+            data["dataExpedicao"] = retornaData(dataExpedicao)
             data["dataDeNasc"] = dataDeNasc
-            email = beneficiario["email"]
-            data["email"] = email
-            celular = beneficiario["telefone"]
-            data["celular"] = celular
-            identBen = beneficiario["uid"]
+      
+
+            data["telefone"] = beneficiario["telefone"]
+            data["celular"] = beneficiario["celular"]
+
+            data["grauParentesco"] = beneficiario["grauParentesco"]
+            data["registroGeral"] = beneficiario["registroGeral"]
+            data["orgãoEmissor"] = beneficiario["orgãoEmissor"]
+            data["profissao"] = beneficiario["profissao"]
+            
+            data["endereco"] = beneficiario["endereco"]["endereco"]
+            data["bairro"] = beneficiario["endereco"]["bairro"]
+            data["cep"] = beneficiario["endereco"]["cep"]
+            data["cidade"] = beneficiario["endereco"]["cidade"]
+            data["complemento"] = beneficiario["endereco"]["complemento"]
+            data["numero"] = beneficiario["endereco"]["numero"]
+            #identBen = beneficiario["uid"]
 
             # ###obtendo status dos documentos##
             # status_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
@@ -140,6 +160,7 @@ def paginaBeneficiario(request):
 
 
 def paginaSegurado(request):
+    global identBen
     data={}
     #doc_ref = db.collection(u'requerimentos').document(u'bCSwF0QWuUUV0c9DIqXaWpVKOJr2')
     #doc_tef = db.collection("users").document("wgB6q0D9iNVNX5EMSGCSyiCmvRX2").collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
@@ -155,8 +176,18 @@ def paginaSegurado(request):
             data["CPF"] = cpf 
             data["Nome"] = nome
             data["beneficioRequerido"] = plano
+            data["numeroProposta"] = segurado["segurado"]["numeroProposta"]
+            identBen = segurado["uid"]
+            if "matricula" in segurado["segurado"]:
+                data["matricula"]=segurado["segurado"]["matricula"]
+            else:
+                 data["matricula"]=""
+            if "nomeEstipulante" in segurado["segurado"]:
+                data["nomeEstipulante"]=segurado["segurado"]["nomeEstipulante"]
+            else:
+                 data["nomeEstipulante"]=""
 
-
+            
             # ###obtendo status do processo##
             # status_ref = db.collection("users").document(identBen)
             # statusDict = status_ref.get()
@@ -165,6 +196,16 @@ def paginaSegurado(request):
             #     data["status"]=statusDict["status"]
             # else:
             #     data["status"]="Aviso"
+
+
+
+            status_ref = db.collection("users").document(identBen)
+            statusDict = status_ref.get()
+            statusDict = statusDict.to_dict()
+            if "status" in statusDict:
+                data["status"]=statusDict["status"]
+            else:
+                data["status"]="Aviso"
 
             break
         i = i + 1
@@ -177,9 +218,23 @@ def obtemNomeSegurado(request):
     # nothing went well
 
 
-def atualizaStatusDoc(request):
+def atualizaStatusDocBeneficiario(request):
     statusDoc = request.POST.get('statusDoc')
     doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
+    doc_ref.set({
+    u'status': {
+        statusDoc:False
+    }
+    }, merge=True)
+    
+    return HttpResponse('success') # if everything is OK
+    
+    # nothing went well
+
+
+def atualizaStatusDocSegurado(request):
+    statusDoc = request.POST.get('statusDoc')
+    doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
     doc_ref.set({
     u'status': {
         statusDoc:False

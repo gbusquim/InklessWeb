@@ -22,7 +22,8 @@
 <body>
         <a href="http://127.0.0.1:8000">
         <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless"></a>
-        <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral">
+        <a href=https://www.mongeralaegon.com.br/>
+        <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral"></a>
       
         <hr style="margin-top: -0.25em;">
         <div align="center">
@@ -102,66 +103,78 @@
                 <div class="row">
                   <div class="col">
                         <h4 class="colunaEsquerda">
-                                Número da proposta: 12341234
+                                Benefício: {{ beneficioRequerido }}
                         </h4>
+                        <h4 class="colunaEsquerda">
+                                Número da proposta: {{ numeroProposta }}
+                        </h4>
+                        {% if matricula != "" %}
                         <h4  class="colunaEsquerda" >
-                                Matrícula: 1234
+                                Matrícula: {{ matricula }}
                         </h4 >
+                        {% endif %}
                         <h4 class="colunaEsquerda">
                                 Plano: Individual
                         </h4>
+                        {% if nomeEstipulante != "" %}
                         <h4 class="colunaEsquerda">
-                                Nome do estipulante:
+                                Nome do estipulante: {{ nomeEstipulante }}
                         </h4>
+                        {% endif %}
                   </div>
                   <div class="col">
                         <h4 style="color: #2679c0;top:-30px;font-weight: bold" class="colunaDireita">
-                               Documentos pendentes 
+                               Documentos 
                         </h4>
  
                         <table style="text-align: left;" class="colunaDireita table table-striped">
+                        <!-- Documentos obrigatorios -->
                                 <tr>
-                                        <td colspan="4" >Documento de identificação</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
-                                </tr>
-
-                                        <td colspan="4" >CPF</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td style="vertical-align: middle" colspan="4" >Documento de identificação</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentos('Documento de Identificação',this.id)">Solicitar Novamente </a></td>
                                 </tr>
 
                                 <tr>
+                                        <td style="vertical-align: middle" colspan="4" >Certificado de óbito</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentos('Certificado de óbito',this.id)">Solicitar Novamente </a></td>
+                                </tr>
 
+                                 <!-- Documentos nao obrigatorios -->
+                                 <tr>
+                                        <td colspan="4" >Certidão de casamento</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="3" onclick="solicitaDocumentos('Certidão de casamento',this.id)">Solicitar</a> </td>
+                                </tr>
+
+                                <tr>
                                         <td colspan="4" >Declaração médica de morte natural</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="4" onclick="solicitaDocumentos('Declaração médica de morte natural',this.id)">Solicitar</a> </td>
                                 </tr>
 
                                 <tr>
-
                                         <td colspan="4" >Laudo médico</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="5" onclick="solicitaDocumentos('Laudo médico',this.id)">Solicitar</a> </td>
                                 </tr>
 
                                 <tr>
-
                                         <td colspan="4" >GFIP/SEFIP</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="6" onclick="solicitaDocumentos('GFIP/SEFIP',this.id)">Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
                                         <td colspan="4">FRE</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="7" onclick="solicitaDocumentos('FRE',this.id)">Solicitar</a> </td>
                                 </tr>
                                 <tr>
 
                                         <td colspan="4" >CAGED</td>
-                                        <td><a href="{% static 'res.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td><a href="{% static 'res.pdf' %}" download>Download</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="8" onclick="solicitaDocumentos('CAGED',this.id)">Solicitar</a> </td>
+                                </tr>
+                                <tr>
+
+                                        <td colspan="4" >Nota fiscal das despesas funerais</td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="9" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id)">Solicitar</a> </td>
                                 </tr>
                               </table>
                   </div>
@@ -189,23 +202,30 @@
         </script>
 
 
+        <script>
+                function solicitaDocumentos(Doc,idDoc)
+                {
+                        
+                        var labelDoc = document.getElementById(idDoc)
+                        style="pointer-events: none;cursor: default;"
+                        labelDoc.innerHTML="Solicitado"
+                        labelDoc.style.color="gray"
+                        labelDoc.style.pointerEvents="none"
+                        labelDoc.style.cursor="default"
+                        $.ajax({
+                                url: "/processaRequestDocSeg",
+                                type: "POST", 
+                                data: {
+                                        statusDoc: Doc,
+                                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                                        }
+                                });
+                }  
+        </script>
+
+
 </footer>
 </html>
 
 
 
-
-                       <!-- CODIGO NAO USADO:
-                               <ul style="list-style-type:none"> 
-                                <li class="elementoLista"> Coffee</li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
-                                <li></li>
-                                <li class="elementoLista">Coffee</li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
-                                <li></li>
-                                <li class="elementoLista">Coffee</li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
-                        </ul> -->

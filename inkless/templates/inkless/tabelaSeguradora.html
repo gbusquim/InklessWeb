@@ -18,9 +18,10 @@
     
 
 </head>
-<body>
-    <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless">
-    <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral">
+    <a href="http://127.0.0.1:8000">
+    <img src="{% static 'image/inkless_logo.png' %}" alt="Inkless-logo" height="55" width="120" class="minhaImagemInkless"></a>
+    <a href=https://www.mongeralaegon.com.br/>
+    <img src="{% static 'image/logo_mongeral.png' %}" alt="Mongeral-logo" height="55" width="180" class="minhaImagemMongeral"></a>
     <div align="center">
             <input  type="text" id="myInput" onkeyup="buscaSegurado()" placeholder="Procure por um segurado" title="Type in a name">
     </div>
@@ -37,11 +38,11 @@
               </tr>
             </thead>
             <tbody class="fonteTabela" >
-            {% for segurado in listaSegurados %}
+            {% for segurado, proposta in listaTabela %}
               <tr>
-                <td >12341234</td>
+                <td >{{ proposta }}</td>
                 <td colspan="2">{{ segurado }}</td>
-                <td style="text-align:right" >10/01/2019</td>
+                <td style="text-align:right" >30/01/2019</td>
               </tr>
               {% endfor %}
               <tr>
