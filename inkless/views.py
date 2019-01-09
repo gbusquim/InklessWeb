@@ -168,7 +168,8 @@ def paginaSegurado(request):
     docs = doc_ref.get()
     i = 1
     for doc in docs:
-        if i == int(numSegurado):   
+        if i == int(numSegurado):  
+            ## obtendo cada campo ##
             segurado = doc.to_dict()
             nome = segurado["segurado"]["nomeCompleto"]
             cpf = segurado["segurado"]["cpf"]
@@ -188,17 +189,115 @@ def paginaSegurado(request):
                  data["nomeEstipulante"]=""
 
             
-            # ###obtendo status do processo##
-            # status_ref = db.collection("users").document(identBen)
-            # statusDict = status_ref.get()
-            # statusDict = statusDict.to_dict()
-            # if "status" in statusDict:
-            #     data["status"]=statusDict["status"]
-            # else:
-            #     data["status"]="Aviso"
+            
+            ##obtendo status de cada documento##
+            doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
+            doc_ref = doc_ref.get()
+            doc_ref = doc_ref.to_dict()
+            if "status" not in doc_ref:
+                ## todos os documentos para solicitar,com execeao dos obrigatorios ##
+                data["statusDoc1"] = True
+                data["statusDoc2"] = True
+                data["statusDoc3"] = "Nao solicitado"
+                data["statusDoc4"] = "Nao solicitado"
+                data["statusDoc5"] = "Nao solicitado"
+                data["statusDoc6"] = "Nao solicitado"
+                data["statusDoc7"] = "Nao solicitado"
+                data["statusDoc8"] = "Nao solicitado"
+                data["statusDoc9"] = "Nao solicitado"
+
+            else:
+                ## testar documento por documento ##
+                ## obrigatorios ##
+
+                ## "Documento de Identificação" ##
+                if "Documento de Identificação" not in  doc_ref["status"]:
+                    data["statusDoc1"] = True
+                else:
+                    if doc_ref["status"]["Documento de Identificação"] == False:
+                        data["statusDoc1"] = False
+                    else:
+                        data["statusDoc1"] = True
+
+                ## "Certificado de óbito" ##
+                if "Certificado de óbito" not in  doc_ref["status"]:
+                    data["statusDoc2"] = True
+                else:
+                    if doc_ref["status"]["Certificado de óbito"] == False:
+                        data["statusDoc2"] = False
+                    else:
+                        data["statusDoc2"] = True
+
+
+                 ## nao-obrigatorios ##
+
+                ## "Certidão de casamento" ##
+                if "Certidão de casamento" not in  doc_ref["status"]:
+                    data["statusDoc3"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Certidão de casamento"] == False:
+                        data["statusDoc3"] = False
+                    else:
+                        data["statusDoc3"] = True
+
+                ## "Declaração médica de morte natural" ##
+                if "Declaração médica de morte natural" not in  doc_ref["status"]:
+                    data["statusDoc4"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Declaração médica de morte natural"] == False:
+                        data["statusDoc4"] = False
+                    else:
+                        data["statusDoc4"] = True
+    
+                ## "Laudo médico" ##
+                if "Laudo médico" not in  doc_ref["status"]:
+                    data["statusDoc5"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Laudo médico"] == False:
+                        data["statusDoc5"] = False
+                    else:
+                        data["statusDoc5"] = True
+
+                ## "GFIP/SEFIP" ##
+                if "GFIP/SEFIP" not in  doc_ref["status"]:
+                    data["statusDoc6"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["GFIP/SEFIP"] == False:
+                        data["statusDoc6"] = False
+                    else:
+                        data["statusDoc6"] = True
+
+                ## "FRE" ##
+                if "FRE" not in  doc_ref["status"]:
+                    data["statusDoc7"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["FRE"] == False:
+                        data["statusDoc7"] = False
+                    else:
+                        data["statusDoc7"] = True
+
+                ## "CAGED" ##
+                if "CAGED" not in  doc_ref["status"]:
+                    data["statusDoc8"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["CAGED"] == False:
+                        data["statusDoc8"] = False
+                    else:
+                        data["statusDoc8"] = True
 
 
 
+                ## Nota fiscal das despesas funerais ##
+                if "Nota fiscal das despesas funerais" not in  doc_ref["status"]:
+                    data["statusDoc9"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Nota fiscal das despesas funerais"] == False:
+                        data["statusDoc9"] = False
+                    else:
+                        data["statusDoc9"] = True
+                
+
+            ####obtendo status do processo##
             status_ref = db.collection("users").document(identBen)
             statusDict = status_ref.get()
             statusDict = statusDict.to_dict()
@@ -235,6 +334,7 @@ def atualizaStatusDocBeneficiario(request):
 def atualizaStatusDocSegurado(request):
     statusDoc = request.POST.get('statusDoc')
     doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
+    print("nao entendi")
     doc_ref.set({
     u'status': {
         statusDoc:False

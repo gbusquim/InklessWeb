@@ -129,57 +129,86 @@
  
                         <table style="text-align: left;" class="colunaDireita table table-striped">
                         <!-- Documentos obrigatorios -->
-                                <tr id="Tabela">
+                                {% if statusDoc1 == True %}
+                                <tr id="Linha1">
                                         <td style="vertical-align: middle" colspan="4" >Documento de identificação</td>
                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentos('Documento de Identificação',this.id)">Solicitar Novamente </a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentos('Documento de Identificação',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
-
+                                {% else %}
                                 <tr>
+                                        <td colspan="4" >Documento de identificação</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+                                {% endif %}
+
+                                {% if statusDoc2 == True %}
+                                <tr id="Linha2">
                                         <td style="vertical-align: middle" colspan="4" >Certificado de óbito</td>
                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentos('Certificado de óbito',this.id)">Solicitar Novamente </a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentos('Certificado de óbito',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
+                                {% else %}
+                                <tr>
+                                        <td colspan="4" >Documento de identificação</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+                                {% endif %}
 
                                  <!-- Documentos nao obrigatorios -->
-                                 <tr>
+                           {% if statusDoc3 == "Nao solicitado" %}
+                                <tr>
                                         <td colspan="4" >Certidão de casamento</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="3" onclick="solicitaDocumentos('Certidão de casamento',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentos('Certidão de casamento',this.id,false)">Solicitar</a></td>
                                 </tr>
- 
-                                <tr>
+                                {% elif statusDoc3 == True  %}
+                                <tr id="Linha3">
+                                        <td style="vertical-align: middle" colspan="4" >Certidão de casamento</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentos('Certidão de casamento',this.id,true)">Solicitar Novamente </a></td>
+                                </tr>
+
+                                {% else %}
+                                        <td colspan="4" >Certidão de casamento</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+
+                                {% endif %}
+
+
+                                <tr id="Linha4">
                                         <td colspan="4" >Declaração médica de morte natural</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="4" onclick="solicitaDocumentos('Declaração médica de morte natural',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="4" onclick="solicitaDocumentos('Declaração médica de morte natural',this.id,false)">Solicitar</a> </td>
                                 </tr>
 
-                                <tr>
+                                <tr  id="Linha5">
                                         <td colspan="4" >Laudo médico</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="5" onclick="solicitaDocumentos('Laudo médico',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="5" onclick="solicitaDocumentos('Laudo médico',this.id,false)">Solicitar</a> </td>
                                 </tr>
 
-                                <tr>
+                                <tr  id="Linha6">
                                         <td colspan="4" >GFIP/SEFIP</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="6" onclick="solicitaDocumentos('GFIP/SEFIP',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="6" onclick="solicitaDocumentos('GFIP/SEFIP',this.id,false)">Solicitar</a> </td>
                                 </tr>
-                                <tr>
+                                <tr  id="Linha7">
 
                                         <td colspan="4">FRE</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="7" onclick="solicitaDocumentos('FRE',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="7" onclick="solicitaDocumentos('FRE',this.id,false)">Solicitar</a> </td>
                                 </tr>
-                                <tr>
+                                <tr  id="Linha8">
 
                                         <td colspan="4" >CAGED</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="8" onclick="solicitaDocumentos('CAGED',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="8" onclick="solicitaDocumentos('CAGED',this.id,false)">Solicitar</a> </td>
                                 </tr>
-                                <tr>
+                                <tr  id="Linha9">
 
                                         <td colspan="4" >Nota fiscal das despesas funerais</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="9" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="9" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a> </td>
                                 </tr>
-                                <tr id=>
+                                <tr  id="Linha10">
 
                                         <td colspan="4" > <input type="text" id="outroDoc" class="form-control" style="position: relative; left:-10px;" placeholder="Insira outro documento desejado"></td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="10" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href="#!" id="10" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a> </td>
                                 </tr>
                               </table>
                   </div>
@@ -210,7 +239,7 @@
 
 
         <script>
-                function solicitaDocumentos(Doc,idDoc)
+                function solicitaDocumentos(Doc,idDoc,flagRequisitado)
                 {
                         var labelDoc = document.getElementById(idDoc)
                         style="pointer-events: none;cursor: default;"
@@ -218,21 +247,38 @@
                         labelDoc.style.color="gray"
                         labelDoc.style.pointerEvents="none"
                         labelDoc.style.cursor="default"
-                        if(idDoc == 10)
+                        if(flagRequisitado == true)
                         {
-                                nomeDoc=document.getElementById("outroDoc").value
-                                var row = document.getElementById("Tabela");
-                                var x;
+                                var row = document.getElementById("Linha" + idDoc);
                                 row.deleteCell(2);
                                 row.deleteCell(1);
-                                x=row.insertCell(1);
+                                var x=row.insertCell(1);
                                 x.href="#!";
-                                x.id="2";
+                                x.id=idDoc;
                                 x.colSpan="2";
                                 x.innerHTML="Solicitado";
                                 x.style.textAlign="center"
                                 x.style.cursor="default";
                                 x.style.color="gray"
+
+
+
+                        }
+                        else
+                        {
+                                var labelDoc = document.getElementById(idDoc)
+                                style="pointer-events: none;cursor: default;"
+                                labelDoc.innerHTML="Solicitado"
+                                labelDoc.style.color="gray"
+                                labelDoc.style.pointerEvents="none"
+                                labelDoc.style.cursor="default"
+                        }
+                        if(idDoc == 10)
+                        {
+                                nomeDoc=document.getElementById("outroDoc").value
+                                var row = document.getElementById("Tabela");
+                                var x;
+                             
                         }
                         else
                                 nomeDoc=Doc
