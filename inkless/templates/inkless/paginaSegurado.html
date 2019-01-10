@@ -142,6 +142,11 @@
                                 </tr>
                                 {% endif %}
 
+
+
+                                 <!-- ------------------------------------- -->
+
+
                                 {% if statusDoc2 == True %}
                                 <tr id="Linha2">
                                         <td style="vertical-align: middle" colspan="4" >Certificado de óbito</td>
@@ -150,13 +155,13 @@
                                 </tr>
                                 {% else %}
                                 <tr>
-                                        <td colspan="4" >Documento de identificação</td>
+                                        <td colspan="4" >Certificado de óbito</td>
                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                 </tr>
                                 {% endif %}
 
                                  <!-- Documentos nao obrigatorios -->
-                           {% if statusDoc3 == "Nao solicitado" %}
+                                {% if statusDoc3 == "Nao solicitado" %}
                                 <tr>
                                         <td colspan="4" >Certidão de casamento</td>
                                         <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentos('Certidão de casamento',this.id,false)">Solicitar</a></td>
@@ -165,7 +170,7 @@
                                 <tr id="Linha3">
                                         <td style="vertical-align: middle" colspan="4" >Certidão de casamento</td>
                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentos('Certidão de casamento',this.id,true)">Solicitar Novamente </a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentos('Certidão de casamento',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
 
                                 {% else %}
@@ -176,40 +181,145 @@
                                 {% endif %}
 
 
-                                <tr id="Linha4">
+
+                                <!-- ------------------------------------- -->
+
+                                {% if statusDoc4 == "Nao solicitado" %}
+                                <tr>
                                         <td colspan="4" >Declaração médica de morte natural</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="4" onclick="solicitaDocumentos('Declaração médica de morte natural',this.id,false)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentos('Declaração médica de morte natural',this.id,false)">Solicitar</a></td>
+                                </tr>
+                                {% elif statusDoc4 == True  %}
+                                <tr id="Linha4">
+                                        <td style="vertical-align: middle" colspan="4" >Declaração médica de morte natural</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentos('Declaração médica de morte natural',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
 
-                                <tr  id="Linha5">
+                                {% else %}
+                                        <td colspan="4" >Declaração médica de morte natural</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+
+                                {% endif %}
+
+
+
+
+                                 <!-- ------------------------------------- -->
+
+                                {% if statusDoc5 == "Nao solicitado" %}
+                                <tr>
                                         <td colspan="4" >Laudo médico</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="5" onclick="solicitaDocumentos('Laudo médico',this.id,false)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="5" onclick="solicitaDocumentos('Laudo médico',this.id,false)">Solicitar</a></td>
+                                </tr>
+                                {% elif statusDoc5 == True  %}
+                                <tr id="Linha5">
+                                        <td style="vertical-align: middle" colspan="4" >Laudo médico</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="5" onclick="solicitaDocumentos('Laudo médico',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
 
-                                <tr  id="Linha6">
+                                {% else %}
+                                        <td colspan="4" >Laudo médico</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+
+                                {% endif %}
+
+
+
+
+
+                                 <!-- ------------------------------------- -->
+
+                                {% if statusDoc6 == "Nao solicitado" %}
+                                <tr>
                                         <td colspan="4" >GFIP/SEFIP</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="6" onclick="solicitaDocumentos('GFIP/SEFIP',this.id,false)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="6" onclick="solicitaDocumentos('GFIP/SEFIP',this.id,false)">Solicitar</a></td>
                                 </tr>
-                                <tr  id="Linha7">
+                                {% elif statusDoc6 == True  %}
+                                <tr id="Linha6">
+                                        <td style="vertical-align: middle" colspan="4" >GFIP/SEFIP</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="6" onclick="solicitaDocumentos('GFIP/SEFIP',this.id,true)">Solicitar Novamente </a></td>
+                                </tr>
 
-                                        <td colspan="4">FRE</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="7" onclick="solicitaDocumentos('FRE',this.id,false)">Solicitar</a> </td>
+                                {% else %}
+                                        <td colspan="4" >GFIP/SEFIP</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                 </tr>
-                                <tr  id="Linha8">
 
-                                        <td colspan="4" >CAGED</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="8" onclick="solicitaDocumentos('CAGED',this.id,false)">Solicitar</a> </td>
-                                </tr>
-                                <tr  id="Linha9">
+                                {% endif %}
 
-                                        <td colspan="4" >Nota fiscal das despesas funerais</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="9" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a> </td>
-                                </tr>
-                                <tr  id="Linha10">
 
-                                        <td colspan="4" > <input type="text" id="outroDoc" class="form-control" style="position: relative; left:-10px;" placeholder="Insira outro documento desejado"></td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="10" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a> </td>
+
+                                 <!-- ------------------------------------- -->
+
+
+                                {% if statusDoc7 == "Nao solicitado" %}
+                                <tr>
+                                        <td colspan="4" >FRE</td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="7" onclick="solicitaDocumentos('FRE',this.id,false)">Solicitar</a></td>
                                 </tr>
+                                {% elif statusDoc7 == True  %}
+                                <tr id="Linha7">
+                                        <td style="vertical-align: middle" colspan="4" >FRE</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="7" onclick="solicitaDocumentos('FRE',this.id,true)">Solicitar Novamente </a></td>
+                                </tr>
+
+                                {% else %}
+                                        <td colspan="4" >FRE</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+
+                                {% endif %}
+
+
+                                 <!-- ------------------------------------- -->
+
+
+                                 {% if statusDoc8 == "Nao solicitado" %}
+                                 <tr>
+                                         <td colspan="4" >CAGED</td>
+                                         <td colspan="2" style="text-align:center;"><a href='#!' id="8" onclick="solicitaDocumentos('CAGED',this.id,false)">Solicitar</a></td>
+                                 </tr>
+                                 {% elif statusDoc8 == True  %}
+                                 <tr id="Linha8">
+                                         <td style="vertical-align: middle" colspan="4" >CAGED</td>
+                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                         <td style="width:80px;text-align: center;"><a href='#!' id="8" onclick="solicitaDocumentos('CAGED',this.id,true)">Solicitar Novamente </a></td>
+                                 </tr>
+ 
+                                 {% else %}
+                                         <td colspan="4" >CAGED</td>
+                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                 </tr>
+ 
+                                 {% endif %}
+
+                                 <!-- ------------------------------------- -->
+
+
+                                 {% if statusDoc9 == "Nao solicitado" %}
+                                 <tr>
+                                         <td colspan="4" >Nota fiscal das despesas funerais</td>
+                                         <td colspan="2" style="text-align:center;"><a href='#!' id="9" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a></td>
+                                 </tr>
+                                 {% elif statusDoc9 == True  %}
+                                 <tr id="Linha9">
+                                         <td style="vertical-align: middle" colspan="4" >Nota fiscal das despesas funerais</td>
+                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                         <td style="width:80px;text-align: center;"><a href='#!' id="9" onclick="solicitaDocumentos('Nota fiscal das despesas funerais',this.id,true)">Solicitar Novamente </a></td>
+                                 </tr>
+ 
+                                 {% else %}
+                                         <td colspan="4" >Nota fiscal das despesas funerais</td>
+                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                 </tr>
+ 
+                                 {% endif %}
                               </table>
                   </div>
         </div>
@@ -239,7 +349,7 @@
 
 
         <script>
-                function solicitaDocumentos(Doc,idDoc,flagRequisitado)
+                function solicitaDocumentos(nomeDoc,idDoc,flagRequisitado)
                 {
                         var labelDoc = document.getElementById(idDoc)
                         style="pointer-events: none;cursor: default;"
@@ -273,15 +383,7 @@
                                 labelDoc.style.pointerEvents="none"
                                 labelDoc.style.cursor="default"
                         }
-                        if(idDoc == 10)
-                        {
-                                nomeDoc=document.getElementById("outroDoc").value
-                                var row = document.getElementById("Tabela");
-                                var x;
-                             
-                        }
-                        else
-                                nomeDoc=Doc
+
                         $.ajax({
                                 url: "/processaRequestDocSeg",
                                 type: "POST", 

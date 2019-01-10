@@ -144,6 +144,8 @@ def paginaBeneficiario(request):
             ####obtendo arquivos###
             arquivos = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
             arquivos_ref = arquivos.get()
+            arquivos_ref_list=list(arquivos_ref)
+            print(len(arquivos_ref_list))
             for arquivo in arquivos_ref:
                 identArq = arquivo.to_dict()
                 pathArquivo = identArq["imageStorage"]
@@ -334,7 +336,6 @@ def atualizaStatusDocBeneficiario(request):
 def atualizaStatusDocSegurado(request):
     statusDoc = request.POST.get('statusDoc')
     doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
-    print("nao entendi")
     doc_ref.set({
     u'status': {
         statusDoc:False
