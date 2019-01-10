@@ -181,76 +181,250 @@
                         <table style="text-align: left;" class="colunaDireita table table-striped">
                                 <!-- Documentos obrigatorios -->
 
+                                {% if statusDoc1 == True %}
+                                <tr id="Linha1">
+                                        <td style="vertical-align: middle" colspan="4" >Documento de identificação</td>
+                                        <td style="vertical-align: middle"><a href={{ linkId }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentosBeneficiario('Documento de Identificação',this.id,true)">Solicitar Novamente </a></td>
+                                </tr>
+                                {% else %}
                                 <tr>
-                                        <td style="vertical-align: middle" colspan="4" >Documento de Identificação</td>
-                                        <td style="vertical-align: middle"><a href= {{ linkId }} target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentos('Documento de Identificação',this.id)">Solicitar Novamente </a></td>
+                                        <td colspan="4" >Documento de identificação</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                 </tr>
+                                {% endif %}
 
-                                        <td style="vertical-align: middle" colspan="4" >Comprovante de Residência</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentos('Comprovante de Residência',this.id)">Solicitar Novamente </a></td>
-                                </tr>
+
+
+                                 <!-- ------------------------------------- -->
+
+                                 {% if statusDoc2 == True %}
+                                 <tr id="Linha2">
+                                         <td style="vertical-align: middle" colspan="4" >Comprovante de Residência</td>
+                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                         <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentosBeneficiario('Comprovante de Residência',this.id,true)">Solicitar Novamente </a></td>
+                                 </tr>
+                                 {% else %}
+                                 <tr>
+                                         <td colspan="4" >Comprovante de Residência</td>
+                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                 </tr>
+                                 {% endif %}
+ 
+
+                                  <!-- ------------------------------------- -->
                                         <!-- Documentos nao obrigatorios -->
-                                <tr>
 
+
+                                {% if statusDoc3 == "Nao solicitado" %}
+                                <tr>
                                         <td colspan="4" >Informações tributárias complementares</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="3" onclick="solicitaDocumentos('Informações tributárias complementares',this.id)">Solicitar</a> </td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosBeneficiario('Informações tributárias complementares',this.id,false)">Solicitar</a></td>
+                                </tr>
+                                {% elif statusDoc3 == True  %}
+                                <tr id="Linha3">
+                                        <td style="vertical-align: middle" colspan="4" >Informações tributárias complementares</td>
+                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosBeneficiario('Informações tributárias complementares',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
 
-                                <tr>
-
-                                        <td colspan="4" >Certidão de nascimento</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="4" onclick="solicitaDocumentos('Certidão de nascimento',this.id)">Solicitar</a> </td>
+                                {% else %}
+                                        <td colspan="4" >Informações tributárias complementares</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                 </tr>
 
+                                {% endif %}
+        
+                                 <!-- ------------------------------------- -->
 
-                                <tr>
 
-                                        <td colspan="4" >Termo de tutela</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="5" onclick="solicitaDocumentos('Termo de tutela',this.id)">Solicitar</a> </td>
-                                        
-                                </tr>
+                                 {% if statusDoc4 == "Nao solicitado" %}
+                                 <tr>
+                                         <td colspan="4" >Certidão de nascimento</td>
+                                         <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de nascimento',this.id,false)">Solicitar</a></td>
+                                 </tr>
+                                 {% elif statusDoc4 == True  %}
+                                 <tr id="Linha4">
+                                         <td style="vertical-align: middle" colspan="4" >Certidão de nascimento</td>
+                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                         <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de nascimento',this.id,true)">Solicitar Novamente </a></td>
+                                 </tr>
+ 
+                                 {% else %}
+                                         <td colspan="4" >Certidão de nascimento</td>
+                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                 </tr>
+ 
+                                 {% endif %}
+         
+                                  <!-- ------------------------------------- -->
 
-                                <tr>
+                                  {% if statusDoc5 == "Nao solicitado" %}
+                                  <tr>
+                                          <td colspan="4" >Termo de tutela</td>
+                                          <td colspan="2" style="text-align:center;"><a href='#!' id="5" onclick="solicitaDocumentosBeneficiario('Termo de tutela',this.id,false)">Solicitar</a></td>
+                                  </tr>
+                                  {% elif statusDoc5 == True  %}
+                                  <tr id="Linha5">
+                                          <td style="vertical-align: middle" colspan="4" >Termo de tutela</td>
+                                          <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                          <td style="width:80px;text-align: center;"><a href='#!' id="5" onclick="solicitaDocumentosBeneficiario('Termo de tutela',this.id,true)">Solicitar Novamente </a></td>
+                                  </tr>
+  
+                                  {% else %}
+                                          <td colspan="4" >Termo de tutela</td>
+                                          <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                  </tr>
+  
+                                  {% endif %}
+          
+                                   <!-- ------------------------------------- -->
 
-                                        <td colspan="4" >Termo de cautela</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="6" onclick="solicitaDocumentos('Termo de cautela',this.id)">Solicitar</a> </td>
-                                </tr>
-                                <tr>
 
-                                        <td colspan="4">Contrato social </td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="7" onclick="solicitaDocumentos('Contrato social',this.id)">Solicitar</a> </td>
-                                </tr>
-                                <tr>
+                                   {% if statusDoc6 == "Nao solicitado" %}
+                                   <tr>
+                                           <td colspan="4" >Termo de cautela</td>
+                                           <td colspan="2" style="text-align:center;"><a href='#!' id="6" onclick="solicitaDocumentosBeneficiario('Termo de cautela',this.id,false)">Solicitar</a></td>
+                                   </tr>
+                                   {% elif statusDoc6 == True  %}
+                                   <tr id="Linha6">
+                                           <td style="vertical-align: middle" colspan="4" >Termo de cautela</td>
+                                           <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                           <td style="width:80px;text-align: center;"><a href='#!' id="6" onclick="solicitaDocumentosBeneficiario('Termo de cautela',this.id,true)">Solicitar Novamente </a></td>
+                                   </tr>
+   
+                                   {% else %}
+                                           <td colspan="4" >Termo de cautela</td>
+                                           <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                   </tr>
+   
+                                   {% endif %}
+           
+                                    <!-- ------------------------------------- -->
 
-                                        <td colspan="4" >Declaração rol de herdeiros</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="8" onclick="solicitaDocumentos('Declaração rol de herdeiros',this.id)">Solicitar</a> </td>
-                                </tr>
+                                    {% if statusDoc7 == "Nao solicitado" %}
+                                    <tr>
+                                            <td colspan="4" >Contrato social</td>
+                                            <td colspan="2" style="text-align:center;"><a href='#!' id="7" onclick="solicitaDocumentosBeneficiario('Contrato social',this.id,false)">Solicitar</a></td>
+                                    </tr>
+                                    {% elif statusDoc7 == True  %}
+                                    <tr id="Linha7">
+                                            <td style="vertical-align: middle" colspan="4" >Contrato social</td>
+                                            <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                            <td style="width:80px;text-align: center;"><a href='#!' id="7" onclick="solicitaDocumentosBeneficiario('Contrato social',this.id,true)">Solicitar Novamente </a></td>
+                                    </tr>
+    
+                                    {% else %}
+                                            <td colspan="4" >Contrato social</td>
+                                            <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                    </tr>
+    
+                                    {% endif %}
+            
+                                     <!-- ------------------------------------- -->
+                                     {% if statusDoc8 == "Nao solicitado" %}
+                                     <tr>
+                                             <td colspan="4" >Declaração de rol de herdeiros</td>
+                                             <td colspan="2" style="text-align:center;"><a href='#!' id="8" onclick="solicitaDocumentosBeneficiario('Declaração de rol de herdeiros',this.id,false)">Solicitar</a></td>
+                                     </tr>
+                                     {% elif statusDoc8 == True  %}
+                                     <tr id="Linha8">
+                                             <td style="vertical-align: middle" colspan="4" >Declaração de rol de herdeiros</td>
+                                             <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                             <td style="width:80px;text-align: center;"><a href='#!' id="8" onclick="solicitaDocumentosBeneficiario('Declaração de rol de herdeiros',this.id,true)">Solicitar Novamente </a></td>
+                                     </tr>
+     
+                                     {% else %}
+                                             <td colspan="4" >Declaração de rol de herdeiros</td>
+                                             <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                     </tr>
+     
+                                     {% endif %}
+             
+                                      <!-- ------------------------------------- -->
+
+                                      {% if statusDoc9 == "Nao solicitado" %}
+                                      <tr>
+                                              <td colspan="4" >Declaração de união estável</td>
+                                              <td colspan="2" style="text-align:center;"><a href='#!' id="9" onclick="solicitaDocumentosBeneficiario('Declaração de união estável',this.id,false)">Solicitar</a></td>
+                                      </tr>
+                                      {% elif statusDoc9 == True  %}
+                                      <tr id="Linha9">
+                                              <td style="vertical-align: middle" colspan="4" >Declaração de união estável</td>
+                                              <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                              <td style="width:80px;text-align: center;"><a href='#!' id="9" onclick="solicitaDocumentosBeneficiario('Declaração de união estável',this.id,true)">Solicitar Novamente </a></td>
+                                      </tr>
+      
+                                      {% else %}
+                                              <td colspan="4" >Declaração de união estável</td>
+                                              <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                      </tr>
+      
+                                      {% endif %}
+              
+                                       <!-- ------------------------------------- -->
                                 
-                                <tr>
-
-                                        <td colspan="4" >Declaração de união estável</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="9" onclick="solicitaDocumentos('Declaração de união estável',this.id)">Solicitar</a> </td>
-                                </tr>
-                                <tr>
-
-                                        <td colspan="4" >Comprovante de vínculo com o segurado</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="10" onclick="solicitaDocumentos('Comprovante de vínculo com o segurado',this.id)">Solicitar</a> </td>
-                                </tr>
-                                <tr>
-
-                                        <td colspan="4" >Cédula de financiamento</td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="11" onclick="solicitaDocumentos('Cédula de financiamento',this.id)">Solicitar</a> </td>
-                                </tr>
-                                <tr>
-
-                                        <td colspan="4" >Cópia do domicílio bancário </td>
-                                        <td colspan="2" style="text-align:center;"><a href="#!" id="12" onclick="solicitaDocumentos('Cópia do domicílio bancário',this.id)">Solicitar</a> </td>
-                                </tr>
-
+                                       {% if statusDoc10 == "Nao solicitado" %}
+                                       <tr>
+                                               <td colspan="4" >Comprovante de vínculo com o segurado</td>
+                                               <td colspan="2" style="text-align:center;"><a href='#!' id="10" onclick="solicitaDocumentosBeneficiario('Comprovante de vínculo com o segurado',this.id,false)">Solicitar</a></td>
+                                       </tr>
+                                       {% elif statusDoc10 == True  %}
+                                       <tr id="Linha10">
+                                               <td style="vertical-align: middle" colspan="4" >Comprovante de vínculo com o segurado</td>
+                                               <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                               <td style="width:80px;text-align: center;"><a href='#!' id="10" onclick="solicitaDocumentosBeneficiario('Comprovante de vínculo com o segurado',this.id,true)">Solicitar Novamente </a></td>
+                                       </tr>
+       
+                                       {% else %}
+                                               <td colspan="4" >Comprovante de vínculo com o segurado</td>
+                                               <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                       </tr>
+       
+                                       {% endif %}
+               
+                                        <!-- ------------------------------------- -->
                                 
+                                       {% if statusDoc11 == "Nao solicitado" %}
+                                       <tr>
+                                               <td colspan="4" >Cédula de financiamento</td>
+                                               <td colspan="2" style="text-align:center;"><a href='#!' id="11" onclick="solicitaDocumentosBeneficiario('Cédula de financiamento',this.id,false)">Solicitar</a></td>
+                                       </tr>
+                                       {% elif statusDoc11 == True  %}
+                                       <tr id="Linha11">
+                                               <td style="vertical-align: middle" colspan="4" >Cédula de financiamento</td>
+                                               <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                               <td style="width:80px;text-align: center;"><a href='#!' id="11" onclick="solicitaDocumentosBeneficiario('Cédula de financiamento',this.id,true)">Solicitar Novamente </a></td>
+                                       </tr>
+       
+                                       {% else %}
+                                               <td colspan="4" >Cédula de financiamento</td>
+                                               <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                       </tr>
+       
+                                       {% endif %}
 
+                                        <!-- ------------------------------------- -->
+                                
+                                        {% if statusDoc12 == "Nao solicitado" %}
+                                        <tr>
+                                                <td colspan="4" >Cópia do domicílio bancário</td>
+                                                <td colspan="2" style="text-align:center;"><a href='#!' id="12" onclick="solicitaDocumentosBeneficiario('Cópia do domicílio bancário',this.id,false)">Solicitar</a></td>
+                                        </tr>
+                                        {% elif statusDoc12 == True  %}
+                                        <tr id="Linha12">
+                                                <td style="vertical-align: middle" colspan="4" >Cópia do domicílio bancário</td>
+                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="12" onclick="solicitaDocumentosBeneficiario('Cópia do domicílio bancário',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >Cópia do domicílio bancário</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
+                                
                               </table>
                   </div>
         </div>
@@ -280,7 +454,7 @@
 
 
         <script>
-        function solicitaDocumentos(Doc,idDoc)
+        function solicitaDocumentosBeneficiario(Doc,idDoc,flagRequisitado)
         {
                 
                 var labelDoc = document.getElementById(idDoc)
@@ -289,6 +463,32 @@
                 labelDoc.style.color="gray"
                 labelDoc.style.pointerEvents="none"
                 labelDoc.style.cursor="default"
+                if(flagRequisitado == true)
+                {
+                        var row = document.getElementById("Linha" + idDoc);
+                        row.deleteCell(2);
+                        row.deleteCell(1);
+                        var x=row.insertCell(1);
+                        x.href="#!";
+                        x.id=idDoc;
+                        x.colSpan="2";
+                        x.innerHTML="Solicitado";
+                        x.style.textAlign="center"
+                        x.style.cursor="default";
+                        x.style.color="gray"
+
+
+
+                }
+                else
+                {
+                        var labelDoc = document.getElementById(idDoc)
+                        style="pointer-events: none;cursor: default;"
+                        labelDoc.innerHTML="Solicitado"
+                        labelDoc.style.color="gray"
+                        labelDoc.style.pointerEvents="none"
+                        labelDoc.style.cursor="default"
+                }
                 $.ajax({
                         url: "/processaRequestDocBen",
                         type: "POST", 
@@ -300,28 +500,9 @@
         }  
         </script>
 
-
-
-
-        <!-- <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script> -->
         
 </footer>
 </html>
 
 
 
-
-                       <!-- CODIGO NAO USADO:
-                               <ul style="list-style-type:none"> 
-                                <li class="elementoLista"> Coffee</li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
-                                <li></li>
-                                <li class="elementoLista">Coffee</li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
-                                <li></li>
-                                <li class="elementoLista">Coffee</li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" target="_blank">Tea</a> </li>
-                                <li class="elementoArquivo"><a href="{% static 'res.pdf' %}" download>Tea</a> </li>
-                        </ul> -->

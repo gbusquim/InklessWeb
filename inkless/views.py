@@ -119,18 +119,9 @@ def paginaBeneficiario(request):
             data["cidade"] = beneficiario["endereco"]["cidade"]
             data["complemento"] = beneficiario["endereco"]["complemento"]
             data["numero"] = beneficiario["endereco"]["numero"]
-            #identBen = beneficiario["uid"]
 
-            # ###obtendo status dos documentos##
-            # status_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
-            # statusDict = status_ref.get()
-            # statusDict = statusDict.to_dict()
-            # if "status" in statusDict:
-            #     data["statusDoc"]=statusDict["status"]["docId"]
-            # else:
-            #     data["statusDoc"]="false"
 
-            ###obtendo status do processo##
+            ##obtendo status do processo##
             status_ref = db.collection("users").document(identBen)
             statusDict = status_ref.get()
             statusDict = statusDict.to_dict()
@@ -139,6 +130,144 @@ def paginaBeneficiario(request):
             else:
                 data["status"]="Aviso"
 
+
+
+
+           ##obtendo status de cada documento E PEGAR PATH DE CADA UM##
+            doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
+            doc_ref = doc_ref.get()
+            doc_ref = doc_ref.to_dict()
+            if "status" not in doc_ref:
+                ## todos os documentos para solicitar,com execeao dos obrigatorios ##
+                data["statusDoc1"] = True
+                data["statusDoc2"] = True
+                data["statusDoc3"] = "Nao solicitado"
+                data["statusDoc4"] = "Nao solicitado"
+                data["statusDoc5"] = "Nao solicitado"
+                data["statusDoc6"] = "Nao solicitado"
+                data["statusDoc7"] = "Nao solicitado"
+                data["statusDoc8"] = "Nao solicitado"
+                data["statusDoc9"] = "Nao solicitado"
+                data["statusDoc10"] = "Nao solicitado"
+                data["statusDoc11"] = "Nao solicitado"
+                data["statusDoc12"] = "Nao solicitado"
+
+            else:
+                ## testar documento por documento ##
+                ## obrigatorios ##
+
+                ## "Documento de Identificação" ##
+                if "Documento de Identificação" not in  doc_ref["status"]:
+                    data["statusDoc1"] = True
+                else:
+                    if doc_ref["status"]["Documento de Identificação"] == False:
+                        data["statusDoc1"] = False
+                    else:
+                        data["statusDoc1"] = True
+
+                ## "Comprovante de Residência" ##
+                if "Comprovante de Residência" not in  doc_ref["status"]:
+                    data["statusDoc2"] = True
+                else:
+                    if doc_ref["status"]["Comprovante de Residência"] == False:
+                        data["statusDoc2"] = False
+                    else:
+                        data["statusDoc2"] = True
+
+
+                 ## nao-obrigatorios ##
+
+                ## "Informações tributárias complementares" ##
+                if "Informações tributárias complementares" not in  doc_ref["status"]:
+                    data["statusDoc3"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Informações tributárias complementares"] == False:
+                        data["statusDoc3"] = False
+                    else:
+                        data["statusDoc3"] = True
+
+                ## "Certidão de nascimento" ##
+                if "Certidão de nascimento" not in  doc_ref["status"]:
+                    data["statusDoc4"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Certidão de nascimento"] == False:
+                        data["statusDoc4"] = False
+                    else:
+                        data["statusDoc4"] = True
+    
+                ## "Termo de tutela" ##
+                if "Termo de tutela" not in  doc_ref["status"]:
+                    data["statusDoc5"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Termo de tutela"] == False:
+                        data["statusDoc5"] = False
+                    else:
+                        data["statusDoc5"] = True
+
+                ## "Termo de cautela" ##
+                if "Termo de cautela" not in  doc_ref["status"]:
+                    data["statusDoc6"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Termo de cautela"] == False:
+                        data["statusDoc6"] = False
+                    else:
+                        data["statusDoc6"] = True
+
+                ## "Contrato social" ##
+                if "Contrato social" not in  doc_ref["status"]:
+                    data["statusDoc7"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Contrato social"] == False:
+                        data["statusDoc7"] = False
+                    else:
+                        data["statusDoc7"] = True
+
+                ## "Declaração de rol de herdeiros" ##
+                if "Declaração de rol de herdeiros" not in  doc_ref["status"]:
+                    data["statusDoc8"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Declaração de rol de herdeiros"] == False:
+                        data["statusDoc8"] = False
+                    else:
+                        data["statusDoc8"] = True
+
+
+
+                ## Declaração de união estável ##
+                if "Declaração de união estável" not in  doc_ref["status"]:
+                    data["statusDoc9"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Declaração de união estável"] == False:
+                        data["statusDoc9"] = False
+                    else:
+                        data["statusDoc9"] = True
+
+                ## Comprovante de vínculo com o segurado##
+                if "Comprovante de vínculo com o segurado" not in  doc_ref["status"]:
+                    data["statusDoc10"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Comprovante de vínculo com o segurado"] == False:
+                        data["statusDoc10"] = False
+                    else:
+                        data["statusDoc10"] = True
+
+                ## Cédula de financiamento ##
+                if "Cédula de financiamento" not in  doc_ref["status"]:
+                    data["statusDoc11"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Cédula de financiamento"] == False:
+                        data["statusDoc11"] = False
+                    else:
+                        data["statusDoc11"] = True
+
+                ## Cópia do domicílio bancário ##
+                if "Cópia do domicílio bancário" not in  doc_ref["status"]:
+                    data["statusDoc12"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Cópia do domicílio bancário"] == False:
+                        data["statusDoc12"] = False
+                    else:
+                        data["statusDoc12"] = True
 
 
             ####obtendo arquivos###
@@ -192,7 +321,7 @@ def paginaSegurado(request):
 
             
             
-            ##obtendo status de cada documento##
+            ##obtendo status de cada documento E PEGAR PATH DE CADA UM##
             doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
             doc_ref = doc_ref.get()
             doc_ref = doc_ref.to_dict()
