@@ -240,18 +240,18 @@
 
                                  {% if statusDoc4 == "Nao solicitado" %}
                                  <tr>
-                                         <td colspan="4" >Certidão de nascimento</td>
-                                         <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de nascimento',this.id,false)">Solicitar</a></td>
+                                         <td colspan="4" >Certidão de nascimento ou casamento</td>
+                                         <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de nascimento ou casamento',this.id,false)">Solicitar</a></td>
                                  </tr>
                                  {% elif statusDoc4 == True  %}
                                  <tr id="Linha4">
-                                         <td style="vertical-align: middle" colspan="4" >Certidão de nascimento</td>
+                                         <td style="vertical-align: middle" colspan="4" >Certidão de nascimento ou casamento</td>
                                          <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                         <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de nascimento',this.id,true)">Solicitar Novamente </a></td>
+                                         <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de nascimento ou casamento',this.id,true)">Solicitar Novamente </a></td>
                                  </tr>
  
                                  {% else %}
-                                         <td colspan="4" >Certidão de nascimento</td>
+                                         <td colspan="4" >Certidão de nascimento ou casamento</td>
                                          <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                  </tr>
  

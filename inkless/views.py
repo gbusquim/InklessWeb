@@ -140,7 +140,9 @@ def paginaBeneficiario(request):
             if "status" not in doc_ref:
                 ## todos os documentos para solicitar,com execeao dos obrigatorios ##
                 data["statusDoc1"] = True
+                #data["linkId"]=obtemLinkArquivo(db,identBen,"Documento de Identificação","beneficiario")
                 data["statusDoc2"] = True
+                #data["linkRes"]=obtemLinkArquivo(db,identBen,"Comprovante de Residência","beneficiario")
                 data["statusDoc3"] = "Nao solicitado"
                 data["statusDoc4"] = "Nao solicitado"
                 data["statusDoc5"] = "Nao solicitado"
@@ -159,20 +161,24 @@ def paginaBeneficiario(request):
                 ## "Documento de Identificação" ##
                 if "Documento de Identificação" not in  doc_ref["status"]:
                     data["statusDoc1"] = True
+                    #data["linkId"]=obtemLinkArquivo(db,identBen,"Documento de Identificação","beneficiario")
                 else:
                     if doc_ref["status"]["Documento de Identificação"] == False:
                         data["statusDoc1"] = False
                     else:
                         data["statusDoc1"] = True
+                        #data["linkRes"]=obtemLinkArquivo(db,identBen,"Comprovante de Residência","beneficiario")
 
                 ## "Comprovante de Residência" ##
                 if "Comprovante de Residência" not in  doc_ref["status"]:
                     data["statusDoc2"] = True
+                    #data["linkRes"]=obtemLinkArquivo(db,identBen,"Comprovante de Residência","beneficiario")
                 else:
                     if doc_ref["status"]["Comprovante de Residência"] == False:
                         data["statusDoc2"] = False
                     else:
                         data["statusDoc2"] = True
+                        #data["linkRes"]=obtemLinkArquivo(db,identBen,"Comprovante de Residência","beneficiario")
 
 
                  ## nao-obrigatorios ##
@@ -185,6 +191,7 @@ def paginaBeneficiario(request):
                         data["statusDoc3"] = False
                     else:
                         data["statusDoc3"] = True
+                        #data["linkITC"]=obtemLinkArquivo(db,identBen,"Comprovantes de Informações Tributárias Complementares","beneficiario")
 
                 ## "Certidão de nascimento" ##
                 if "Certidão de nascimento" not in  doc_ref["status"]:
@@ -483,6 +490,23 @@ def atualizaStatus(request):
     return HttpResponse('success') # if everything is OK
     
     # nothing went well
+
+
+
+# def obtemLinkArquivo(db,identBen,nomeDoc,tipoPesooa):
+#             arquivos = db.collection("users").document(identBen).collection(tipoPesooa).document("requerimentos").collection(nomeDoc)
+#             arquivos_ref = arquivos.get()
+#             arquivos_ref_list=list(arquivos_ref)
+#             print(len(arquivos_ref_list))
+#             for arquivo in arquivos_ref:
+#                 identArq = arquivo.to_dict()
+#                 pathArquivo = identArq["imageStorage"]
+#                 blob = bucket.blob(pathArquivo)
+#                 link = blob.generate_signed_url(datetime.timedelta(seconds=300), method='GET')
+#                 link = link.replace("googleapis","cloud.google")
+#                 return link
+#                 break
+
 
 
 # Codigo nao usado:
