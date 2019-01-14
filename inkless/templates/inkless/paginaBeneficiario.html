@@ -144,9 +144,16 @@
                         <h4 class="colunaEsquerda">
                                 Reside no Brasil
                         </h4>
+                        {% if fiscalExterior == False %}
+
+                                <h4 class="colunaEsquerda">
+                                        Não possui obrigações fiscais com outros países
+                                </h4>
+                        {% else %}
                         <h4 class="colunaEsquerda">
-                                Não possui obrigações fiscais com outros países
-                        </h4>
+                                        Possui obrigações fiscais com outros países
+                                </h4>
+                        {% endif %}
                         <br></br>
                         <h4 class="colunaEsquerda">
                                 Endereço residencial: {{ endereco }}
@@ -215,24 +222,25 @@
                                   <!-- ------------------------------------- -->
                                         <!-- Documentos nao obrigatorios -->
 
+                                {% if fiscalExterior == True %}
+                                        {% if statusDoc3 == "Nao solicitado" %}
+                                        <tr>
+                                                <td colspan="4" >Informações tributárias complementares</td>
+                                                <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosBeneficiario('Informações tributárias complementares',this.id,false)">Solicitar</a></td>
+                                        </tr>
+                                        {% elif statusDoc3 == True  %}
+                                        <tr id="Linha3">
+                                                <td style="vertical-align: middle" colspan="4" >Informações tributárias complementares</td>
+                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosBeneficiario('Informações tributárias complementares',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
 
-                                {% if statusDoc3 == "Nao solicitado" %}
-                                <tr>
-                                        <td colspan="4" >Informações tributárias complementares</td>
-                                        <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosBeneficiario('Informações tributárias complementares',this.id,false)">Solicitar</a></td>
-                                </tr>
-                                {% elif statusDoc3 == True  %}
-                                <tr id="Linha3">
-                                        <td style="vertical-align: middle" colspan="4" >Informações tributárias complementares</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosBeneficiario('Informações tributárias complementares',this.id,true)">Solicitar Novamente </a></td>
-                                </tr>
+                                        {% else %}
+                                                <td colspan="4" >Informações tributárias complementares</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
 
-                                {% else %}
-                                        <td colspan="4" >Informações tributárias complementares</td>
-                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                </tr>
-
+                                        {% endif %}
                                 {% endif %}
         
                                  <!-- ------------------------------------- -->
@@ -283,18 +291,18 @@
 
                                    {% if statusDoc6 == "Nao solicitado" %}
                                    <tr>
-                                           <td colspan="4" >Termo de cautela</td>
+                                           <td colspan="4" >Termo de curatela</td>
                                            <td colspan="2" style="text-align:center;"><a href='#!' id="6" onclick="solicitaDocumentosBeneficiario('Termo de cautela',this.id,false)">Solicitar</a></td>
                                    </tr>
                                    {% elif statusDoc6 == True  %}
                                    <tr id="Linha6">
-                                           <td style="vertical-align: middle" colspan="4" >Termo de cautela</td>
+                                           <td style="vertical-align: middle" colspan="4" >Termo de curatela</td>
                                            <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
                                            <td style="width:80px;text-align: center;"><a href='#!' id="6" onclick="solicitaDocumentosBeneficiario('Termo de cautela',this.id,true)">Solicitar Novamente </a></td>
                                    </tr>
    
                                    {% else %}
-                                           <td colspan="4" >Termo de cautela</td>
+                                           <td colspan="4" >Termo de curatela</td>
                                            <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                    </tr>
    

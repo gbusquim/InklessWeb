@@ -71,7 +71,10 @@ def home(request):
     for doc in docs:
         segurado = doc.to_dict()
         listaSegurados.append(segurado["segurado"]["nomeCompleto"])
-        listaPropostas.append(segurado["segurado"]["numeroProposta"])
+        if "numeroProposta" in segurado["segurado"]:
+            listaPropostas.append(segurado["segurado"]["numeroProposta"])
+        else:
+            listaPropostas.append("12345")
     # data["listaSegurados"]=listaSegurados
     # data["listaPropostas"]=listaPropostas
     data["listaTabela"] = zip(listaSegurados, listaPropostas)
@@ -112,6 +115,7 @@ def paginaBeneficiario(request):
             data["registroGeral"] = beneficiario["registroGeral"]
             data["orgãoEmissor"] = beneficiario["orgãoEmissor"]
             data["profissao"] = beneficiario["profissao"]
+            data["fiscalExterior"] = beneficiario["fiscalExterior"]
             
             data["endereco"] = beneficiario["endereco"]["endereco"]
             data["bairro"] = beneficiario["endereco"]["bairro"]
@@ -330,6 +334,7 @@ def paginaSegurado(request):
                 data["nomeEstipulante"]=segurado["segurado"]["nomeEstipulante"]
             else:
                  data["nomeEstipulante"]=""
+            data["Juridica"]=segurado["pessoaLegal"]
 
             
             
