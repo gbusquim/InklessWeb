@@ -139,7 +139,7 @@ def paginaBeneficiario(request):
             doc_ref = doc_ref.to_dict()
             if "status" not in doc_ref:
                 ## todos os documentos para solicitar,com execeao dos obrigatorios ##
-                data["statusDoc1"] = True
+                #data["statusDoc1"] = True
                 #data["linkId"]=obtemLinkArquivo(db,identBen,"Documento de Identificação","beneficiario")
                 data["statusDoc2"] = True
                 #data["linkRes"]=obtemLinkArquivo(db,identBen,"Comprovante de Residência","beneficiario")
@@ -281,12 +281,17 @@ def paginaBeneficiario(request):
             arquivos = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
             arquivos_ref = arquivos.get()
             arquivos_ref_list=list(arquivos_ref)
-            print(len(arquivos_ref_list))
+            if(len(arquivos_ref_list)==0):
+                data["statusDoc1"] = False
+            else:
+                data["statusDoc1"] = True
+            # print(len(arquivos_ref_list))
             for arquivo in arquivos_ref:
                 identArq = arquivo.to_dict()
                 pathArquivo = identArq["imageStorage"]
                 blob = bucket.blob(pathArquivo)
-                link = blob.generate_signed_url(datetime.timedelta(seconds=300), method='GET')
+                #print("whaaat " + blob.public_url)
+                link = blob.generate_signed_url(datetime.timedelta(seconds=1000), method='GET')
                 link = link.replace("googleapis","cloud.google")
                 data["linkId"] = link
                 break
