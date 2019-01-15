@@ -143,7 +143,7 @@ def paginaBeneficiario(request):
             doc_ref = doc_ref.to_dict()
             if "status" not in doc_ref:
                 ## todos os documentos para solicitar,com execeao dos obrigatorios ##
-                #data["statusDoc1"] = True
+                data["statusDoc1"] = True
                 #data["linkId"]=obtemLinkArquivo(db,identBen,"Documento de Identificação","beneficiario")
                 data["statusDoc2"] = True
                 #data["linkRes"]=obtemLinkArquivo(db,identBen,"Comprovante de Residência","beneficiario")
@@ -157,6 +157,7 @@ def paginaBeneficiario(request):
                 data["statusDoc10"] = "Nao solicitado"
                 data["statusDoc11"] = "Nao solicitado"
                 data["statusDoc12"] = "Nao solicitado"
+                data["statusDoc13"] = "Nao solicitado"
 
             else:
                 ## testar documento por documento ##
@@ -280,16 +281,26 @@ def paginaBeneficiario(request):
                     else:
                         data["statusDoc12"] = True
 
+                ## Nota fiscal das despesas funerais ##
+                if "Nota fiscal das despesas funerais" not in  doc_ref["status"]:
+                    data["statusDoc13"] = "Nao solicitado"
+                else:
+                    if doc_ref["status"]["Nota fiscal das despesas funerais"] == False:
+                        data["statusDoc13"] = False
+                    else:
+                        data["statusDoc13"] = True
+
 
             ####obtendo arquivos###
             arquivos = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
             arquivos_ref = arquivos.get()
-            arquivos_ref_list=list(arquivos_ref)
-            if(len(arquivos_ref_list)==0):
-                data["statusDoc1"] = False
-            else:
-                data["statusDoc1"] = True
+            # arquivos_ref_list=list(arquivos_ref)
+            # if(len(arquivos_ref_list)==0):
+            #     data["statusDoc1"] = False
+            # else:
+            #     data["statusDoc1"] = True
             # print(len(arquivos_ref_list))
+            # print(arquivos_ref_list)
             for arquivo in arquivos_ref:
                 identArq = arquivo.to_dict()
                 pathArquivo = identArq["imageStorage"]
@@ -324,7 +335,10 @@ def paginaSegurado(request):
             data["CPF"] = cpf 
             data["Nome"] = nome
             data["beneficioRequerido"] = plano
-            data["numeroProposta"] = segurado["segurado"]["numeroProposta"]
+            if "numeroProposta" in segurado["segurado"]:
+                data["numeroProposta"] = segurado["segurado"]["numeroProposta"]
+            else:
+                data["numeroProposta"]="12345"
             identBen = segurado["uid"]
             if "matricula" in segurado["segurado"]:
                 data["matricula"]=segurado["segurado"]["matricula"]
@@ -352,7 +366,6 @@ def paginaSegurado(request):
                 data["statusDoc6"] = "Nao solicitado"
                 data["statusDoc7"] = "Nao solicitado"
                 data["statusDoc8"] = "Nao solicitado"
-                data["statusDoc9"] = "Nao solicitado"
 
             else:
                 ## testar documento por documento ##
@@ -435,24 +448,16 @@ def paginaSegurado(request):
 
 
 
-                ## Nota fiscal das despesas funerais ##
-                if "Nota fiscal das despesas funerais" not in  doc_ref["status"]:
-                    data["statusDoc9"] = "Nao solicitado"
-                else:
-                    if doc_ref["status"]["Nota fiscal das despesas funerais"] == False:
-                        data["statusDoc9"] = False
-                    else:
-                        data["statusDoc9"] = True
                 
 
             ####obtendo status do processo##
             status_ref = db.collection("users").document(identBen)
             statusDict = status_ref.get()
             statusDict = statusDict.to_dict()
-            if "status" in statusDict:
-                data["status"]=statusDict["status"]
-            else:
+            if "status" not in statusDict or statusDict["status"]=="Aguardando envio do documento":
                 data["status"]="Aviso"
+            else:
+                data["status"] = statusDict["status"]
 
             break
         i = i + 1

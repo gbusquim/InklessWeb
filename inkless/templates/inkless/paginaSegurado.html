@@ -163,18 +163,18 @@
                                  <!-- Documentos nao obrigatorios -->
                                 {% if statusDoc3 == "Nao solicitado" %}
                                 <tr>
-                                        <td colspan="4" >Certidão de casamento</td>
+                                        <td colspan="4" >Certidão de casamento ou nascimento</td>
                                         <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento',this.id,false)">Solicitar</a></td>
                                 </tr>
                                 {% elif statusDoc3 == True  %}
                                 <tr id="Linha3">
-                                        <td style="vertical-align: middle" colspan="4" >Certidão de casamento</td>
+                                        <td style="vertical-align: middle" colspan="4" >Certidão de casamento ou nascimento</td>
                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
                                         <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
 
                                 {% else %}
-                                        <td colspan="4" >Certidão de casamento</td>
+                                        <td colspan="4" >Certidão de casamento ou nascimento</td>
                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                 </tr>
 
@@ -230,96 +230,79 @@
 
 
 
-
+                                {% if Juridica == True %}
                                  <!-- ------------------------------------- -->
 
-                                {% if statusDoc6 == "Nao solicitado" %}
-                                <tr>
-                                        <td colspan="4" >GFIP/SEFIP</td>
-                                        <td colspan="2" style="text-align:center;"><a href='#!' id="6" onclick="solicitaDocumentosSegurado('GFIP/SEFIP',this.id,false)">Solicitar</a></td>
-                                </tr>
-                                {% elif statusDoc6 == True  %}
-                                <tr id="Linha6">
-                                        <td style="vertical-align: middle" colspan="4" >GFIP/SEFIP</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="6" onclick="solicitaDocumentosSegurado('GFIP/SEFIP',this.id,true)">Solicitar Novamente </a></td>
-                                </tr>
+                                        {% if statusDoc6 == "Nao solicitado" %}
+                                        <tr>
+                                                <td colspan="4" >GFIP/SEFIP</td>
+                                                <td colspan="2" style="text-align:center;"><a href='#!' id="6" onclick="solicitaDocumentosSegurado('GFIP/SEFIP',this.id,false)">Solicitar</a></td>
+                                        </tr>
+                                        {% elif statusDoc6 == True  %}
+                                        <tr id="Linha6">
+                                                <td style="vertical-align: middle" colspan="4" >GFIP/SEFIP</td>
+                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="6" onclick="solicitaDocumentosSegurado('GFIP/SEFIP',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
 
-                                {% else %}
-                                        <td colspan="4" >GFIP/SEFIP</td>
-                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                </tr>
+                                        {% else %}
+                                                <td colspan="4" >GFIP/SEFIP</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
 
+                                        {% endif %}
+
+
+
+                                        <!-- ------------------------------------- -->
+
+
+                                        {% if statusDoc7 == "Nao solicitado" %}
+                                        <tr>
+                                                <td colspan="4" >FRE</td>
+                                                <td colspan="2" style="text-align:center;"><a href='#!' id="7" onclick="solicitaDocumentosSegurado('FRE',this.id,false)">Solicitar</a></td>
+                                        </tr>
+                                        {% elif statusDoc7 == True  %}
+                                        <tr id="Linha7">
+                                                <td style="vertical-align: middle" colspan="4" >FRE</td>
+                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="7" onclick="solicitaDocumentosSegurado('FRE',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+
+                                        {% else %}
+                                                <td colspan="4" >FRE</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+
+                                        {% endif %}
+
+
+                                        <!-- ------------------------------------- -->
+
+
+                                        {% if statusDoc8 == "Nao solicitado" %}
+                                        <tr>
+                                                <td colspan="4" >CAGED</td>
+                                                <td colspan="2" style="text-align:center;"><a href='#!' id="8" onclick="solicitaDocumentosSegurado('CAGED',this.id,false)">Solicitar</a></td>
+                                        </tr>
+                                        {% elif statusDoc8 == True  %}
+                                        <tr id="Linha8">
+                                                <td style="vertical-align: middle" colspan="4" >CAGED</td>
+                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="8" onclick="solicitaDocumentosSegurado('CAGED',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >CAGED</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
                                 {% endif %}
-
-
-
                                  <!-- ------------------------------------- -->
 
 
-                                {% if statusDoc7 == "Nao solicitado" %}
-                                <tr>
-                                        <td colspan="4" >FRE</td>
-                                        <td colspan="2" style="text-align:center;"><a href='#!' id="7" onclick="solicitaDocumentosSegurado('FRE',this.id,false)">Solicitar</a></td>
-                                </tr>
-                                {% elif statusDoc7 == True  %}
-                                <tr id="Linha7">
-                                        <td style="vertical-align: middle" colspan="4" >FRE</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="7" onclick="solicitaDocumentosSegurado('FRE',this.id,true)">Solicitar Novamente </a></td>
-                                </tr>
 
-                                {% else %}
-                                        <td colspan="4" >FRE</td>
-                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                </tr>
-
-                                {% endif %}
-
-
-                                 <!-- ------------------------------------- -->
-
-
-                                 {% if statusDoc8 == "Nao solicitado" %}
-                                 <tr>
-                                         <td colspan="4" >CAGED</td>
-                                         <td colspan="2" style="text-align:center;"><a href='#!' id="8" onclick="solicitaDocumentosSegurado('CAGED',this.id,false)">Solicitar</a></td>
-                                 </tr>
-                                 {% elif statusDoc8 == True  %}
-                                 <tr id="Linha8">
-                                         <td style="vertical-align: middle" colspan="4" >CAGED</td>
-                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                         <td style="width:80px;text-align: center;"><a href='#!' id="8" onclick="solicitaDocumentosSegurado('CAGED',this.id,true)">Solicitar Novamente </a></td>
-                                 </tr>
- 
-                                 {% else %}
-                                         <td colspan="4" >CAGED</td>
-                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                 </tr>
- 
-                                 {% endif %}
-
-                                 <!-- ------------------------------------- -->
-
-
-                                 {% if statusDoc9 == "Nao solicitado" %}
-                                 <tr>
-                                         <td colspan="4" >Nota fiscal das despesas funerais</td>
-                                         <td colspan="2" style="text-align:center;"><a href='#!' id="9" onclick="solicitaDocumentosSegurado('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a></td>
-                                 </tr>
-                                 {% elif statusDoc9 == True  %}
-                                 <tr id="Linha9">
-                                         <td style="vertical-align: middle" colspan="4" >Nota fiscal das despesas funerais</td>
-                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                         <td style="width:80px;text-align: center;"><a href='#!' id="9" onclick="solicitaDocumentosSegurado('Nota fiscal das despesas funerais',this.id,true)">Solicitar Novamente </a></td>
-                                 </tr>
- 
-                                 {% else %}
-                                         <td colspan="4" >Nota fiscal das despesas funerais</td>
-                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                 </tr>
- 
-                                 {% endif %}
                               </table>
                   </div>
         </div>

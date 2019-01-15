@@ -222,7 +222,7 @@
                                   <!-- ------------------------------------- -->
                                         <!-- Documentos nao obrigatorios -->
 
-                                {% if fiscalExterior == True %}
+                                {# {% if fiscalExterior == True %} #}
                                         {% if statusDoc3 == "Nao solicitado" %}
                                         <tr>
                                                 <td colspan="4" >Informações tributárias complementares</td>
@@ -241,7 +241,7 @@
                                         </tr>
 
                                         {% endif %}
-                                {% endif %}
+                                {# {% endif %} #}
         
                                  <!-- ------------------------------------- -->
 
@@ -428,6 +428,27 @@
         
                                         {% else %}
                                                 <td colspan="4" >Cópia do domicílio bancário</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
+
+                                        <!-- ------------------------------------- -->
+
+                                        {% if statusDoc13 == "Nao solicitado" %}
+                                        <tr>
+                                                <td colspan="4" >Nota fiscal das despesas funerais</td>
+                                                <td colspan="2" style="text-align:center;"><a href='#!' id="13" onclick="solicitaDocumentosSegurado('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a></td>
+                                        </tr>
+                                        {% elif statusDoc13 == True  %}
+                                        <tr id="Linha13">
+                                                <td style="vertical-align: middle" colspan="4" >Nota fiscal das despesas funerais</td>
+                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="13" onclick="solicitaDocumentosSegurado('Nota fiscal das despesas funerais',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >Nota fiscal das despesas funerais</td>
                                                 <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                         </tr>
         
