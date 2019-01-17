@@ -40,61 +40,76 @@
         <h4 class="textoSegurado">
                         Data de Nascimento: 18/09/2018
         </h4>
-        <div style="position:relative;top:32px;margin-bottom: -16ßpx;" >
-                <h4 class="textoStatus">
+        <div style="position:relative;top:32px;left: -5px;margin-bottom: -16px;" >
+                <h4 style="position: relative;left:108px;"class="textoStatus">
                                 Status do processo:
                         </h4>
                         
                         <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()">
-                                        {% if status == "Aviso" %}
-                                                <option  selected="selected">Aviso</option>
-                                                <option>Em análise</option>
-                                                <option>Regulação</option>
-                                                <option>Parcialmente pago</option>
-                                                <option>Pago</option>
-                                                <option>Negado</option>
+                                {% if status == "Aguardando envio do documento" %}
+                                        <option  selected="selected">Aguardando envio do documento</option>
+                                        <option>Aviso</option>
+                                        <option>Em análise</option>
+                                        <option>Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+                              
+                                {% elif status == "Aviso" %}
+                                        <option> Aguardando envio do documento</option>
+                                        <option  selected="selected">Aviso</option>
+                                        <option>Em análise</option>
+                                        <option>Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Em análise" %}
+                                        <option  >Aguardando envio do documento</option>
+                                        <option >Aviso</option>
+                                        <option selected="selected">Em análise</option>
+                                        <option>Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Regulação" %}
+                                        <option  >Aguardando envio do documento</option>
+                                        <option >Aviso</option>
+                                        <option>Em análise</option>
+                                        <option selected="selected">Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Parcialmente pago" %}
+                                        <option  >Aguardando envio do documento</option>
+                                        <option >Aviso</option>
+                                        <option>Em análise</option>
+                                        <option >Regulação</option>
+                                        <option selected="selected">Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Pago" %}
+                                        <option  >Aguardando envio do documento</option>
+                                        <option >Aviso</option>
+                                        <option>Em análise</option>
+                                        <option >Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option selected="selected">Pago</option>
+                                        <option>Negado</option>
+        
+                                {% elif status == "Negado" %}
+                                        <option  >Aguardando envio do documento</option>
+                                        <option >Aviso</option>
+                                        <option>Em análise</option>
+                                        <option ">Regulação</option>
+                                        <option>Parcialmente pago</option>
+                                        <option>Pago</option>
+                                        <option selected="selected">Negado</option>
                 
-                                        {% elif status == "Em análise" %}
-                                                <option >Aviso</option>
-                                                <option selected="selected">Em análise</option>
-                                                <option>Regulação</option>
-                                                <option>Parcialmente pago</option>
-                                                <option>Pago</option>
-                                                <option>Negado</option>
-                
-                                        {% elif status == "Regulação" %}
-                                                <option >Aviso</option>
-                                                <option>Em análise</option>
-                                                <option selected="selected">Regulação</option>
-                                                <option>Parcialmente pago</option>
-                                                <option>Pago</option>
-                                                <option>Negado</option>
-                
-                                        {% elif status == "Parcialmente pago" %}
-                                                <option >Aviso</option>
-                                                <option>Em análise</option>
-                                                <option >Regulação</option>
-                                                <option selected="selected">Parcialmente pago</option>
-                                                <option>Pago</option>
-                                                <option>Negado</option>
-                
-                                        {% elif status == "Pago" %}
-                                                <option >Aviso</option>
-                                                <option>Em análise</option>
-                                                <option >Regulação</option>
-                                                <option>Parcialmente pago</option>
-                                                <option selected="selected">Pago</option>
-                                                <option>Negado</option>
-                
-                                        {% elif status == "Negado" %}
-                                                <option >Aviso</option>
-                                                <option>Em análise</option>
-                                                <option ">Regulação</option>
-                                                <option>Parcialmente pago</option>
-                                                <option>Pago</option>
-                                                <option selected="selected">Negado</option>
-                
-                                        {% endif %}
+                                {% endif %}
                         </select>
                 </div>
 
@@ -122,7 +137,7 @@
                         </h4>
                         {% endif %}
                   </div>
-                  <div class="col">
+                  <div style="position: relative;left:-7px;" class="col">
                         <h4 style="color: #2679c0;top:-30px;font-weight: bold" class="colunaDireita">
                                Documentos 
                         </h4>
@@ -132,8 +147,8 @@
                                 {% if statusDoc1 == True %}
                                 <tr id="Linha1">
                                         <td style="vertical-align: middle" colspan="4" >Documento de identificação</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentosSegurado('Documento de Identificação',this.id,true)">Solicitar Novamente </a></td>
+                                        <td style="vertical-align: middle"><a href={{ link1 }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentosSegurado('Documento de identificação',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
                                 {% else %}
                                 <tr>
@@ -143,14 +158,26 @@
                                 {% endif %}
 
 
+                                {% if statusDoc2 == True %}
+                                <tr id="Linha11">
+                                       <td style="vertical-align: middle" colspan="4" >CPF</td>
+                                       <td style="vertical-align: middle"><a href={{ link2 }} target="_blank">Abrir</a></td>
+                                       <td style="width:80px;text-align: center;"><a href='#!' id="11" onclick="solicitaDocumentosBeneficiario('CPF',this.id,true)">Solicitar Novamente </a></td>
+                               </tr>
+                               {% else %}
+                               <tr>
+                                       <td colspan="4" >CPF</td>
+                                       <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                               </tr>
+                               {% endif %}
 
                                  <!-- ------------------------------------- -->
 
 
-                                {% if statusDoc2 == True %}
+                                {% if statusDoc5 == True %}
                                 <tr id="Linha2">
                                         <td style="vertical-align: middle" colspan="4" >Certificado de óbito</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="vertical-align: middle"><a href={{ link5 }} target="_blank">Abrir</a></td>
                                         <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentosSegurado('Certificado de óbito',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
                                 {% else %}
@@ -161,16 +188,16 @@
                                 {% endif %}
 
                                  <!-- Documentos nao obrigatorios -->
-                                {% if statusDoc3 == "Nao solicitado" %}
+                                {% if statusDoc6 == "Nao solicitado" %}
                                 <tr>
                                         <td colspan="4" >Certidão de casamento ou nascimento</td>
-                                        <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento',this.id,false)">Solicitar</a></td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento ou nascimento',this.id,false)">Solicitar</a></td>
                                 </tr>
-                                {% elif statusDoc3 == True  %}
+                                {% elif statusDoc6 == True  %}
                                 <tr id="Linha3">
                                         <td style="vertical-align: middle" colspan="4" >Certidão de casamento ou nascimento</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento',this.id,true)">Solicitar Novamente </a></td>
+                                        <td style="vertical-align: middle"><a href={{ link6 }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento ou nascimento',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
 
                                 {% else %}
@@ -184,15 +211,15 @@
 
                                 <!-- ------------------------------------- -->
 
-                                {% if statusDoc4 == "Nao solicitado" %}
+                                {% if statusDoc3 == "Nao solicitado" %}
                                 <tr>
                                         <td colspan="4" >Declaração médica de morte natural</td>
                                         <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentosSegurado('Declaração médica de morte natural',this.id,false)">Solicitar</a></td>
                                 </tr>
-                                {% elif statusDoc4 == True  %}
+                                {% elif statusDoc3 == True  %}
                                 <tr id="Linha4">
                                         <td style="vertical-align: middle" colspan="4" >Declaração médica de morte natural</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="vertical-align: middle"><a href={{ link3 }} target="_blank">Abrir</a></td>
                                         <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentosSegurado('Declaração médica de morte natural',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
 
@@ -208,15 +235,15 @@
 
                                  <!-- ------------------------------------- -->
 
-                                {% if statusDoc5 == "Nao solicitado" %}
+                                {% if statusDoc4 == "Nao solicitado" %}
                                 <tr>
                                         <td colspan="4" >Laudo médico</td>
                                         <td colspan="2" style="text-align:center;"><a href='#!' id="5" onclick="solicitaDocumentosSegurado('Laudo médico',this.id,false)">Solicitar</a></td>
                                 </tr>
-                                {% elif statusDoc5 == True  %}
+                                {% elif statusDoc4 == True  %}
                                 <tr id="Linha5">
                                         <td style="vertical-align: middle" colspan="4" >Laudo médico</td>
-                                        <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                        <td style="vertical-align: middle"><a href={{ link4 }} target="_blank">Abrir</a></td>
                                         <td style="width:80px;text-align: center;"><a href='#!' id="5" onclick="solicitaDocumentosSegurado('Laudo médico',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
 
@@ -372,7 +399,7 @@
                                 url: "/processaRequestDocSeg",
                                 type: "POST", 
                                 data: {
-                                        statusDoc: nomeDoc,
+                                        nomeDoc: nomeDoc,
                                         csrfmiddlewaretoken: '{{ csrf_token }}'
                                         }
                                 });

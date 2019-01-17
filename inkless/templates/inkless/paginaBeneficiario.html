@@ -58,7 +58,17 @@
         </h4>
         
         <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()">
-                        {% if status == "Aviso" %}
+                        {% if status == "Aguardando envio do documento" %}
+                                <option  selected="selected">Aguardando envio do documento</option>
+                                <option>Aviso</option>
+                                <option>Em análise</option>
+                                <option>Regulação</option>
+                                <option>Parcialmente pago</option>
+                                <option>Pago</option>
+                                <option>Negado</option>
+                      
+                        {% elif status == "Aviso" %}
+                                <option  >Aguardando envio do documento</option>
                                 <option  selected="selected">Aviso</option>
                                 <option>Em análise</option>
                                 <option>Regulação</option>
@@ -67,6 +77,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Em análise" %}
+                                <option  >Aguardando envio do documento</option>
                                 <option >Aviso</option>
                                 <option selected="selected">Em análise</option>
                                 <option>Regulação</option>
@@ -75,6 +86,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Regulação" %}
+                                <option  >Aguardando envio do documento</option>
                                 <option >Aviso</option>
                                 <option>Em análise</option>
                                 <option selected="selected">Regulação</option>
@@ -83,6 +95,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Parcialmente pago" %}
+                                <option  >Aguardando envio do documento</option>
                                 <option >Aviso</option>
                                 <option>Em análise</option>
                                 <option >Regulação</option>
@@ -91,6 +104,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Pago" %}
+                                <option  >Aguardando envio do documento</option>
                                 <option >Aviso</option>
                                 <option>Em análise</option>
                                 <option >Regulação</option>
@@ -99,6 +113,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Negado" %}
+                                <option  >Aguardando envio do documento</option>
                                 <option >Aviso</option>
                                 <option>Em análise</option>
                                 <option ">Regulação</option>
@@ -112,9 +127,11 @@
         <div class="container">
                 <div class="row">
                   <div class="col">
-                        <h4 class="colunaEsquerda">
-                                Telefone: {{ telefone }}
-                        </h4>
+                        {% if telefone != "" %}
+                                <h4 class="colunaEsquerda">
+                                        Telefone: {{ telefone }}
+                                </h4>
+                        {% endif %}
                         <h4  class="colunaEsquerda" >
                                 Celular: {{ celular }}
                         </h4 >
@@ -191,8 +208,8 @@
                                 {% if statusDoc1 == True %}
                                 <tr id="Linha1">
                                         <td style="vertical-align: middle" colspan="4" >Documento de identificação</td>
-                                        <td style="vertical-align: middle"><a href={{ linkId }} target="_blank">Abrir</a></td>
-                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentosBeneficiario('Documento de Identificação',this.id,true)">Solicitar Novamente </a></td>
+                                        <td style="vertical-align: middle"><a href={{ link1 }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="1" onclick="solicitaDocumentosBeneficiario('Documento de identificação',this.id,true)">Solicitar Novamente </a></td>
                                 </tr>
                                 {% else %}
                                 <tr>
@@ -204,16 +221,33 @@
 
 
                                  <!-- ------------------------------------- -->
-
                                  {% if statusDoc2 == True %}
+                                 <tr id="Linha11">
+                                        <td style="vertical-align: middle" colspan="4" >CPF</td>
+                                        <td style="vertical-align: middle"><a href={{ link2 }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="11" onclick="solicitaDocumentosBeneficiario('CPF',this.id,true)">Solicitar Novamente </a></td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                        <td colspan="4" >CPF</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+                                {% endif %}
+
+        
+        
+                                 <!-- ------------------------------------- -->
+
+
+                                 {% if statusDoc3 == True %}
                                  <tr id="Linha2">
-                                         <td style="vertical-align: middle" colspan="4" >Comprovante de Residência</td>
-                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                         <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentosBeneficiario('Comprovante de Residência',this.id,true)">Solicitar Novamente </a></td>
+                                         <td style="vertical-align: middle" colspan="4" >Comprovante de residência</td>
+                                         <td style="vertical-align: middle"><a href={{ link3 }} target="_blank">Abrir</a></td>
+                                         <td style="width:80px;text-align: center;"><a href='#!' id="2" onclick="solicitaDocumentosBeneficiario('Comprovante de residência',this.id,true)">Solicitar Novamente </a></td>
                                  </tr>
                                  {% else %}
                                  <tr>
-                                         <td colspan="4" >Comprovante de Residência</td>
+                                         <td colspan="4" >Comprovante de residência</td>
                                          <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                  </tr>
                                  {% endif %}
@@ -223,15 +257,15 @@
                                         <!-- Documentos nao obrigatorios -->
 
                                 {# {% if fiscalExterior == True %} #}
-                                        {% if statusDoc3 == "Nao solicitado" %}
+                                        {% if statusDoc4 == "Nao solicitado" %}
                                         <tr>
                                                 <td colspan="4" >Informações tributárias complementares</td>
                                                 <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosBeneficiario('Informações tributárias complementares',this.id,false)">Solicitar</a></td>
                                         </tr>
-                                        {% elif statusDoc3 == True  %}
+                                        {% elif statusDoc4 == True  %}
                                         <tr id="Linha3">
                                                 <td style="vertical-align: middle" colspan="4" >Informações tributárias complementares</td>
-                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="vertical-align: middle"><a href={{ link4 }} target="_blank">Abrir</a></td>
                                                 <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosBeneficiario('Informações tributárias complementares',this.id,true)">Solicitar Novamente </a></td>
                                         </tr>
 
@@ -246,20 +280,20 @@
                                  <!-- ------------------------------------- -->
 
 
-                                 {% if statusDoc4 == "Nao solicitado" %}
+                                 {% if statusDoc5 == "Nao solicitado" %}
                                  <tr>
-                                         <td colspan="4" >Certidão de nascimento ou casamento</td>
-                                         <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de nascimento ou casamento',this.id,false)">Solicitar</a></td>
+                                         <td colspan="4" >Certidão de casamento ou nascimento</td>
+                                         <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de casamento ou nascimento',this.id,false)">Solicitar</a></td>
                                  </tr>
-                                 {% elif statusDoc4 == True  %}
+                                 {% elif statusDoc5 == True  %}
                                  <tr id="Linha4">
-                                         <td style="vertical-align: middle" colspan="4" >Certidão de nascimento ou casamento</td>
-                                         <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                         <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de nascimento ou casamento',this.id,true)">Solicitar Novamente </a></td>
+                                         <td style="vertical-align: middle" colspan="4" >Certidão de casamento ou nascimento</td>
+                                         <td style="vertical-align: middle"><a href={{ link5 }}target="_blank">Abrir</a></td>
+                                         <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentosBeneficiario('Certidão de casamento ou nascimento',this.id,true)">Solicitar Novamente </a></td>
                                  </tr>
  
                                  {% else %}
-                                         <td colspan="4" >Certidão de nascimento ou casamento</td>
+                                         <td colspan="4" >Certidão de casamento ou nascimento</td>
                                          <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                  </tr>
  
@@ -267,15 +301,15 @@
          
                                   <!-- ------------------------------------- -->
 
-                                  {% if statusDoc5 == "Nao solicitado" %}
+                                  {% if statusDoc6 == "Nao solicitado" %}
                                   <tr>
                                           <td colspan="4" >Termo de tutela</td>
                                           <td colspan="2" style="text-align:center;"><a href='#!' id="5" onclick="solicitaDocumentosBeneficiario('Termo de tutela',this.id,false)">Solicitar</a></td>
                                   </tr>
-                                  {% elif statusDoc5 == True  %}
+                                  {% elif statusDoc6 == True  %}
                                   <tr id="Linha5">
                                           <td style="vertical-align: middle" colspan="4" >Termo de tutela</td>
-                                          <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                          <td style="vertical-align: middle"><a href={{ link6 }} target="_blank">Abrir</a></td>
                                           <td style="width:80px;text-align: center;"><a href='#!' id="5" onclick="solicitaDocumentosBeneficiario('Termo de tutela',this.id,true)">Solicitar Novamente </a></td>
                                   </tr>
   
@@ -289,16 +323,16 @@
                                    <!-- ------------------------------------- -->
 
 
-                                   {% if statusDoc6 == "Nao solicitado" %}
+                                   {% if statusDoc7 == "Nao solicitado" %}
                                    <tr>
                                            <td colspan="4" >Termo de curatela</td>
-                                           <td colspan="2" style="text-align:center;"><a href='#!' id="6" onclick="solicitaDocumentosBeneficiario('Termo de cautela',this.id,false)">Solicitar</a></td>
+                                           <td colspan="2" style="text-align:center;"><a href='#!' id="6" onclick="solicitaDocumentosBeneficiario('Termo de curatela',this.id,false)">Solicitar</a></td>
                                    </tr>
-                                   {% elif statusDoc6 == True  %}
+                                   {% elif statusDoc7 == True  %}
                                    <tr id="Linha6">
                                            <td style="vertical-align: middle" colspan="4" >Termo de curatela</td>
-                                           <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                           <td style="width:80px;text-align: center;"><a href='#!' id="6" onclick="solicitaDocumentosBeneficiario('Termo de cautela',this.id,true)">Solicitar Novamente </a></td>
+                                           <td style="vertical-align: middle"><a href={{ link7 }} target="_blank">Abrir</a></td>
+                                           <td style="width:80px;text-align: center;"><a href='#!' id="6" onclick="solicitaDocumentosBeneficiario('Termo de curatela',this.id,true)">Solicitar Novamente </a></td>
                                    </tr>
    
                                    {% else %}
@@ -311,15 +345,15 @@
                                     <!-- ------------------------------------- -->
 
 
-                                     {% if statusDoc7 == "Nao solicitado" %}
+                                     {% if statusDoc8 == "Nao solicitado" %}
                                      <tr>
                                              <td colspan="4" >Declaração de rol de herdeiros</td>
                                              <td colspan="2" style="text-align:center;"><a href='#!' id="7" onclick="solicitaDocumentosBeneficiario('Declaração de rol de herdeiros',this.id,false)">Solicitar</a></td>
                                      </tr>
-                                     {% elif statusDoc7 == True  %}
+                                     {% elif statusDoc8 == True  %}
                                      <tr id="Linha7">
                                              <td style="vertical-align: middle" colspan="4" >Declaração de rol de herdeiros</td>
-                                             <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                             <td style="vertical-align: middle"><a href={{ link8 }} target="_blank">Abrir</a></td>
                                              <td style="width:80px;text-align: center;"><a href='#!' id="7" onclick="solicitaDocumentosBeneficiario('Declaração de rol de herdeiros',this.id,true)">Solicitar Novamente </a></td>
                                      </tr>
      
@@ -332,15 +366,15 @@
              
                                       <!-- ------------------------------------- -->
 
-                                      {% if statusDoc8 == "Nao solicitado" %}
+                                      {% if statusDoc9 == "Nao solicitado" %}
                                       <tr>
                                               <td colspan="4" >Declaração de união estável</td>
                                               <td colspan="2" style="text-align:center;"><a href='#!' id="8" onclick="solicitaDocumentosBeneficiario('Declaração de união estável',this.id,false)">Solicitar</a></td>
                                       </tr>
-                                      {% elif statusDoc8 == True  %}
+                                      {% elif statusDoc9 == True  %}
                                       <tr id="Linha8">
                                               <td style="vertical-align: middle" colspan="4" >Declaração de união estável</td>
-                                              <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                              <td style="vertical-align: middle"><a href={{ link9 }} target="_blank">Abrir</a></td>
                                               <td style="width:80px;text-align: center;"><a href='#!' id="8" onclick="solicitaDocumentosBeneficiario('Declaração de união estável',this.id,true)">Solicitar Novamente </a></td>
                                       </tr>
       
@@ -355,7 +389,7 @@
                                 
 
                                 
-                                        {% if statusDoc9 == "Nao solicitado" %}
+                                        <!-- {% if statusDoc9 == "Nao solicitado" %}
                                         <tr>
                                                 <td colspan="4" >Cópia do domicílio bancário</td>
                                                 <td colspan="2" style="text-align:center;"><a href='#!' id="9" onclick="solicitaDocumentosBeneficiario('Cópia do domicílio bancário',this.id,false)">Solicitar</a></td>
@@ -372,20 +406,20 @@
                                                 <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
                                         </tr>
         
-                                        {% endif %}
+                                        {% endif %} -->
 
                                         <!-- ------------------------------------- -->
 
                                         {% if statusDoc10 == "Nao solicitado" %}
                                         <tr>
                                                 <td colspan="4" >Nota fiscal das despesas funerais</td>
-                                                <td colspan="2" style="text-align:center;"><a href='#!' id="10" onclick="solicitaDocumentosSegurado('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a></td>
+                                                <td colspan="2" style="text-align:center;"><a href='#!' id="10" onclick="solicitaDocumentosBeneficiario('Nota fiscal das despesas funerais',this.id,false)">Solicitar</a></td>
                                         </tr>
                                         {% elif statusDoc10 == True  %}
                                         <tr id="Linha10">
                                                 <td style="vertical-align: middle" colspan="4" >Nota fiscal das despesas funerais</td>
-                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                                <td style="width:80px;text-align: center;"><a href='#!' id="10" onclick="solicitaDocumentosSegurado('Nota fiscal das despesas funerais',this.id,true)">Solicitar Novamente </a></td>
+                                                <td style="vertical-align: middle"><a href={{ link10 }} target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="10" onclick="solicitaDocumentosBeneficiario('Nota fiscal das despesas funerais',this.id,true)">Solicitar Novamente </a></td>
                                         </tr>
         
                                         {% else %}
@@ -426,7 +460,7 @@
         <script>
         function solicitaDocumentosBeneficiario(Doc,idDoc,flagRequisitado)
         {
-                
+
                 var labelDoc = document.getElementById(idDoc)
                 style="pointer-events: none;cursor: default;"
                 labelDoc.innerHTML="Solicitado"
@@ -435,6 +469,7 @@
                 labelDoc.style.cursor="default"
                 if(flagRequisitado == true)
                 {
+              
                         var row = document.getElementById("Linha" + idDoc);
                         row.deleteCell(2);
                         row.deleteCell(1);
@@ -452,6 +487,7 @@
                 }
                 else
                 {
+               
                         var labelDoc = document.getElementById(idDoc)
                         style="pointer-events: none;cursor: default;"
                         labelDoc.innerHTML="Solicitado"
@@ -463,7 +499,7 @@
                         url: "/processaRequestDocBen",
                         type: "POST", 
                         data: {
-                                statusDoc: Doc,
+                                nomeDoc: Doc,
                                 csrfmiddlewaretoken: '{{ csrf_token }}'
                                 }
                         });
