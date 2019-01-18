@@ -132,26 +132,36 @@
                                         Telefone: {{ telefone }}
                                 </h4>
                         {% endif %}
-                        <h4  class="colunaEsquerda" >
-                                Celular: {{ celular }}
-                        </h4 >
-                        <br></br>
-                        <h4 class="colunaEsquerda">
-                                        Grau de parentesco: {{ grauParentesco }}
-                        </h4>
+
+                        {% if celular != "" %}
+                                <h4 class="colunaEsquerda">
+                                        Celular: {{ celular }}
+                                </h4>
+                        {% endif %}
                         <h4  class="colunaEsquerda" >
                                         Identidade: {{ registroGeral }} 
                         </h4 >
-                        <h4 class="colunaEsquerda">
-                                        Órgão emissor: {{ orgãoEmissor }}
-                        </h4>
-                        <h4  class="colunaEsquerda" >
-                                        Data de expedição: {{ dataExpedicao }}
-                        </h4 >
+                        {% if grauParentesco != "" %}
+                                <h4 class="colunaEsquerda">
+                                                Grau de parentesco: {{ grauParentesco }}
+                                </h4>
+                        {% endif %}
+                        {% if orgãoEmissor != "" %}
+                                <h4 class="colunaEsquerda">
+                                                Órgão emissor: {{ orgãoEmissor }}
+                                </h4>
+                        {% endif %}
+                        {% if dataExpedicao != "" %}
+                                <h4  class="colunaEsquerda" >
+                                                Data de expedição: {{ dataExpedicao }}
+                                </h4 >
+                        {% endif %}
                         <br></br>
-                        <h4 class="colunaEsquerda">
-                                Profissão: {{ profissao }}
-                        </h4>
+                        {% if profissao != "" %}
+                                <h4 class="colunaEsquerda">
+                                        Profissão: {{ profissao }}
+                                </h4>
+                        {% endif %}
                         <h4 class="colunaEsquerda">
                                 Faixa de renda: entre R$ 1.000,01 e R$ 5.000,00
                         </h4>
@@ -161,37 +171,49 @@
                         <h4 class="colunaEsquerda">
                                 Reside no Brasil
                         </h4>
-                        {% if fiscalExterior == False %}
+                        {% if fiscalExterior == True %}
 
                                 <h4 class="colunaEsquerda">
-                                        Não possui obrigações fiscais com outros países
-                                </h4>
-                        {% else %}
-                        <h4 class="colunaEsquerda">
                                         Possui obrigações fiscais com outros países
                                 </h4>
+                        {% else %}
+                                <h4 class="colunaEsquerda">
+                                        Não possui obrigações fiscais com outros países
+                                        </h4>
                         {% endif %}
                         <br></br>
+                        {% if existeEndereco == True %}
+                                {% if endereco != "" %}       
+                                        <h4 class="colunaEsquerda">
+                                                Endereço residencial: {{ endereco }}
+                                        </h4>
+                                {% endif %}
+                                {% if numero  != "" %}  
+                                        <h4 class="colunaEsquerda">
+                                                Número: {{ numero }}
+                                        </h4>
+                                {% endif %}
+                                {% if complemento  != "" %}
+                                        <h4 class="colunaEsquerda">
+                                                Complemento: {{ complemento }}
+                                        </h4>
+                                {% endif %}
+                                {% if bairro  != "" %}
+                                        <h4 class="colunaEsquerda">
+                                                Bairro: {{ bairro }}
+                                        </h4>
+                                {% endif %}
+                                {% if cidade  != "" %}
+                                        <h4 class="colunaEsquerda">
+                                                Cidade: {{ cidade }}
+                                        </h4>
+                                {% endif %}
+                        {% endif %}
                         <h4 class="colunaEsquerda">
-                                Endereço residencial: {{ endereco }}
+                                        Estado: Rio de Janeiro
                         </h4>
                         <h4 class="colunaEsquerda">
-                                Número: {{ numero }}
-                        </h4>
-                        <h4 class="colunaEsquerda">
-                                Complemento: {{ complemento }}
-                        </h4>
-                        <h4 class="colunaEsquerda">
-                                Bairro: {{ bairro }}
-                        </h4>
-                        <h4 class="colunaEsquerda">
-                                Cidade: {{ cidade }}
-                        </h4>
-                        <h4 class="colunaEsquerda">
-                                Estado: Rio de Janeiro
-                        </h4>
-                        <h4 class="colunaEsquerda">
-                               Possui comprovante de residência
+                                Possui comprovante de residência
                         </h4>
 
 

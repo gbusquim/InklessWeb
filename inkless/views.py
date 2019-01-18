@@ -34,6 +34,8 @@ identBen = ""
 pessoaLegal = False
 
 def retornaData(dataNasc):
+            if dataNasc == "":
+                return ""
             dataNascimento=google.api_core.datetime_helpers.to_rfc3339(dataNasc,ignore_zone=True)
             dataNascimento=dataNascimento[:-17]
             ano=dataNascimento[0:4]
@@ -82,6 +84,7 @@ def paginaBeneficiario(request):
     cont = 0
     for doc in docs:
         if i == int(numSegurado):
+
             #obtendo dados do beneficiario   
             beneficiario = doc.to_dict()
             nome = beneficiario["nomeCompleto"]
@@ -89,33 +92,88 @@ def paginaBeneficiario(request):
             nome = nome.title()
             data["Nome"] = nome
             cpf = beneficiario["cpf"]
-            # data["CPF"] = cpf
-            # dataDeNasc = beneficiario["dataNascimento"]
-            # dataDeNasc = retornaData(dataDeNasc)
-            # data["email"] = beneficiario["email"]
+            data["CPF"] = cpf
+            dataDeNasc = beneficiario["dataNascimento"]
+            dataDeNasc = retornaData(dataDeNasc)
+            data["dataDeNasc"] = dataDeNasc
+            data["email"] = beneficiario["email"]
+            data["registroGeral"] = beneficiario["registroGeral"]
 
-            # dataExpedicao = beneficiario["dataExpedicao"]
-            # data["dataExpedicao"] = retornaData(dataExpedicao)
-            # data["dataDeNasc"] = dataDeNasc
-      
-            # if "telefone" in beneficiario:
-            #     data["telefone"] = beneficiario["telefone"]
-            # else:
-            #     data["telefone"] = ""
-            # data["celular"] = beneficiario["celular"]
 
-            # data["grauParentesco"] = beneficiario["grauParentesco"]
-            # data["registroGeral"] = beneficiario["registroGeral"]
-            # data["orgãoEmissor"] = beneficiario["orgãoEmissor"]
-            # data["profissao"] = beneficiario["profissao"]
-            # data["fiscalExterior"] = beneficiario["fiscalExterior"]
+            if "dataExpedicao" in beneficiario:
+                data["dataExpedicao"] = retornaData(beneficiario["dataExpedicao"])
+            else:
+                data["dataExpedicao"] = ""           
             
-            # data["endereco"] = beneficiario["endereco"]["endereco"]
-            # data["bairro"] = beneficiario["endereco"]["bairro"]
-            # data["cep"] = beneficiario["endereco"]["cep"]
-            # data["cidade"] = beneficiario["endereco"]["cidade"]
-            # data["complemento"] = beneficiario["endereco"]["complemento"]
-            # data["numero"] = beneficiario["endereco"]["numero"]
+      
+            if "telefone" in beneficiario:
+                data["telefone"] = beneficiario["telefone"]
+            else:
+                data["telefone"] = ""
+
+            if "celular" in beneficiario:
+                data["celular"] = beneficiario["celular"]
+            else:
+                data["celular"] = ""
+
+            if "grauParentesco" in beneficiario:
+                data["grauParentesco"] = beneficiario["grauParentesco"]
+            else:
+                data["grauParentesco"] = ""
+  
+            if "orgãoEmissor" in beneficiario:
+                data["orgãoEmissor"] = beneficiario["orgãoEmissor"]
+            else:
+                data["orgãoEmissor"] = ""
+
+            if "profissao" in beneficiario:
+                data["profissao"] = beneficiario["profissao"]
+            else:
+                data["profissao"] = ""
+
+            if "fiscalExterior" in beneficiario:
+                data["fiscalExterior"] = beneficiario["fiscalExterior"]
+            else:
+                data["fiscalExterior"] = ""
+
+            if "fiscalExterior" in beneficiario:
+                data["fiscalExterior"] = beneficiario["fiscalExterior"]
+            else:
+                data["fiscalExterior"] = ""
+            
+            if "endereco" in beneficiario:
+                data["existeEndereco"] = True
+                if "endereco" in beneficiario["endereco"]:
+                    data["endereco"] = beneficiario["endereco"]["endereco"]
+                else:
+                    data["endereco"] = ""
+
+                if "bairro" in beneficiario["endereco"]:
+                    data["bairro"] = beneficiario["endereco"]["bairro"]
+                else:
+                    data["bairro"] = ""
+
+                if "cep" in beneficiario["endereco"]:
+                    data["cep"] = beneficiario["endereco"]["cep"]
+                else:
+                    data["cep"] = ""
+
+                if "cidade" in beneficiario["endereco"]:
+                    data["cidade"] = beneficiario["endereco"]["cidade"]
+                else:
+                    data["cidade"] = ""
+
+                if "complemento" in beneficiario["endereco"]:
+                    data["complemento"] = beneficiario["endereco"]["complemento"]
+                else:
+                    data["complemento"] = ""
+
+                if "numero" in beneficiario["endereco"]:
+                    data["numero"] = beneficiario["endereco"]["numero"]
+                else:
+                    data["numero"] = ""
+            else:
+                data["existeEndereco"] = False
 
 
             ##obtendo status do processo##
@@ -149,6 +207,239 @@ def paginaBeneficiario(request):
                         else:
                             data["statusDoc" + str(cont)] = False
                 cont = cont + 1
+            break
+        i = i + 1
+    return render(request, 'inkless/paginaBeneficiario.html',data)
+
+
+
+
+def paginaSegurado(request):
+    global identBen
+    global pessoaLegal
+    data={}
+    doc_ref = db.collection('users')
+    docs = doc_ref.get()
+    i = 1
+    cont = 0
+    for doc in docs:
+        if i == int(numSegurado):  
+            ## obtendo cada campo ##
+            segurado = doc.to_dict()
+            nome = segurado["segurado"]["nomeCompleto"]
+            cpf = segurado["segurado"]["cpf"]
+            plano = segurado["segurado"]["beneficioRequerido"]
+            data["CPF"] = cpf 
+            data["Nome"] = nome
+            data["beneficioRequerido"] = plano
+            if "numeroProposta" in segurado["segurado"]:
+                data["numeroProposta"] = segurado["segurado"]["numeroProposta"]
+            else:
+                data["numeroProposta"]="12345"
+            identBen = segurado["uid"]
+            if "matricula" in segurado["segurado"]:
+                data["matricula"]=segurado["segurado"]["matricula"]
+            else:
+                 data["matricula"]=""
+            if "nomeEstipulante" in segurado["segurado"]:
+                data["nomeEstipulante"]=segurado["segurado"]["nomeEstipulante"]
+            else:
+                 data["nomeEstipulante"]=""
+            pessoalLegal = segurado["pessoaLegal"]  
+            data["Juridica"]=pessoalLegal
+
+            
+            
+            ##obtendo status de cada documento E PEGAR PATH DE CADA UM##
+            doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
+            doc_ref1 = doc_ref.get()
+            doc_ref2 = doc_ref1.to_dict()
+            documentos = doc_ref2["documents"]
+            for doc in documentos:
+                if  doc["completed"] == True:
+                    data["statusDoc" + str(cont)] = True
+                    link = obtemLinkArquivo(doc_ref,identBen,doc["requirement"])
+                    data["link" + str(cont)] = link
+                    ## deve aparecer como abrir
+                else:
+                    if doc["optional"] == True:
+                        data["statusDoc" + str(cont)] = "Nao solicitado"
+                        ## deve aparecer como solicitar
+                    else:
+                        data["statusDoc" + str(cont)] = False
+                cont = cont + 1
+                        ## por  hora aparece como solicitado
+
+
+
+                
+
+            ####obtendo status do processo##
+            status_ref = db.collection("users").document(identBen)
+            statusDict = status_ref.get()
+            statusDict = statusDict.to_dict()
+            if "status" not in statusDict:
+                data["status"]="Aviso"
+            else:
+                data["status"] = statusDict["status"]
+
+            break
+        i = i + 1
+    return render(request, 'inkless/paginaSegurado.html',data)
+
+def obtemNomeSegurado(request):
+    global numSegurado
+    numSegurado = request.POST.get('nomeSegurado')
+    return HttpResponse('success') # if everything is OK
+    # nothing went well
+
+
+def atualizaStatusDocBeneficiario(request):
+    nomeDoc = request.POST.get('nomeDoc')
+    doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
+    meu_doc = doc_ref.get().to_dict()
+    if nomeDoc == "Documento de identificação":          
+        meu_doc["documents"][1]["optional"] = False
+        meu_doc["documents"][1]["completed"] = False
+    elif  nomeDoc == "CPF":
+        meu_doc["documents"][2]["optional"] = False
+        meu_doc["documents"][2]["completed"] = False
+    elif nomeDoc == "Comprovante de residência":
+        meu_doc["documents"][3]["optional"] = False
+        meu_doc["documents"][3]["completed"] = False
+    elif nomeDoc == "Informações tributárias complementares":
+        meu_doc["documents"][4]["optional"] = False
+        meu_doc["documents"][4]["completed"] = False
+    elif nomeDoc == "Certidão de casamento ou nascimento":
+        meu_doc["documents"][5]["optional"] = False
+        meu_doc["documents"][5]["completed"] = False
+    elif nomeDoc == "Termo de tutela":
+        meu_doc["documents"][6]["optional"] = False
+        meu_doc["documents"][6]["completed"] = False
+    elif nomeDoc == "Termo de curatela":
+        meu_doc["documents"][7]["optional"] = False
+        meu_doc["documents"][7]["completed"] = False
+    elif nomeDoc == "Declaração de rol de herdeiros":
+        meu_doc["documents"][8]["optional"] = False
+        meu_doc["documents"][8]["completed"] = False
+    elif nomeDoc == "Declaração de união estável":
+        meu_doc["documents"][9]["optional"] = False
+        meu_doc["documents"][9]["completed"] = False
+    elif nomeDoc == "Nota fiscal das despesas funerais":
+        meu_doc["documents"][10]["optional"] = False
+        meu_doc["documents"][10]["completed"] = False
+        
+
+    doc_ref.set({u'documents':meu_doc["documents"]})
+    
+    return HttpResponse('success') # if everything is OK
+    
+    # nothing went well
+
+
+def atualizaStatus(request):
+    status = request.POST.get('statusProc')
+    doc_ref = db.collection("users").document(identBen)
+    doc_ref.set({u'status':status}, merge=True)
+    return HttpResponse('success') # if everything is OK
+    
+
+
+
+def atualizaStatusDocSegurado(request):
+    nomeDoc = request.POST.get('nomeDoc')
+    doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
+    meu_doc = doc_ref.get().to_dict()
+    if(pessoaLegal == True):
+        if nomeDoc == "GFIP/SEFIP":          
+            meu_doc["documents"][7]["optional"] = False
+            meu_doc["documents"][7]["completed"] = False
+        elif nomeDoc == "FRE":          
+            meu_doc["documents"][8]["optional"] = False
+            meu_doc["documents"][8]["completed"] = False
+        elif nomeDoc == "CAGED":          
+            meu_doc["documents"][9]["optional"] = False
+            meu_doc["documents"][9]["completed"] = False
+        elif nomeDoc == "Documento de identificação do rep. da empresa":          
+            meu_doc["documents"][10]["optional"] = False
+            meu_doc["documents"][10]["completed"] = False
+        elif nomeDoc == "Contrato social ou Estatuto social":          
+            meu_doc["documents"][11]["optional"] = False
+            meu_doc["documents"][11]["completed"] = False
+        elif nomeDoc == "CPF do representante da empresa":          
+            meu_doc["documents"][12]["optional"] = False
+            meu_doc["documents"][12]["completed"] = False
+        elif nomeDoc == "Comprovante de vínculo do segurado":          
+            meu_doc["documents"][13]["optional"] = False
+            meu_doc["documents"][13]["completed"] = False
+        elif nomeDoc == "Cédula de financiamento":          
+            meu_doc["documents"][14]["optional"] = False
+            meu_doc["documents"][14]["completed"] = False
+        elif nomeDoc == "Comprovante de endereço em nome da pessoa jurídica":          
+            meu_doc["documents"][15]["optional"] = False
+            meu_doc["documents"][15]["completed"] = False
+    else:  
+        if nomeDoc == "Documento de identificação":          
+            meu_doc["documents"][1]["optional"] = False
+            meu_doc["documents"][1]["completed"] = False
+        elif  nomeDoc == "CPF":
+            meu_doc["documents"][2]["optional"] = False
+            meu_doc["documents"][2]["completed"] = False
+        elif nomeDoc == "Declaração médica de morte natural":
+            meu_doc["documents"][3]["optional"] = False
+            meu_doc["documents"][3]["completed"] = False
+        elif nomeDoc == "Laudo médico":
+            meu_doc["documents"][4]["optional"] = False
+            meu_doc["documents"][4]["completed"] = False
+        elif nomeDoc == "Certificado de óbito":
+            meu_doc["documents"][5]["optional"] = False
+            meu_doc["documents"][5]["completed"] = False
+        elif nomeDoc == "Certidão de casamento ou nascimento":
+            meu_doc["documents"][6]["optional"] = False
+            meu_doc["documents"][6]["completed"] = False
+        
+
+    doc_ref.set({u'documents':meu_doc["documents"]})
+    
+    return HttpResponse('success') # if everything is OK
+    
+    # nothing went well
+
+
+
+
+
+
+
+
+def obtemLinkArquivo(db,identBen,nomeDoc):
+    arquivos = db.collection(nomeDoc).order_by('photoName',direction=firestore.Query.DESCENDING)
+    arquivos_ref = arquivos.get()
+    link = ""
+    for arquivo in arquivos_ref:
+        arquivoDoc = arquivo.to_dict()
+        pathArquivo = arquivoDoc["imageStorage"]
+        blob = bucket.blob(pathArquivo)
+        #print("whaaat " + blob.public_url)
+        link = blob.generate_signed_url(datetime.timedelta(seconds=1000), method='GET')
+        link = link.replace("googleapis","cloud.google")
+        break
+    return link
+
+
+
+
+# Codigo nao usado:
+# Colocar data de dataNascimento
+#dataNascimento = segurado["segurado"]["dataNascimento"]
+#client = storage.Client()
+
+#Create a reference from a Google Cloud Storage URI
+# client = storage_google.Client(project="my-project")
+# bucket = client.get_bucket("inklessapp-1922c.appspot.com")
+# blob = Blob("meuBlob",bucket)
+# print(blob.path)
+
             # if "status" not in doc_ref:
             #     ## todos os documentos para solicitar,com execeao dos obrigatorios ##
             #     data["statusDoc1"] = True
@@ -311,72 +602,11 @@ def paginaBeneficiario(request):
             #     link = link.replace("googleapis","cloud.google")
             #     data["linkId"] = link
             #    break
-            break
-        i = i + 1
-    return render(request, 'inkless/paginaBeneficiario.html',data)
 
 
 
 
-def paginaSegurado(request):
-    global identBen
-    global pessoaLegal
-    data={}
-    #doc_ref = db.collection(u'requerimentos').document(u'bCSwF0QWuUUV0c9DIqXaWpVKOJr2')
-    #doc_tef = db.collection("users").document("wgB6q0D9iNVNX5EMSGCSyiCmvRX2").collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
-    doc_ref = db.collection('users')
-    docs = doc_ref.get()
-    i = 1
-    cont = 0
-    for doc in docs:
-        if i == int(numSegurado):  
-            ## obtendo cada campo ##
-            segurado = doc.to_dict()
-            nome = segurado["segurado"]["nomeCompleto"]
-            cpf = segurado["segurado"]["cpf"]
-            plano = segurado["segurado"]["beneficioRequerido"]
-            data["CPF"] = cpf 
-            data["Nome"] = nome
-            data["beneficioRequerido"] = plano
-            if "numeroProposta" in segurado["segurado"]:
-                data["numeroProposta"] = segurado["segurado"]["numeroProposta"]
-            else:
-                data["numeroProposta"]="12345"
-            identBen = segurado["uid"]
-            if "matricula" in segurado["segurado"]:
-                data["matricula"]=segurado["segurado"]["matricula"]
-            else:
-                 data["matricula"]=""
-            if "nomeEstipulante" in segurado["segurado"]:
-                data["nomeEstipulante"]=segurado["segurado"]["nomeEstipulante"]
-            else:
-                 data["nomeEstipulante"]=""
-            pessoalLegal = segurado["pessoaLegal"]  
-            data["Juridica"]=pessoalLegal
-
-            
-            
-            ##obtendo status de cada documento E PEGAR PATH DE CADA UM##
-            doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
-            doc_ref1 = doc_ref.get()
-            doc_ref2 = doc_ref1.to_dict()
-            documentos = doc_ref2["documents"]
-            for doc in documentos:
-                if  doc["completed"] == True:
-                    data["statusDoc" + str(cont)] = True
-                    link = obtemLinkArquivo(doc_ref,identBen,doc["requirement"])
-                    data["link" + str(cont)] = link
-                    ## deve aparecer como abrir
-                else:
-                    if doc["optional"] == True:
-                        data["statusDoc" + str(cont)] = "Nao solicitado"
-                        ## deve aparecer como solicitar
-                    else:
-                        data["statusDoc" + str(cont)] = False
-                cont = cont + 1
-                        ## por  hora aparece como solicitado
-
-            # if "status" not in doc_ref:
+                        # if "status" not in doc_ref:
             #     ## todos os documentos para solicitar,com execeao dos obrigatorios ##
             #     data["statusDoc1"] = True
             #     data["statusDoc2"] = True
@@ -493,168 +723,5 @@ def paginaSegurado(request):
                     #     else:
                     #         data["statusDoc11"] = True
 
-                
-
-            ####obtendo status do processo##
-            status_ref = db.collection("users").document(identBen)
-            statusDict = status_ref.get()
-            statusDict = statusDict.to_dict()
-            if "status" not in statusDict:
-                data["status"]="Aviso"
-            else:
-                data["status"] = statusDict["status"]
-
-            break
-        i = i + 1
-    return render(request, 'inkless/paginaSegurado.html',data)
-
-def obtemNomeSegurado(request):
-    global numSegurado
-    numSegurado = request.POST.get('nomeSegurado')
-    return HttpResponse('success') # if everything is OK
-    # nothing went well
-
-
-def atualizaStatusDocBeneficiario(request):
-    nomeDoc = request.POST.get('nomeDoc')
-    doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
-    meu_doc = doc_ref.get().to_dict()
-    if(pessoaLegal == True):
-        print("P")
-        ####FAZER CASE PRA PESSOA JURIDICA##
-    else:
-        if nomeDoc == "Documento de identificação":          
-            meu_doc["documents"][1]["optional"] = False
-            meu_doc["documents"][1]["completed"] = False
-        elif  nomeDoc == "CPF":
-            meu_doc["documents"][2]["optional"] = False
-            meu_doc["documents"][2]["completed"] = False
-        elif nomeDoc == "Comprovante de residência":
-            meu_doc["documents"][3]["optional"] = False
-            meu_doc["documents"][3]["completed"] = False
-        elif nomeDoc == "Informações tributárias complementares":
-            meu_doc["documents"][4]["optional"] = False
-            meu_doc["documents"][4]["completed"] = False
-        elif nomeDoc == "Certidão de casamento ou nascimento":
-            meu_doc["documents"][5]["optional"] = False
-            meu_doc["documents"][5]["completed"] = False
-        elif nomeDoc == "Termo de tutela":
-            meu_doc["documents"][6]["optional"] = False
-            meu_doc["documents"][6]["completed"] = False
-        elif nomeDoc == "Termo de curatela":
-            meu_doc["documents"][7]["optional"] = False
-            meu_doc["documents"][7]["completed"] = False
-        elif nomeDoc == "Declaração de rol de herdeiros":
-            meu_doc["documents"][8]["optional"] = False
-            meu_doc["documents"][8]["completed"] = False
-        elif nomeDoc == "Declaração de união estável":
-            meu_doc["documents"][9]["optional"] = False
-            meu_doc["documents"][9]["completed"] = False
-        elif nomeDoc == "Nota fiscal das despesas funerais":
-            meu_doc["documents"][10]["optional"] = False
-            meu_doc["documents"][10]["completed"] = False
-        
-
-    doc_ref.set({u'documents':meu_doc["documents"]})
-    
-    return HttpResponse('success') # if everything is OK
-    
-    # nothing went well
-
-
-def atualizaStatus(request):
-    status = request.POST.get('statusProc')
-    doc_ref = db.collection("users").document(identBen)
-    doc_ref.set({u'status':status}, merge=True)
-    return HttpResponse('success') # if everything is OK
-    
-    # nothing went well
-
-
-
-
-
-
-
-    # statusDoc = request.POST.get('nomeDoc')
-    # doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
-    # doc_ref.set({
-    # u'status': {
-    #     statusDoc:False
-    # }
-    # }, merge=True)
-    
-    # return HttpResponse('success') # if everything is OK
-    
-    # # nothing went well
-
-
-def atualizaStatusDocSegurado(request):
-    nomeDoc = request.POST.get('nomeDoc')
-    doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
-    meu_doc = doc_ref.get().to_dict()
-    if(pessoaLegal == True):
-        print("P")
-        ####FAZER CASE PRA PESSOA JURIDICA##
-    else:  
-        if nomeDoc == "Documento de identificação":          
-            meu_doc["documents"][1]["optional"] = False
-            meu_doc["documents"][1]["completed"] = False
-        elif  nomeDoc == "CPF":
-            meu_doc["documents"][2]["optional"] = False
-            meu_doc["documents"][2]["completed"] = False
-        elif nomeDoc == "Declaração médica de morte natural":
-            meu_doc["documents"][3]["optional"] = False
-            meu_doc["documents"][3]["completed"] = False
-        elif nomeDoc == "Laudo médico":
-            meu_doc["documents"][4]["optional"] = False
-            meu_doc["documents"][4]["completed"] = False
-        elif nomeDoc == "Certificado de óbito":
-            meu_doc["documents"][5]["optional"] = False
-            meu_doc["documents"][5]["completed"] = False
-        elif nomeDoc == "Certidão de casamento ou nascimento":
-            meu_doc["documents"][6]["optional"] = False
-            meu_doc["documents"][6]["completed"] = False
-        
-
-    doc_ref.set({u'documents':meu_doc["documents"]})
-    
-    return HttpResponse('success') # if everything is OK
-    
-    # nothing went well
-
-
-
-
-
-
-
-
-def obtemLinkArquivo(db,identBen,nomeDoc):
-    #arquivos = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos").collection(nomeDoc).order_by('photoName',direction=firestore.Query.DESCENDING)
-    arquivos = db.collection(nomeDoc).order_by('photoName',direction=firestore.Query.DESCENDING)
-    arquivos_ref = arquivos.get()
-    link = ""
-    for arquivo in arquivos_ref:
-        arquivoDoc = arquivo.to_dict()
-        pathArquivo = arquivoDoc["imageStorage"]
-        blob = bucket.blob(pathArquivo)
-        #print("whaaat " + blob.public_url)
-        link = blob.generate_signed_url(datetime.timedelta(seconds=1000), method='GET')
-        link = link.replace("googleapis","cloud.google")
-        break
-    return link
-
-
-
-
-# Codigo nao usado:
-# Colocar data de dataNascimento
-#dataNascimento = segurado["segurado"]["dataNascimento"]
-#client = storage.Client()
-
-#Create a reference from a Google Cloud Storage URI
-# client = storage_google.Client(project="my-project")
-# bucket = client.get_bucket("inklessapp-1922c.appspot.com")
-# blob = Blob("meuBlob",bucket)
-# print(blob.path)
+                      #doc_ref = db.collection(u'requerimentos').document(u'bCSwF0QWuUUV0c9DIqXaWpVKOJr2')
+    #doc_tef = db.collection("users").document("wgB6q0D9iNVNX5EMSGCSyiCmvRX2").collection("beneficiario").document("requerimentos").collection("Documento de Identificação")

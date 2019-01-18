@@ -255,20 +255,15 @@
                                 {% endif %}
 
 
-
+                                <!-- ------------------DOCUMENTOS OBRIGATORIOS PARA PESSOA JURIDICA------------------- -->
 
                                 {% if Juridica == True %}
                                  <!-- ------------------------------------- -->
 
-                                        {% if statusDoc6 == "Nao solicitado" %}
-                                        <tr>
-                                                <td colspan="4" >GFIP/SEFIP</td>
-                                                <td colspan="2" style="text-align:center;"><a href='#!' id="6" onclick="solicitaDocumentosSegurado('GFIP/SEFIP',this.id,false)">Solicitar</a></td>
-                                        </tr>
-                                        {% elif statusDoc6 == True  %}
+                                        {% if statusDoc7 == True  %}
                                         <tr id="Linha6">
                                                 <td style="vertical-align: middle" colspan="4" >GFIP/SEFIP</td>
-                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="vertical-align: middle"><a href={{ link7 }} target="_blank">Abrir</a></td>
                                                 <td style="width:80px;text-align: center;"><a href='#!' id="6" onclick="solicitaDocumentosSegurado('GFIP/SEFIP',this.id,true)">Solicitar Novamente </a></td>
                                         </tr>
 
@@ -284,15 +279,10 @@
                                         <!-- ------------------------------------- -->
 
 
-                                        {% if statusDoc7 == "Nao solicitado" %}
-                                        <tr>
-                                                <td colspan="4" >FRE</td>
-                                                <td colspan="2" style="text-align:center;"><a href='#!' id="7" onclick="solicitaDocumentosSegurado('FRE',this.id,false)">Solicitar</a></td>
-                                        </tr>
-                                        {% elif statusDoc7 == True  %}
+                                        {% if statusDoc8 == True  %}
                                         <tr id="Linha7">
                                                 <td style="vertical-align: middle" colspan="4" >FRE</td>
-                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="vertical-align: middle"><a href={{ link8 }} target="_blank">Abrir</a></td>
                                                 <td style="width:80px;text-align: center;"><a href='#!' id="7" onclick="solicitaDocumentosSegurado('FRE',this.id,true)">Solicitar Novamente </a></td>
                                         </tr>
 
@@ -306,16 +296,10 @@
 
                                         <!-- ------------------------------------- -->
 
-
-                                        {% if statusDoc8 == "Nao solicitado" %}
-                                        <tr>
-                                                <td colspan="4" >CAGED</td>
-                                                <td colspan="2" style="text-align:center;"><a href='#!' id="8" onclick="solicitaDocumentosSegurado('CAGED',this.id,false)">Solicitar</a></td>
-                                        </tr>
-                                        {% elif statusDoc8 == True  %}
+                                        {% if statusDoc9 == True  %}
                                         <tr id="Linha8">
                                                 <td style="vertical-align: middle" colspan="4" >CAGED</td>
-                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
+                                                <td style="vertical-align: middle"><a href={{ link9 }} target="_blank">Abrir</a></td>
                                                 <td style="width:80px;text-align: center;"><a href='#!' id="8" onclick="solicitaDocumentosSegurado('CAGED',this.id,true)">Solicitar Novamente </a></td>
                                         </tr>
         
@@ -325,10 +309,107 @@
                                         </tr>
         
                                         {% endif %}
+                                        <!-- ------------------------------------- -->
+
+                                        {% if statusDoc10 == True  %}
+                                        <tr id="Linha9">
+                                                <td style="vertical-align: middle" colspan="4" >Documento de identificação do rep. da empresa</td>
+                                                <td style="vertical-align: middle"><a href={{ link10 }} target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="9" onclick="solicitaDocumentosSegurado('Documento de identificação do representante da empresa',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >Documento de identificação do rep. da empresa</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
+                                        <!-- ------------------------------------- -->
+
+
+                                        {% if statusDoc11 == True  %}
+                                        <tr id="Linha10">
+                                                <td style="vertical-align: middle" colspan="4" >Contrato social ou Estatuto social</td>
+                                                <td style="vertical-align: middle"><a href={{ link11 }} target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="10" onclick="solicitaDocumentosSegurado('Contrato social ou Estatuto social',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >Contrato social ou Estatuto social</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
+                                        <!-- ------------------------------------- -->
+
+
+                                        {% if statusDoc12 == True  %}
+                                        <tr id="Linha11">
+                                                <td style="vertical-align: middle" colspan="4" >CPF do representante da empresa</td>
+                                                <td style="vertical-align: middle"><a href={{ link12 }} target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="11" onclick="solicitaDocumentosSegurado('CPF do representante da empresa',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >CPF do representante da empresa</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
+                                        <!-- ------------------------------------- -->
+
+
+                                        {% if statusDoc13 == True  %}
+                                        <tr id="Linha12">
+                                                <td style="vertical-align: middle" colspan="4" >Comprovante de vínculo do segurado</td>
+                                                <td style="vertical-align: middle"><a href={{ link13 }} target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="12" onclick="solicitaDocumentosSegurado('Comprovante de vínculo do segurado com o estipulante',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >Comprovante de vínculo do segurado</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
+
+                                        <!-- ------------------------------------- -->
+
+                                        {% if statusDoc14 == True  %}
+                                        <tr id="Linha13">
+                                                <td style="vertical-align: middle" colspan="4" >Cédula de financiamento</td>
+                                                <td style="vertical-align: middle"><a href={{ link14 }} target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="13" onclick="solicitaDocumentosSegurado('Cédula de financiamento',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >Cédula de financiamento</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
+
+                                        <!-- ------------------------------------- -->
+
+
+                                        {% if statusDoc15 == True  %}
+                                        <tr id="Linha14">
+                                                <td style="vertical-align: middle" colspan="4" >Comprovante de endereço em nome da pessoa jurídica</td>
+                                                <td style="vertical-align: middle"><a href={{ link15 }} target="_blank">Abrir</a></td>
+                                                <td style="width:80px;text-align: center;"><a href='#!' id="14" onclick="solicitaDocumentosSegurado('Cópia do comprovante de endereço em nome da pessoa jurídica',this.id,true)">Solicitar Novamente </a></td>
+                                        </tr>
+        
+                                        {% else %}
+                                                <td colspan="4" >Comprovante de endereço em nome da pessoa jurídica</td>
+                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                        </tr>
+        
+                                        {% endif %}
+
+                                        <!-- ------------------------------------- -->
                                         
                                 {% endif %}
-                                 <!-- ------------------------------------- -->
-
+                  
 
 
                               </table>
