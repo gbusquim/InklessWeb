@@ -33,6 +33,8 @@ numSegurado = 0
 identBen = ""
 pessoaLegal = False
 
+
+# Função retornaData: Recebe uma data no formato Timestamp do Firebase e retorna a mesma no formato dd/mm/aaaa
 def retornaData(dataNasc):
             if dataNasc == "":
                 return ""
@@ -55,7 +57,7 @@ def retornaData(dataNasc):
             
 
 
-#Funções dos templates
+# Função home: Retorna o template com a página inicial.  
 def home(request): 
     data = {}
     listaSegurados=[]
@@ -74,7 +76,7 @@ def home(request):
 
 
 
-
+# Função paginaBeneficiario: Retorna o template com a página do beneficiario.  
 def paginaBeneficiario(request):
     global identBen
     data={}
@@ -105,7 +107,16 @@ def paginaBeneficiario(request):
             else:
                 data["dataExpedicao"] = ""           
             
-      
+            if "faixaRenda" in beneficiario:
+                data["faixaRenda"] = beneficiario["faixaRenda"]
+            else:
+                data["faixaRenda"] = "" 
+
+            if "pessoaPoliticamenteExposta" in beneficiario:
+                data["pessoaPoliticamenteExposta"] = beneficiario["pessoaPoliticamenteExposta"]
+            else:
+                data["pessoaPoliticamenteExposta"] = ""   
+
             if "telefone" in beneficiario:
                 data["telefone"] = beneficiario["telefone"]
             else:
@@ -188,22 +199,18 @@ def paginaBeneficiario(request):
 
 
 
-           ##obtendo status de cada documento E PEGAR PATH DE CADA UM##
+           ##obtendo status de cada documento#
             doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
-            doc_ref1 = doc_ref.get()
-            doc_ref2 = doc_ref1.to_dict()
-            documentos = doc_ref2["documents"]
+            documentos = doc_ref.get().to_dict()["documents"]
             for doc in documentos:
                 if cont != 0:
                     if  doc["completed"] == True:
                         data["statusDoc" + str(cont)] = True
                         link = obtemLinkArquivo(doc_ref,identBen,doc["requirement"])
                         data["link" + str(cont)] = link
-                        ## deve aparecer como abrir
                     else:
                         if doc["optional"] == True:
                             data["statusDoc" + str(cont)] = "Nao solicitado"
-                            ## deve aparecer como solicitar
                         else:
                             data["statusDoc" + str(cont)] = False
                 cont = cont + 1
@@ -213,7 +220,7 @@ def paginaBeneficiario(request):
 
 
 
-
+# Função paginaSegurado: Retorna o template com a página do segurado. 
 def paginaSegurado(request):
     global identBen
     global pessoaLegal
@@ -241,34 +248,33 @@ def paginaSegurado(request):
                 data["matricula"]=segurado["segurado"]["matricula"]
             else:
                  data["matricula"]=""
+            if "plano" in segurado["segurado"]:
+                data["plano"]=segurado["segurado"]["plano"]
+            else:
+                 data["plano"]=""
             if "nomeEstipulante" in segurado["segurado"]:
                 data["nomeEstipulante"]=segurado["segurado"]["nomeEstipulante"]
             else:
                  data["nomeEstipulante"]=""
-            pessoalLegal = segurado["pessoaLegal"]  
-            data["Juridica"]=pessoalLegal
+            pessoaLegal = segurado["pessoaLegal"]  
+            data["Juridica"]=pessoaLegal
 
             
             
-            ##obtendo status de cada documento E PEGAR PATH DE CADA UM##
+            ##obtendo status de cada documento##
             doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
-            doc_ref1 = doc_ref.get()
-            doc_ref2 = doc_ref1.to_dict()
-            documentos = doc_ref2["documents"]
+            documentos = doc_ref.get().to_dict()["documents"]
             for doc in documentos:
                 if  doc["completed"] == True:
                     data["statusDoc" + str(cont)] = True
                     link = obtemLinkArquivo(doc_ref,identBen,doc["requirement"])
                     data["link" + str(cont)] = link
-                    ## deve aparecer como abrir
                 else:
                     if doc["optional"] == True:
                         data["statusDoc" + str(cont)] = "Nao solicitado"
-                        ## deve aparecer como solicitar
                     else:
                         data["statusDoc" + str(cont)] = False
                 cont = cont + 1
-                        ## por  hora aparece como solicitado
 
 
 
@@ -287,17 +293,18 @@ def paginaSegurado(request):
         i = i + 1
     return render(request, 'inkless/paginaSegurado.html',data)
 
+# Função obtemNomeSegurado: Obtem o segurado selecionado
 def obtemNomeSegurado(request):
     global numSegurado
     numSegurado = request.POST.get('nomeSegurado')
-    return HttpResponse('success') # if everything is OK
-    # nothing went well
+    return HttpResponse('success') 
 
-
+# Função atualizaStatusDocBeneficiario: Solicita o documento requisitado na página do beneficiário
 def atualizaStatusDocBeneficiario(request):
     nomeDoc = request.POST.get('nomeDoc')
     doc_ref = db.collection("users").document(identBen).collection("beneficiario").document("requerimentos")
     meu_doc = doc_ref.get().to_dict()
+    seenMessage = meu_doc["seenDocumentsMessage"]
     if nomeDoc == "Documento de identificação":          
         meu_doc["documents"][1]["optional"] = False
         meu_doc["documents"][1]["completed"] = False
@@ -330,13 +337,13 @@ def atualizaStatusDocBeneficiario(request):
         meu_doc["documents"][10]["completed"] = False
         
 
-    doc_ref.set({u'documents':meu_doc["documents"]})
+    doc_ref.set({u'documents':meu_doc["documents"],
+                 u'seenDocumentsMessage':seenMessage})
     
-    return HttpResponse('success') # if everything is OK
-    
-    # nothing went well
+    return HttpResponse('success')
 
 
+# Função atualizaStatus: Atualiza a mudanças no status do processo
 def atualizaStatus(request):
     status = request.POST.get('statusProc')
     doc_ref = db.collection("users").document(identBen)
@@ -345,11 +352,12 @@ def atualizaStatus(request):
     
 
 
-
+# Função atualizaStatusDocSegurado: Solicita o documento requisitado na página do segurado
 def atualizaStatusDocSegurado(request):
     nomeDoc = request.POST.get('nomeDoc')
     doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
     meu_doc = doc_ref.get().to_dict()
+    seenMessage = meu_doc["seenDocumentsMessage"]
     if(pessoaLegal == True):
         if nomeDoc == "GFIP/SEFIP":          
             meu_doc["documents"][7]["optional"] = False
@@ -399,11 +407,10 @@ def atualizaStatusDocSegurado(request):
             meu_doc["documents"][6]["completed"] = False
         
 
-    doc_ref.set({u'documents':meu_doc["documents"]})
+    doc_ref.set({u'documents':meu_doc["documents"],
+                 u'seenDocumentsMessage':seenMessage})
     
-    return HttpResponse('success') # if everything is OK
-    
-    # nothing went well
+    return HttpResponse('success') 
 
 
 
@@ -411,7 +418,7 @@ def atualizaStatusDocSegurado(request):
 
 
 
-
+# Função obtemLinkArquivo: Obtem o link para visualização do documento solicitado
 def obtemLinkArquivo(db,identBen,nomeDoc):
     arquivos = db.collection(nomeDoc).order_by('photoName',direction=firestore.Query.DESCENDING)
     arquivos_ref = arquivos.get()
@@ -420,7 +427,6 @@ def obtemLinkArquivo(db,identBen,nomeDoc):
         arquivoDoc = arquivo.to_dict()
         pathArquivo = arquivoDoc["imageStorage"]
         blob = bucket.blob(pathArquivo)
-        #print("whaaat " + blob.public_url)
         link = blob.generate_signed_url(datetime.timedelta(seconds=1000), method='GET')
         link = link.replace("googleapis","cloud.google")
         break
@@ -725,3 +731,6 @@ def obtemLinkArquivo(db,identBen,nomeDoc):
 
                       #doc_ref = db.collection(u'requerimentos').document(u'bCSwF0QWuUUV0c9DIqXaWpVKOJr2')
     #doc_tef = db.collection("users").document("wgB6q0D9iNVNX5EMSGCSyiCmvRX2").collection("beneficiario").document("requerimentos").collection("Documento de Identificação")
+
+
+        #print("whaaat " + blob.public_url)

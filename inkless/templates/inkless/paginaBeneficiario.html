@@ -59,7 +59,7 @@
         
         <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()">
                         {% if status == "Aguardando envio do documento" %}
-                                <option  selected="selected">Aguardando envio do documento</option>
+                                <option  selected="selected">Aguardando envio de documentos</option>
                                 <option>Aviso</option>
                                 <option>Em análise</option>
                                 <option>Regulação</option>
@@ -68,7 +68,7 @@
                                 <option>Negado</option>
                       
                         {% elif status == "Aviso" %}
-                                <option  >Aguardando envio do documento</option>
+                                <option  >Aguardando envio de documentos</option>
                                 <option  selected="selected">Aviso</option>
                                 <option>Em análise</option>
                                 <option>Regulação</option>
@@ -77,7 +77,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Em análise" %}
-                                <option  >Aguardando envio do documento</option>
+                                <option  >Aguardando envio de documentos</option>
                                 <option >Aviso</option>
                                 <option selected="selected">Em análise</option>
                                 <option>Regulação</option>
@@ -86,7 +86,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Regulação" %}
-                                <option  >Aguardando envio do documento</option>
+                                <option  >Aguardando envio de documentos</option>
                                 <option >Aviso</option>
                                 <option>Em análise</option>
                                 <option selected="selected">Regulação</option>
@@ -95,7 +95,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Parcialmente pago" %}
-                                <option  >Aguardando envio do documento</option>
+                                <option  >Aguardando envio de documentos</option>
                                 <option >Aviso</option>
                                 <option>Em análise</option>
                                 <option >Regulação</option>
@@ -104,7 +104,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Pago" %}
-                                <option  >Aguardando envio do documento</option>
+                                <option  >Aguardando envio de documentos</option>
                                 <option >Aviso</option>
                                 <option>Em análise</option>
                                 <option >Regulação</option>
@@ -113,7 +113,7 @@
                                 <option>Negado</option>
 
                         {% elif status == "Negado" %}
-                                <option  >Aguardando envio do documento</option>
+                                <option  >Aguardando envio de documentos</option>
                                 <option >Aviso</option>
                                 <option>Em análise</option>
                                 <option ">Regulação</option>
@@ -162,12 +162,25 @@
                                         Profissão: {{ profissao }}
                                 </h4>
                         {% endif %}
-                        <h4 class="colunaEsquerda">
-                                Faixa de renda: entre R$ 1.000,01 e R$ 5.000,00
-                        </h4>
-                        <h4 class="colunaEsquerda">
-                                Não é pessoa politicamente exposta
-                        </h4>
+                        {% if faixaRenda != "" %}
+                                <h4 class="colunaEsquerda">
+                                        Faixa de renda: {{ faixaRenda }}
+                                </h4>
+                        {% endif %}
+
+                        {% if pessoaPoliticamenteExposta != "" %}
+                                {% if pessoaPoliticamenteExposta == False %}
+                                        <h4 class="colunaEsquerda">
+                                                Não é pessoa politicamente exposta
+                                        </h4>
+                                        {% else %}
+                                        <h4 class="colunaEsquerda">
+                                                É pessoa politicamente exposta
+                                        </h4>
+                                {% endif %}
+                         {% endif %}
+
+                        
                         <h4 class="colunaEsquerda">
                                 Reside no Brasil
                         </h4>
@@ -467,6 +480,8 @@
                 
                 var e = document.getElementById("dropdown");
                 var strUser = e.options[e.selectedIndex].text
+                if (strUser == "Aguardando envio de documentos")
+                        strUser = "Aguardando envio do documento"
                 $.ajax({
                         url: "/processaRequestStatus",
                         type: "POST", 

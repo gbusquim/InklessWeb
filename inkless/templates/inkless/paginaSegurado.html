@@ -47,7 +47,7 @@
                         
                         <select class = "meuDropdown" id="dropdown" onchange="mudancaStatus()">
                                 {% if status == "Aguardando envio do documento" %}
-                                        <option  selected="selected">Aguardando envio do documento</option>
+                                        <option  selected="selected">Aguardando envio de documentos</option>
                                         <option>Aviso</option>
                                         <option>Em análise</option>
                                         <option>Regulação</option>
@@ -56,7 +56,7 @@
                                         <option>Negado</option>
                               
                                 {% elif status == "Aviso" %}
-                                        <option> Aguardando envio do documento</option>
+                                        <option> Aguardando envio de documentos</option>
                                         <option  selected="selected">Aviso</option>
                                         <option>Em análise</option>
                                         <option>Regulação</option>
@@ -65,7 +65,7 @@
                                         <option>Negado</option>
         
                                 {% elif status == "Em análise" %}
-                                        <option  >Aguardando envio do documento</option>
+                                        <option  >Aguardando envio de documentos</option>
                                         <option >Aviso</option>
                                         <option selected="selected">Em análise</option>
                                         <option>Regulação</option>
@@ -74,7 +74,7 @@
                                         <option>Negado</option>
         
                                 {% elif status == "Regulação" %}
-                                        <option  >Aguardando envio do documento</option>
+                                        <option  >Aguardando envio de documentos</option>
                                         <option >Aviso</option>
                                         <option>Em análise</option>
                                         <option selected="selected">Regulação</option>
@@ -83,7 +83,7 @@
                                         <option>Negado</option>
         
                                 {% elif status == "Parcialmente pago" %}
-                                        <option  >Aguardando envio do documento</option>
+                                        <option  >Aguardando envio de documentos</option>
                                         <option >Aviso</option>
                                         <option>Em análise</option>
                                         <option >Regulação</option>
@@ -92,7 +92,7 @@
                                         <option>Negado</option>
         
                                 {% elif status == "Pago" %}
-                                        <option  >Aguardando envio do documento</option>
+                                        <option  >Aguardando envio de documentos</option>
                                         <option >Aviso</option>
                                         <option>Em análise</option>
                                         <option >Regulação</option>
@@ -101,7 +101,7 @@
                                         <option>Negado</option>
         
                                 {% elif status == "Negado" %}
-                                        <option  >Aguardando envio do documento</option>
+                                        <option  >Aguardando envio de documentos</option>
                                         <option >Aviso</option>
                                         <option>Em análise</option>
                                         <option ">Regulação</option>
@@ -128,9 +128,11 @@
                                 Matrícula: {{ matricula }}
                         </h4 >
                         {% endif %}
-                        <h4 class="colunaEsquerda">
-                                Plano: Individual
-                        </h4>
+                        {% if plano != "" %}
+                                <h4 class="colunaEsquerda">
+                                        Plano: {{ plano }}
+                                </h4>
+                        {% endif %}
                         {% if nomeEstipulante != "" %}
                         <h4 class="colunaEsquerda">
                                 Nome do estipulante: {{ nomeEstipulante }}
@@ -162,7 +164,7 @@
                                 <tr id="Linha11">
                                        <td style="vertical-align: middle" colspan="4" >CPF</td>
                                        <td style="vertical-align: middle"><a href={{ link2 }} target="_blank">Abrir</a></td>
-                                       <td style="width:80px;text-align: center;"><a href='#!' id="11" onclick="solicitaDocumentosBeneficiario('CPF',this.id,true)">Solicitar Novamente </a></td>
+                                       <td style="width:80px;text-align: center;"><a href='#!' id="11" onclick="solicitaDocumentosSegurado('CPF',this.id,true)">Solicitar Novamente </a></td>
                                </tr>
                                {% else %}
                                <tr>
@@ -428,6 +430,8 @@
                         
                         var e = document.getElementById("dropdown");
                         var strUser = e.options[e.selectedIndex].text
+                        if (strUser == "Aguardando envio de documentos")
+                                strUser = "Aguardando envio do documento"
                         $.ajax({
                                 url: "/processaRequestStatus",
                                 type: "POST", 
