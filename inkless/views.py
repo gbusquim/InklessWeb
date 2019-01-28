@@ -242,7 +242,7 @@ def paginaSegurado(request):
             if "numeroProposta" in segurado["segurado"]:
                 data["numeroProposta"] = segurado["segurado"]["numeroProposta"]
             else:
-                data["numeroProposta"]="12345"
+                data["numeroProposta"]=""
             identBen = segurado["uid"]
             if "matricula" in segurado["segurado"]:
                 data["matricula"]=segurado["segurado"]["matricula"]

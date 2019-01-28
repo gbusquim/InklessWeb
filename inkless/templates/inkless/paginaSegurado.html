@@ -120,9 +120,11 @@
                         <h4 class="colunaEsquerda">
                                 Benefício: {{ beneficioRequerido }}
                         </h4>
-                        <h4 class="colunaEsquerda">
-                                Número da proposta: {{ numeroProposta }}
-                        </h4>
+                        {% if numeroProposta != "" %}
+                                <h4 class="colunaEsquerda">
+                                        Número da proposta: {{ numeroProposta }}
+                                </h4>
+                        {% endif %}
                         {% if matricula != "" %}
                         <h4  class="colunaEsquerda" >
                                 Matrícula: {{ matricula }}
