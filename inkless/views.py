@@ -67,7 +67,7 @@ def home(request):
     for doc in docs:
         segurado = doc.to_dict()
         listaSegurados.append(segurado["segurado"]["nomeCompleto"])
-        if "numeroProposta" in segurado["segurado"]:
+        if "numeroProposta" in segurado["segurado"] and segurado["segurado"]["numeroProposta"] != "":
             listaPropostas.append(segurado["segurado"]["numeroProposta"])
         else:
             listaPropostas.append("12345")
