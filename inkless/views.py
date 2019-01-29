@@ -358,53 +358,51 @@ def atualizaStatusDocSegurado(request):
     doc_ref = db.collection("users").document(identBen).collection("segurado").document("requerimentos")
     meu_doc = doc_ref.get().to_dict()
     seenMessage = meu_doc["seenDocumentsMessage"]
-    if(pessoaLegal == True):
-        if nomeDoc == "GFIP/SEFIP":          
-            meu_doc["documents"][7]["optional"] = False
-            meu_doc["documents"][7]["completed"] = False
-        elif nomeDoc == "FRE":          
-            meu_doc["documents"][8]["optional"] = False
-            meu_doc["documents"][8]["completed"] = False
-        elif nomeDoc == "CAGED":          
-            meu_doc["documents"][9]["optional"] = False
-            meu_doc["documents"][9]["completed"] = False
-        elif nomeDoc == "Documento de identificação do rep. da empresa":          
-            meu_doc["documents"][10]["optional"] = False
-            meu_doc["documents"][10]["completed"] = False
-        elif nomeDoc == "Contrato social ou Estatuto social":          
-            meu_doc["documents"][11]["optional"] = False
-            meu_doc["documents"][11]["completed"] = False
-        elif nomeDoc == "CPF do representante da empresa":          
-            meu_doc["documents"][12]["optional"] = False
-            meu_doc["documents"][12]["completed"] = False
-        elif nomeDoc == "Comprovante de vínculo do segurado":          
-            meu_doc["documents"][13]["optional"] = False
-            meu_doc["documents"][13]["completed"] = False
-        elif nomeDoc == "Cédula de financiamento":          
-            meu_doc["documents"][14]["optional"] = False
-            meu_doc["documents"][14]["completed"] = False
-        elif nomeDoc == "Comprovante de endereço em nome da pessoa jurídica":          
-            meu_doc["documents"][15]["optional"] = False
-            meu_doc["documents"][15]["completed"] = False
-    else:  
-        if nomeDoc == "Documento de identificação":          
-            meu_doc["documents"][1]["optional"] = False
-            meu_doc["documents"][1]["completed"] = False
-        elif  nomeDoc == "CPF":
-            meu_doc["documents"][2]["optional"] = False
-            meu_doc["documents"][2]["completed"] = False
-        elif nomeDoc == "Declaração médica de morte natural":
-            meu_doc["documents"][3]["optional"] = False
-            meu_doc["documents"][3]["completed"] = False
-        elif nomeDoc == "Laudo médico":
-            meu_doc["documents"][4]["optional"] = False
-            meu_doc["documents"][4]["completed"] = False
-        elif nomeDoc == "Certificado de óbito":
-            meu_doc["documents"][5]["optional"] = False
-            meu_doc["documents"][5]["completed"] = False
-        elif nomeDoc == "Certidão de casamento ou nascimento":
-            meu_doc["documents"][6]["optional"] = False
-            meu_doc["documents"][6]["completed"] = False
+    if nomeDoc == "GFIP/SEFIP":          
+        meu_doc["documents"][7]["optional"] = False
+        meu_doc["documents"][7]["completed"] = False
+    elif nomeDoc == "FRE":          
+        meu_doc["documents"][8]["optional"] = False
+        meu_doc["documents"][8]["completed"] = False
+    elif nomeDoc == "CAGED":          
+        meu_doc["documents"][9]["optional"] = False
+        meu_doc["documents"][9]["completed"] = False
+    elif nomeDoc == "Documento de identificação do representante da empresa":          
+        meu_doc["documents"][10]["optional"] = False
+        meu_doc["documents"][10]["completed"] = False
+    elif nomeDoc == "Contrato social ou Estatuto social":          
+        meu_doc["documents"][11]["optional"] = False
+        meu_doc["documents"][11]["completed"] = False
+    elif nomeDoc == "CPF do representante da empresa":          
+        meu_doc["documents"][12]["optional"] = False
+        meu_doc["documents"][12]["completed"] = False
+    elif nomeDoc == "Comprovante de vínculo do segurado com o estipulante":          
+        meu_doc["documents"][13]["optional"] = False
+        meu_doc["documents"][13]["completed"] = False
+    elif nomeDoc == "Cédula de financiamento":          
+        meu_doc["documents"][14]["optional"] = False
+        meu_doc["documents"][14]["completed"] = False
+    elif nomeDoc == "Cópia do comprovante de endereço em nome da pessoa jurídica":          
+        meu_doc["documents"][15]["optional"] = False
+        meu_doc["documents"][15]["completed"] = False
+    if nomeDoc == "Documento de identificação":          
+        meu_doc["documents"][1]["optional"] = False
+        meu_doc["documents"][1]["completed"] = False
+    elif  nomeDoc == "CPF":
+        meu_doc["documents"][2]["optional"] = False
+        meu_doc["documents"][2]["completed"] = False
+    elif nomeDoc == "Declaração médica de morte natural":
+        meu_doc["documents"][3]["optional"] = False
+        meu_doc["documents"][3]["completed"] = False
+    elif nomeDoc == "Laudo médico":
+        meu_doc["documents"][4]["optional"] = False
+        meu_doc["documents"][4]["completed"] = False
+    elif nomeDoc == "Certificado de óbito":
+        meu_doc["documents"][5]["optional"] = False
+        meu_doc["documents"][5]["completed"] = False
+    elif nomeDoc == "Certidão de casamento ou nascimento":
+        meu_doc["documents"][6]["optional"] = False
+        meu_doc["documents"][6]["completed"] = False
         
 
     doc_ref.set({u'documents':meu_doc["documents"],
