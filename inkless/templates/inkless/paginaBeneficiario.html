@@ -11,15 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}" type="text/css">
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <!--Import materialize.css-->
-    <!-- <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css'%}"  media="screen,projection"/> -->
 
-
-
-    <!-- <script  src="{% static 'js/bootstrap.bundle.js' %}"></script>
-    <script  src="{% static 'js/bootstrap.js' %}"></script>
-    <script  src="{% static 'js/jquery.js' %}"></script> -->
 </head>
 
 
@@ -291,7 +283,7 @@
                                   <!-- ------------------------------------- -->
                                         <!-- Documentos nao obrigatorios -->
 
-                                {# {% if fiscalExterior == True %} #}
+
                                         {% if statusDoc4 == "Nao solicitado" %}
                                         <tr>
                                                 <td colspan="4" >Informações tributárias complementares</td>
@@ -310,7 +302,7 @@
                                         </tr>
 
                                         {% endif %}
-                                {# {% endif %} #}
+
         
                                  <!-- ------------------------------------- -->
 
@@ -377,29 +369,7 @@
    
                                    {% endif %}
            
-                                    <!-- ------------------------------------- -->
 
-
-                                     <!-- {% if statusDoc8 == "Nao solicitado" %}
-                                     <tr>
-                                             <td colspan="4" >Declaração de rol de herdeiros</td>
-                                             <td colspan="2" style="text-align:center;"><a href='#!' id="7" onclick="solicitaDocumentosBeneficiario('Declaração de rol de herdeiros',this.id,false)">Solicitar</a></td>
-                                     </tr>
-                                     {% elif statusDoc8 == True  %}
-                                     <tr id="Linha7">
-                                             <td style="vertical-align: middle" colspan="4" >Declaração de rol de herdeiros</td>
-                                             <td style="vertical-align: middle"><a href={{ link8 }} target="_blank">Abrir</a></td>
-                                             <td style="width:80px;text-align: center;"><a href='#!' id="7" onclick="solicitaDocumentosBeneficiario('Declaração de rol de herdeiros',this.id,true)">Solicitar Novamente </a></td>
-                                     </tr>
-     
-                                     {% else %}
-                                             <td colspan="4" >Declaração de rol de herdeiros</td>
-                                             <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                     </tr>
-     
-                                     {% endif %} -->
-             
-                                      <!-- ------------------------------------- -->
 
                                       {% if statusDoc9 == "Nao solicitado" %}
                                       <tr>
@@ -420,30 +390,7 @@
       
                                       {% endif %}
               
-                                       <!-- ------------------------------------- -->
-                                
 
-                                
-                                        <!-- {% if statusDoc9 == "Nao solicitado" %}
-                                        <tr>
-                                                <td colspan="4" >Cópia do domicílio bancário</td>
-                                                <td colspan="2" style="text-align:center;"><a href='#!' id="9" onclick="solicitaDocumentosBeneficiario('Cópia do domicílio bancário',this.id,false)">Solicitar</a></td>
-                                        </tr>
-                                        {% elif statusDoc9 == True  %}
-                                        <tr id="Linha9">
-                                                <td style="vertical-align: middle" colspan="4" >Cópia do domicílio bancário</td>
-                                                <td style="vertical-align: middle"><a href="{% static 'Residencia.pdf' %}" target="_blank">Abrir</a></td>
-                                                <td style="width:80px;text-align: center;"><a href='#!' id="9" onclick="solicitaDocumentosBeneficiario('Cópia do domicílio bancário',this.id,true)">Solicitar Novamente </a></td>
-                                        </tr>
-        
-                                        {% else %}
-                                                <td colspan="4" >Cópia do domicílio bancário</td>
-                                                <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                        </tr>
-        
-                                        {% endif %} -->
-
-                                        <!-- ------------------------------------- -->
 
                                         {% if statusDoc10 == "Nao solicitado" %}
                                         <tr>

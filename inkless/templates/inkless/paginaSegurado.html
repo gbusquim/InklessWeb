@@ -349,73 +349,73 @@
                                         
                                 {% endif %}
 
-                                                                 <!-- Documentos nao obrigatorios -->
-                                                                 {% if statusDoc6 == "Nao solicitado" %}
-                                                                 <tr>
-                                                                         <td colspan="4" >Certidão de casamento ou nascimento</td>
-                                                                         <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento ou nascimento',this.id,false)">Solicitar</a></td>
-                                                                 </tr>
-                                                                 {% elif statusDoc6 == True  %}
-                                                                 <tr id="Linha3">
-                                                                         <td style="vertical-align: middle" colspan="4" >Certidão de casamento ou nascimento</td>
-                                                                         <td style="vertical-align: middle"><a href={{ link6 }} target="_blank">Abrir</a></td>
-                                                                         <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento ou nascimento',this.id,true)">Solicitar Novamente </a></td>
-                                                                 </tr>
-                                 
-                                                                 {% else %}
-                                                                         <td colspan="4" >Certidão de casamento ou nascimento</td>
-                                                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                                                 </tr>
-                                 
-                                                                 {% endif %}
-                                 
-                                 
-                                 
-                                                                 <!-- ------------------------------------- -->
-                                 
-                                                                 {% if statusDoc3 == "Nao solicitado" %}
-                                                                 <tr>
-                                                                         <td colspan="4" >Declaração médica de morte natural</td>
-                                                                         <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentosSegurado('Declaração médica de morte natural',this.id,false)">Solicitar</a></td>
-                                                                 </tr>
-                                                                 {% elif statusDoc3 == True  %}
-                                                                 <tr id="Linha4">
-                                                                         <td style="vertical-align: middle" colspan="4" >Declaração médica de morte natural</td>
-                                                                         <td style="vertical-align: middle"><a href={{ link3 }} target="_blank">Abrir</a></td>
-                                                                         <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentosSegurado('Declaração médica de morte natural',this.id,true)">Solicitar Novamente </a></td>
-                                                                 </tr>
-                                 
-                                                                 {% else %}
-                                                                         <td colspan="4" >Declaração médica de morte natural</td>
-                                                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                                                 </tr>
-                                 
-                                                                 {% endif %}
-                                 
-                                 
-                                 
-                                 
-                                                                  <!-- ------------------------------------- -->
-                                 
-                                                                 {% if statusDoc4 == "Nao solicitado" %}
-                                                                 <tr>
-                                                                         <td colspan="4" >Laudo médico</td>
-                                                                         <td colspan="2" style="text-align:center;"><a href='#!' id="5" onclick="solicitaDocumentosSegurado('Laudo médico',this.id,false)">Solicitar</a></td>
-                                                                 </tr>
-                                                                 {% elif statusDoc4 == True  %}
-                                                                 <tr id="Linha5">
-                                                                         <td style="vertical-align: middle" colspan="4" >Laudo médico</td>
-                                                                         <td style="vertical-align: middle"><a href={{ link4 }} target="_blank">Abrir</a></td>
-                                                                         <td style="width:80px;text-align: center;"><a href='#!' id="5" onclick="solicitaDocumentosSegurado('Laudo médico',this.id,true)">Solicitar Novamente </a></td>
-                                                                 </tr>
-                                 
-                                                                 {% else %}
-                                                                         <td colspan="4" >Laudo médico</td>
-                                                                         <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
-                                                                 </tr>
-                                 
-                                                                 {% endif %}
-                  
+                                <!-- Documentos nao obrigatorios -->
+                                {% if statusDoc6 == "Nao solicitado" %}
+                                <tr>
+                                        <td colspan="4" >Certidão de casamento ou nascimento</td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento ou nascimento',this.id,false)">Solicitar</a></td>
+                                </tr>
+                                {% elif statusDoc6 == True  %}
+                                <tr id="Linha3">
+                                        <td style="vertical-align: middle" colspan="4" >Certidão de casamento ou nascimento</td>
+                                        <td style="vertical-align: middle"><a href={{ link6 }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="3" onclick="solicitaDocumentosSegurado('Certidão de casamento ou nascimento',this.id,true)">Solicitar Novamente </a></td>
+                                </tr>
+
+                                {% else %}
+                                        <td colspan="4" >Certidão de casamento ou nascimento</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+
+                                {% endif %}
+
+
+
+                                <!-- ------------------------------------- -->
+
+                                {% if statusDoc3 == "Nao solicitado" %}
+                                <tr>
+                                        <td colspan="4" >Declaração médica de morte natural</td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="4" onclick="solicitaDocumentosSegurado('Declaração médica de morte natural',this.id,false)">Solicitar</a></td>
+                                </tr>
+                                {% elif statusDoc3 == True  %}
+                                <tr id="Linha4">
+                                        <td style="vertical-align: middle" colspan="4" >Declaração médica de morte natural</td>
+                                        <td style="vertical-align: middle"><a href={{ link3 }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="4" onclick="solicitaDocumentosSegurado('Declaração médica de morte natural',this.id,true)">Solicitar Novamente </a></td>
+                                </tr>
+
+                                {% else %}
+                                        <td colspan="4" >Declaração médica de morte natural</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+
+                                {% endif %}
+
+
+
+
+                                <!-- ------------------------------------- -->
+
+                                {% if statusDoc4 == "Nao solicitado" %}
+                                <tr>
+                                        <td colspan="4" >Laudo médico</td>
+                                        <td colspan="2" style="text-align:center;"><a href='#!' id="5" onclick="solicitaDocumentosSegurado('Laudo médico',this.id,false)">Solicitar</a></td>
+                                </tr>
+                                {% elif statusDoc4 == True  %}
+                                <tr id="Linha5">
+                                        <td style="vertical-align: middle" colspan="4" >Laudo médico</td>
+                                        <td style="vertical-align: middle"><a href={{ link4 }} target="_blank">Abrir</a></td>
+                                        <td style="width:80px;text-align: center;"><a href='#!' id="5" onclick="solicitaDocumentosSegurado('Laudo médico',this.id,true)">Solicitar Novamente </a></td>
+                                </tr>
+
+                                {% else %}
+                                        <td colspan="4" >Laudo médico</td>
+                                        <td colspan="2" style="text-align:center;color: gray">Solicitado </td>
+                                </tr>
+
+                                {% endif %}
+
 
 
                               </table>
